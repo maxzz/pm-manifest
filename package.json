@@ -1,0 +1,25 @@
+{
+    "name": "pm-manifest",
+    "globalObject": "pm-manifest",
+    "version": "1.0.0",
+    "description": "PM manifest definition files",
+    "type": "module",
+    "main": "./dist/index.js",
+    "license": "MIT",
+    "scripts": {
+        "dev": "tsc -w",
+        "build": "rollup -c rollup.config.js --environment targer:es2020,minify"
+    },
+    "devDependencies": {
+        "@rollup/plugin-node-resolve": "^15.1.0",
+        "@rollup/plugin-terser": "^0.4.3",
+        "@rollup/plugin-typescript": "^11.1.2",
+        "esbuild": "^0.18.11",
+        "rollup": "^3.26.0",
+        "tslib": "^2.6.0",
+        "typescript": "^5.1.6"
+    },
+    "dependencies": {
+        "fast-xml-parser": "^4.2.5"
+    }
+}
