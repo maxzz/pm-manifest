@@ -8,9 +8,11 @@
     "license": "MIT",
     "scripts": {
         "dev": "tsc -w",
-        "build": "rollup -c rollup.config.js --environment targer:es2020,minify"
+        "build:min": "rollup -c rollup.config.js --environment targer:es2020,minify",
+        "build": "rollup -c rollup.config.js --environment targer:es2020"
     },
     "devDependencies": {
+        "@rollup/plugin-commonjs": "^25.0.2",
         "@rollup/plugin-node-resolve": "^15.1.0",
         "@rollup/plugin-terser": "^0.4.3",
         "@rollup/plugin-typescript": "^11.1.2",
