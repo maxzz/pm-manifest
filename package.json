@@ -1,12 +1,12 @@
 {
     "name": "pm-manifest",
     "globalObject": "pm-manifest",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "PM manifest definition files",
     "type": "module",
     "main": "./src/index.ts",
     "files": [
-        "./src/**/*"
+        "./src"
     ],
     "license": "MIT",
     "scripts": {
