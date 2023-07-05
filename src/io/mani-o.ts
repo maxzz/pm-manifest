@@ -1,4 +1,4 @@
-import { Mani } from "../mani-types";
+import { Mani } from "../all-types";
 import { parseOptionsRead } from "./mani-i";
 import { showError } from "./mani-show-error";
 import { TransformEncoding } from "../transforms";

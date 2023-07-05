@@ -1,4 +1,4 @@
-export * from './mani-types';
+export * from './all-types';
 export * from './transforms';
 export * from './io/mani-i';
 export * from './io/mani-o';

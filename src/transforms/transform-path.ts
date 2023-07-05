@@ -1,4 +1,4 @@
-import { MPath, Meta } from "../mani-types";
+import { MPath, Meta } from "../all-types";
 import { TransformEncoding } from "./transform-xml-enc";
 import { getPoolName } from "./transform-mani-pool";
 

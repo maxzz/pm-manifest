@@ -1,4 +1,4 @@
-import { Catalog, FieldCatalog, Mani, Meta, fieldTyp4Str } from '../mani-types';
+import { Catalog, FieldCatalog, Mani, Meta, fieldTyp4Str } from '../all-types';
 import { getPool } from '../transforms/transform-mani-pool';
 import { TransformValue } from '../transforms/transform-valuelife';
 import { FieldPath } from '../transforms/transform-path';
@@ -6,6 +6,7 @@ import { removeQuery, urlDomain } from '../transforms/url';
 import { uuid } from '../utils';
 
 namespace Bailouts {
+
     function noSIDs(meta: Meta.Form) { // web, not script, use it, no sid, and not button; scuonlinebanking.com clogin #89340
         return !!meta.disp.domain && !meta.disp.isScript &&
             !!meta.fields.find((field: Meta.Field) => field.mani.useit && !field.path.sid && field.mani.type !== 'button');
@@ -24,19 +25,23 @@ namespace Bailouts {
         }
         return rv.length ? rv : undefined;
     }
+
 } //namespace Bailouts
 
 export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[] {
-    const isManual = (fields: Meta.Field[]): boolean => {
+    function isManual(fields: Meta.Field[]): boolean {
         return !!fields.length && fields.some(({ path }: { path: Meta.Path; }) => path.sn);
-    };
-    const isIeServer = (form: Mani.Form): boolean => {
+    }
+
+    function isIeServer(form: Mani.Form): boolean {
         return !!form.detection?.names_ext?.match(/Internet Explorer_Server/);
-    };
-    const isIeProcess = (form: Mani.Form): boolean => {
+    }
+
+    function isIeProcess(form: Mani.Form): boolean {
         return !!form.detection?.processname?.match(/(iexplore|msedge|microsoftedgecp)\.exe"?$/i);
-    };
-    const createMetaForm = (form: Mani.Form, idx: number): Meta.Form => {
+    }
+
+    function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
         const pool: string[] = getPool(form) || [];
         const fields: Meta.Field[] = (form.fields || []).map((field: Mani.Field, idx: number) => ({
             mani: field,
@@ -68,13 +73,16 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
             meta.disp.bailOut = bailOuts;
         }
         return meta;
-    };
+    }
+
     const forms: Meta.Form[] = !mani || !mani.forms || !mani.forms.length ? [] : mani.forms.map(createMetaForm);
+
     [0, 1].forEach((type: number) => { // build xlinks
         if (forms[type]) {
             forms[type].rother = forms[type === 0 ? 1 : 0]?.fields.map((field) => field.ridx) || [];
         }
     });
+
     return forms;
 }
 

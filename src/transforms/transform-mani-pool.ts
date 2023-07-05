@@ -1,4 +1,4 @@
-import { Mani } from "../mani-types";
+import { Mani } from "../all-types";
 import { TransformEncoding } from "./transform-xml-enc";
 
 // Manifest specific functions

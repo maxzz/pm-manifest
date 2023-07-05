@@ -1,5 +1,5 @@
 import { XMLParser } from 'fast-xml-parser';
-import { Catalog, Mani } from '../mani-types';
+import { Catalog, Mani } from '../all-types';
 import { TransformEncoding } from '../transforms';
 //import test from '../../assets/{ff06f637-4270-4a0e-95a3-6f4995dceae6}.dpm';
 
