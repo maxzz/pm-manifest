@@ -3,6 +3,7 @@ import { TransformEncoding } from "./transform-xml-enc";
 import { getPoolName } from "./transform-mani-pool";
 
 export namespace FieldPath {
+
     function p4a(pool: string[], s: string): MPath.p4a {
         let ss = s.split('.');
         let rv: MPath.p4a = {
@@ -87,39 +88,46 @@ export namespace FieldPath {
 
                 return { rects, bounds, };
             }
+
         } //namespace utils
+
     } //namespace loc
 
-    function getChunks(path: string): [Meta.Chunk, string][] {
-        // [p4a]0.0.1.|0.2.1.[loc]b|c[sid]14.15.16..17 -> ['p4a', '0.0.1.|0.2.1.'], ['loc', 'b|c'], ['sid', '14.15.16..17']
-        return path.split('[').filter(Boolean).map((val: string) => val.split(']') as [Meta.Chunk, string]);;
+    type ChunkTuple = [Meta.Chunk, string];
+
+    function getChunks(path: string): ChunkTuple[] {
+        // 0. Convert: 
+        //      [p4a]0.0.1.|0.2.1.[loc]b|c[sid]14.15.16..17 -> 
+        //      ['p4a', '0.0.1.|0.2.1.'], ['loc', 'b|c'], ['sid', '14.15.16..17']
+        //
+        return path.split('[').filter(Boolean).map((val: string) => val.split(']') as ChunkTuple);
     }
 
     export function fieldPathItems(pool: string[], path: string): Meta.Path {
-        const rv: Meta.Path = {};
-        const chunks: [Meta.Chunk, string][] = getChunks(path);
+        const acc: Meta.Path = {};
+        const chunks: ChunkTuple[] = getChunks(path);
 
         chunks.forEach(([chunkName, chunkValue]) => {
             switch (chunkName) {
                 case 'p4a':
                 case 'p4': {
-                    rv.p4a = chunkValue.split('|').map(_ => p4a(pool, _));
+                    acc.p4a = chunkValue.split('|').map(_ => p4a(pool, _));
                     break;
                 }
                 case 'loc': {
-                    rv.loc = loc.unPool(pool, chunkValue).join('|');
+                    acc.loc = loc.unPool(pool, chunkValue).join('|');
                     break;
                 }
                 case 'sid': {
-                    rv.sid = sid(pool, chunkValue);
+                    acc.sid = sid(pool, chunkValue);
                     break;
                 }
                 case 'did2': {
-                    rv.did2 = chunkValue;
+                    acc.did2 = chunkValue;
                     break;
                 }
                 case 'sn': {
-                    rv.sn = {
+                    acc.sn = {
                         total: 0,
                         current: 0,
                         parts: [],
@@ -128,11 +136,11 @@ export namespace FieldPath {
                     if (ss.length) {
                         let first = ss[0].split('.'); // '3.0.the-rest'
                         if (first.length > 2) {
-                            rv.sn.total = +first[0];
-                            rv.sn.current = +first[1];
+                            acc.sn.total = +first[0];
+                            acc.sn.current = +first[1];
                             ss[0] = first[2];
                         }
-                        rv.sn.parts = ss.filter(Boolean);
+                        acc.sn.parts = ss.filter(Boolean);
                     }
                     break;
                 }
@@ -142,6 +150,7 @@ export namespace FieldPath {
             }
         });
 
-        return rv;
-    }
+        return acc;
+    } //fieldPathItems()
+
 } //namespace FieldPath

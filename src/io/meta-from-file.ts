@@ -1,8 +1,5 @@
-import { Catalog, FieldCatalog, Mani, Meta, fieldTyp4Str } from '../all-types';
-import { getPool } from '../transforms/transform-mani-pool';
-import { TransformValue } from '../transforms/transform-valuelife';
-import { FieldPath } from '../transforms/transform-path';
-import { removeQuery, urlDomain } from '../transforms/url';
+import { Catalog, CatalogItem, FieldCatalog, Mani, Meta, fieldTyp4Str } from '../all-types';
+import { getPool, TransformValue, FieldPath, urlDomain, removeQuery } from '../transforms';
 import { uuid } from '../utils';
 
 namespace Bailouts {
@@ -29,6 +26,18 @@ namespace Bailouts {
 } //namespace Bailouts
 
 export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[] {
+    const forms: Meta.Form[] = !mani || !mani.forms || !mani.forms.length
+        ? []
+        : mani.forms.map(createMetaForm);
+
+    [0, 1].forEach((formIdx: number) => { // build forms xlinks
+        if (forms[formIdx]) {
+            forms[formIdx].rother = forms[formIdx === 0 ? 1 : 0]?.fields.map((field) => field.ridx) || [];
+        }
+    });
+
+    return forms;
+
     function isManual(fields: Meta.Field[]): boolean {
         return !!fields.length && fields.some(({ path }: { path: Meta.Path; }) => path.sn);
     }
@@ -43,6 +52,7 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
 
     function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
         const pool: string[] = getPool(form) || [];
+
         const fields: Meta.Field[] = (form.fields || []).map((field: Mani.Field, idx: number) => ({
             mani: field,
             ftyp: fieldTyp4Str(field),
@@ -51,10 +61,12 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
             pidx: idx,
             ridx: 0,
         }));
+
         const domain = urlDomain(removeQuery(form.detection?.web_ourl));
         const isScript = isManual(fields);
         const isIe = isIeServer(form) || isIeProcess(form);
-        const meta: Meta.Form = {
+
+        const newMetaForm: Meta.Form = {
             mani: form,
             type: idx,
             disp: {
@@ -68,34 +80,34 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
             fields,
             rother: [],
         };
-        const bailOuts = Bailouts.getBailouts(meta);
+
+        const bailOuts = Bailouts.getBailouts(newMetaForm);
         if (bailOuts) {
-            meta.disp.bailOut = bailOuts;
+            newMetaForm.disp.bailOut = bailOuts;
         }
-        return meta;
+
+        return newMetaForm;
     }
 
-    const forms: Meta.Form[] = !mani || !mani.forms || !mani.forms.length ? [] : mani.forms.map(createMetaForm);
-
-    [0, 1].forEach((type: number) => { // build xlinks
-        if (forms[type]) {
-            forms[type].rother = forms[type === 0 ? 1 : 0]?.fields.map((field) => field.ridx) || [];
-        }
-    });
-
-    return forms;
-}
+} //buildManiMetaForms()
 
 // Field catalog transformation
 
-export function buildCatalogMetaFromNames(names: Catalog.Name[] | undefined): FieldCatalog {
-    const items = names?.map((item, idx) => {
-        const now = uuid.asRelativeNumber();
-        return { ...item, index: idx, uuid: now, mru: now, };
-    }) || [];
+export function buildCatalogMetaFromNames(catalogNames: Catalog.Name[] | undefined): FieldCatalog {
+    const items = catalogNames?.map(addInMemInfo) || [];
     return {
         items,
     };
+
+    function addInMemInfo(catalogName: Catalog.Name, idx: number): CatalogItem {
+        const now = uuid.asRelativeNumber();
+        return {
+            ...catalogName,
+            index: idx,
+            uuid: now,
+            mru: now,
+        };
+    }
 }
 
 export function buildCatalogMeta(fcat: Catalog.Root | undefined): FieldCatalog {
