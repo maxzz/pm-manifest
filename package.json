@@ -1,7 +1,7 @@
 {
     "name": "pm-manifest",
     "globalObject": "pm-manifest",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "PM manifest definition files",
     "type": "module",
     "main": "./src/index.ts",
