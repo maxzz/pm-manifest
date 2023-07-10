@@ -70,7 +70,7 @@ export const MSAA_ROLEBITS = {
     r_3_00_outlinebutton      /**/: 0x80000001,    // ROLE_SYSTEM_OUTLINEBUTTON         //40
 } //const MSAA_ROLEBITS
 
-export const enum MSAA_ROLE {
+export enum MSAA_ROLE {
     none                      /**/ = 0x00,    //00
     titlebar                  /**/ = 0x01,    //ROLE_SYSTEM_TITLEBAR          
     menubar                   /**/ = 0x02,    //ROLE_SYSTEM_MENUBAR           
@@ -143,7 +143,7 @@ export const enum MSAA_ROLE {
     html_text                 /**/ = 0x99,    //63 // for dp debugging only
 } //enum MSAA_ROLE
 
-export const enum MSAA_STATE {
+export enum MSAA_STATE {
     none                      /**/ = 0x00000000,      //01 // 0x00000000
     unavailable               /**/ = 0x00000001,      //02 // STATE_SYSTEM_UNAVAILABLE      // Disabled
     selected                  /**/ = 0x00000002,      //03 // STATE_SYSTEM_SELECTED        
