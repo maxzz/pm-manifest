@@ -33,5 +33,5 @@ export namespace TimeUtils {
         v = v ? '' + v : '';
         return v.length < total ? '0000000000'.slice(0, total - v.length) + v : v;
     }
-    
+
 }

@@ -3,10 +3,12 @@ import { TransformEncoding } from "./transform-xml-enc";
 
 // Manifest specific functions
 
+export function splitPool(pool: string | undefined): string[] {
+    return pool?.split(':') || [];
+}
+
 export function getPool(form: Mani.Form): string[] {
-    return form && form.detection && form.detection.names_ext
-        ? form.detection.names_ext.split(':')
-        : [];
+    return splitPool(form?.detection?.names_ext);
 }
 
 export function getPoolName(pool: string[], index: string): string {

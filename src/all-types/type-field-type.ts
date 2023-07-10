@@ -3,7 +3,7 @@ import { Mani } from "./mani";
 /**
  * Our UI internal type
  */
-export enum FieldTyp { //type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text';
+export enum FieldTyp { //type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
     und, // undefined
     edit,
     button,
@@ -12,6 +12,7 @@ export enum FieldTyp { //type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo
     check,
     radio,
     text,
+    listbx, // this is not used anywhere but returend by accengine. found with old dpferret 07.09.23
 
     psw, // combined value 'edit' and 'password'
 }
