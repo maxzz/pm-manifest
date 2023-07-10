@@ -68,112 +68,112 @@ export const MSAA_ROLEBITS = {
     r_2_1F_ipaddress          /**/: 0x80000000,    // ROLE_SYSTEM_IPADDRESS             //3F
 
     r_3_00_outlinebutton      /**/: 0x80000001,    // ROLE_SYSTEM_OUTLINEBUTTON         //40
-} //enum MSAA_ROLEBITS
+} //const MSAA_ROLEBITS
 
-export const MSAA_ROLE = {
-    none                      /**/: 0x00,    //00
-    titlebar                  /**/: 0x01,    //ROLE_SYSTEM_TITLEBAR          
-    menubar                   /**/: 0x02,    //ROLE_SYSTEM_MENUBAR           
-    scrollbar                 /**/: 0x03,    //ROLE_SYSTEM_SCROLLBAR         
-    grip                      /**/: 0x04,    //ROLE_SYSTEM_GRIP              
-    sound                     /**/: 0x05,    //ROLE_SYSTEM_SOUND             
-    cursor                    /**/: 0x06,    //ROLE_SYSTEM_CURSOR            
-    caret                     /**/: 0x07,    //ROLE_SYSTEM_CARET             
-    alert                     /**/: 0x08,    //ROLE_SYSTEM_ALERT             
-    window                    /**/: 0x09,    //ROLE_SYSTEM_WINDOW            
-    client                    /**/: 0x0A,    //ROLE_SYSTEM_CLIENT            
-    menupopup                 /**/: 0x0B,    //ROLE_SYSTEM_MENUPOPUP         
-    menuitem                  /**/: 0x0C,    //ROLE_SYSTEM_MENUITEM          
-    tooltip                   /**/: 0x0D,    //ROLE_SYSTEM_TOOLTIP           
-    application               /**/: 0x0E,    //ROLE_SYSTEM_APPLICATION       
-    document                  /**/: 0x0F,    //ROLE_SYSTEM_DOCUMENT          
-    pane                      /**/: 0x10,    //ROLE_SYSTEM_PANE              
-    chart                     /**/: 0x11,    //ROLE_SYSTEM_CHART             
-    dialog                    /**/: 0x12,    //ROLE_SYSTEM_DIALOG            
-    border                    /**/: 0x13,    //ROLE_SYSTEM_BORDER            
-    grouping                  /**/: 0x14,    //ROLE_SYSTEM_GROUPING          
-    separator                 /**/: 0x15,    //ROLE_SYSTEM_SEPARATOR         
-    toolbar                   /**/: 0x16,    //ROLE_SYSTEM_TOOLBAR           
-    statusbar                 /**/: 0x17,    //ROLE_SYSTEM_STATUSBAR         
-    table                     /**/: 0x18,    //ROLE_SYSTEM_TABLE             
-    columnheader              /**/: 0x19,    //ROLE_SYSTEM_COLUMNHEADER      
-    rowheader                 /**/: 0x1A,    //ROLE_SYSTEM_ROWHEADER         
-    column                    /**/: 0x1B,    //ROLE_SYSTEM_COLUMN            
-    row                       /**/: 0x1C,    //ROLE_SYSTEM_ROW               
-    cell                      /**/: 0x1D,    //ROLE_SYSTEM_CELL              
-    link                      /**/: 0x1E,    //ROLE_SYSTEM_LINK              
-    helpballoon               /**/: 0x1F,    //ROLE_SYSTEM_HELPBALLOON       
-    character                 /**/: 0x20,    //ROLE_SYSTEM_CHARACTER         
-    list                      /**/: 0x21,    //ROLE_SYSTEM_LIST              
-    listitem                  /**/: 0x22,    //ROLE_SYSTEM_LISTITEM          
-    outline                   /**/: 0x23,    //ROLE_SYSTEM_OUTLINE           
-    outlineitem               /**/: 0x24,    //ROLE_SYSTEM_OUTLINEITEM       
-    pagetab                   /**/: 0x25,    //ROLE_SYSTEM_PAGETAB           
-    propertypage              /**/: 0x26,    //ROLE_SYSTEM_PROPERTYPAGE      
-    indicator                 /**/: 0x27,    //ROLE_SYSTEM_INDICATOR         
-    graphic                   /**/: 0x28,    //ROLE_SYSTEM_GRAPHIC           
-    statictext                /**/: 0x29,    //ROLE_SYSTEM_STATICTEXT        
-    text                      /**/: 0x2A,    //ROLE_SYSTEM_TEXT              
-    pushbutton                /**/: 0x2B,    //ROLE_SYSTEM_PUSHBUTTON        
-    checkbutton               /**/: 0x2C,    //ROLE_SYSTEM_CHECKBUTTON       
-    radiobutton               /**/: 0x2D,    //ROLE_SYSTEM_RADIOBUTTON       
-    combobox                  /**/: 0x2E,    //ROLE_SYSTEM_COMBOBOX          
-    droplist                  /**/: 0x2F,    //ROLE_SYSTEM_DROPLIST          
-    progressbar               /**/: 0x30,    //ROLE_SYSTEM_PROGRESSBAR       
-    dial                      /**/: 0x31,    //ROLE_SYSTEM_DIAL              
-    hotkeyfield               /**/: 0x32,    //ROLE_SYSTEM_HOTKEYFIELD       
-    slider                    /**/: 0x33,    //ROLE_SYSTEM_SLIDER            
-    spinbutton                /**/: 0x34,    //ROLE_SYSTEM_SPINBUTTON        
-    diagram                   /**/: 0x35,    //ROLE_SYSTEM_DIAGRAM           
-    animation                 /**/: 0x36,    //ROLE_SYSTEM_ANIMATION         
-    equation                  /**/: 0x37,    //ROLE_SYSTEM_EQUATION          
-    buttondropdown            /**/: 0x38,    //ROLE_SYSTEM_BUTTONDROPDOWN    
-    buttonmenu                /**/: 0x39,    //ROLE_SYSTEM_BUTTONMENU        
-    buttondropdowngrid        /**/: 0x3A,    //ROLE_SYSTEM_BUTTONDROPDOWNGRID
-    whitespace                /**/: 0x3B,    //ROLE_SYSTEM_WHITESPACE        
-    pagetablist               /**/: 0x3C,    //ROLE_SYSTEM_PAGETABLIST       
-    clock                     /**/: 0x3D,    //ROLE_SYSTEM_CLOCK             
-    splitbutton               /**/: 0x3e,    //3E //ROLE_SYSTEM_SPLITBUTTON  //ie
-    ipaddress                 /**/: 0x3f,    //3F //ROLE_SYSTEM_IPADDRESS    
-    outlinebutton             /**/: 0x40,    //40 //ROLE_SYSTEM_OUTLINEBUTTON
+export const enum MSAA_ROLE {
+    none                      /**/ = 0x00,    //00
+    titlebar                  /**/ = 0x01,    //ROLE_SYSTEM_TITLEBAR          
+    menubar                   /**/ = 0x02,    //ROLE_SYSTEM_MENUBAR           
+    scrollbar                 /**/ = 0x03,    //ROLE_SYSTEM_SCROLLBAR         
+    grip                      /**/ = 0x04,    //ROLE_SYSTEM_GRIP              
+    sound                     /**/ = 0x05,    //ROLE_SYSTEM_SOUND             
+    cursor                    /**/ = 0x06,    //ROLE_SYSTEM_CURSOR            
+    caret                     /**/ = 0x07,    //ROLE_SYSTEM_CARET             
+    alert                     /**/ = 0x08,    //ROLE_SYSTEM_ALERT             
+    window                    /**/ = 0x09,    //ROLE_SYSTEM_WINDOW            
+    client                    /**/ = 0x0A,    //ROLE_SYSTEM_CLIENT            
+    menupopup                 /**/ = 0x0B,    //ROLE_SYSTEM_MENUPOPUP         
+    menuitem                  /**/ = 0x0C,    //ROLE_SYSTEM_MENUITEM          
+    tooltip                   /**/ = 0x0D,    //ROLE_SYSTEM_TOOLTIP           
+    application               /**/ = 0x0E,    //ROLE_SYSTEM_APPLICATION       
+    document                  /**/ = 0x0F,    //ROLE_SYSTEM_DOCUMENT          
+    pane                      /**/ = 0x10,    //ROLE_SYSTEM_PANE              
+    chart                     /**/ = 0x11,    //ROLE_SYSTEM_CHART             
+    dialog                    /**/ = 0x12,    //ROLE_SYSTEM_DIALOG            
+    border                    /**/ = 0x13,    //ROLE_SYSTEM_BORDER            
+    grouping                  /**/ = 0x14,    //ROLE_SYSTEM_GROUPING          
+    separator                 /**/ = 0x15,    //ROLE_SYSTEM_SEPARATOR         
+    toolbar                   /**/ = 0x16,    //ROLE_SYSTEM_TOOLBAR           
+    statusbar                 /**/ = 0x17,    //ROLE_SYSTEM_STATUSBAR         
+    table                     /**/ = 0x18,    //ROLE_SYSTEM_TABLE             
+    columnheader              /**/ = 0x19,    //ROLE_SYSTEM_COLUMNHEADER      
+    rowheader                 /**/ = 0x1A,    //ROLE_SYSTEM_ROWHEADER         
+    column                    /**/ = 0x1B,    //ROLE_SYSTEM_COLUMN            
+    row                       /**/ = 0x1C,    //ROLE_SYSTEM_ROW               
+    cell                      /**/ = 0x1D,    //ROLE_SYSTEM_CELL              
+    link                      /**/ = 0x1E,    //ROLE_SYSTEM_LINK              
+    helpballoon               /**/ = 0x1F,    //ROLE_SYSTEM_HELPBALLOON       
+    character                 /**/ = 0x20,    //ROLE_SYSTEM_CHARACTER         
+    list                      /**/ = 0x21,    //ROLE_SYSTEM_LIST              
+    listitem                  /**/ = 0x22,    //ROLE_SYSTEM_LISTITEM          
+    outline                   /**/ = 0x23,    //ROLE_SYSTEM_OUTLINE           
+    outlineitem               /**/ = 0x24,    //ROLE_SYSTEM_OUTLINEITEM       
+    pagetab                   /**/ = 0x25,    //ROLE_SYSTEM_PAGETAB           
+    propertypage              /**/ = 0x26,    //ROLE_SYSTEM_PROPERTYPAGE      
+    indicator                 /**/ = 0x27,    //ROLE_SYSTEM_INDICATOR         
+    graphic                   /**/ = 0x28,    //ROLE_SYSTEM_GRAPHIC           
+    statictext                /**/ = 0x29,    //ROLE_SYSTEM_STATICTEXT        
+    text                      /**/ = 0x2A,    //ROLE_SYSTEM_TEXT              
+    pushbutton                /**/ = 0x2B,    //ROLE_SYSTEM_PUSHBUTTON        
+    checkbutton               /**/ = 0x2C,    //ROLE_SYSTEM_CHECKBUTTON       
+    radiobutton               /**/ = 0x2D,    //ROLE_SYSTEM_RADIOBUTTON       
+    combobox                  /**/ = 0x2E,    //ROLE_SYSTEM_COMBOBOX          
+    droplist                  /**/ = 0x2F,    //ROLE_SYSTEM_DROPLIST          
+    progressbar               /**/ = 0x30,    //ROLE_SYSTEM_PROGRESSBAR       
+    dial                      /**/ = 0x31,    //ROLE_SYSTEM_DIAL              
+    hotkeyfield               /**/ = 0x32,    //ROLE_SYSTEM_HOTKEYFIELD       
+    slider                    /**/ = 0x33,    //ROLE_SYSTEM_SLIDER            
+    spinbutton                /**/ = 0x34,    //ROLE_SYSTEM_SPINBUTTON        
+    diagram                   /**/ = 0x35,    //ROLE_SYSTEM_DIAGRAM           
+    animation                 /**/ = 0x36,    //ROLE_SYSTEM_ANIMATION         
+    equation                  /**/ = 0x37,    //ROLE_SYSTEM_EQUATION          
+    buttondropdown            /**/ = 0x38,    //ROLE_SYSTEM_BUTTONDROPDOWN    
+    buttonmenu                /**/ = 0x39,    //ROLE_SYSTEM_BUTTONMENU        
+    buttondropdowngrid        /**/ = 0x3A,    //ROLE_SYSTEM_BUTTONDROPDOWNGRID
+    whitespace                /**/ = 0x3B,    //ROLE_SYSTEM_WHITESPACE        
+    pagetablist               /**/ = 0x3C,    //ROLE_SYSTEM_PAGETABLIST       
+    clock                     /**/ = 0x3D,    //ROLE_SYSTEM_CLOCK             
+    splitbutton               /**/ = 0x3e,    //3E //ROLE_SYSTEM_SPLITBUTTON  //ie
+    ipaddress                 /**/ = 0x3f,    //3F //ROLE_SYSTEM_IPADDRESS    
+    outlinebutton             /**/ = 0x40,    //40 //ROLE_SYSTEM_OUTLINEBUTTON
 
-    dpinfo                    /**/: 0x96,    //60 // for dp debugging only
-    dpattention               /**/: 0x97,    //61 // for dp debugging only
-    html_script               /**/: 0x98,    //62 // for dp debugging only
-    html_text                 /**/: 0x99,    //63 // for dp debugging only
+    dpinfo                    /**/ = 0x96,    //60 // for dp debugging only
+    dpattention               /**/ = 0x97,    //61 // for dp debugging only
+    html_script               /**/ = 0x98,    //62 // for dp debugging only
+    html_text                 /**/ = 0x99,    //63 // for dp debugging only
 } //enum MSAA_ROLE
 
-export const MSAA_STATE = {
-    none                      /**/: 0x00000000,      //01 // 0x00000000
-    unavailable               /**/: 0x00000001,      //02 // STATE_SYSTEM_UNAVAILABLE      // Disabled
-    selected                  /**/: 0x00000002,      //03 // STATE_SYSTEM_SELECTED        
-    focused                   /**/: 0x00000004,      //04 // STATE_SYSTEM_FOCUSED         
-    pressed                   /**/: 0x00000008,      //05 // STATE_SYSTEM_PRESSED         
-    checked                   /**/: 0x00000010,      //06 // STATE_SYSTEM_CHECKED         
-    mixed                     /**/: 0x00000020,      //07 // STATE_SYSTEM_MIXED            // 3-state checkbox or toolbar button
-    readonly                  /**/: 0x00000040,      //08 // STATE_SYSTEM_READONLY        
-    hottracked                /**/: 0x00000080,      //09 // STATE_SYSTEM_HOTTRACKED      
-    defaulT                   /**/: 0x00000100,      //0A // STATE_SYSTEM_DEFAULT         
-    expanded                  /**/: 0x00000200,      //0B // STATE_SYSTEM_EXPANDED        
-    collapsed                 /**/: 0x00000400,      //0C // STATE_SYSTEM_COLLAPSED       
-    busy                      /**/: 0x00000800,      //0D // STATE_SYSTEM_BUSY            
-    floating                  /**/: 0x00001000,      //0E // STATE_SYSTEM_FLOATING         // Children "owned" not "contained" by parent
-    marqueed                  /**/: 0x00002000,      //0F // STATE_SYSTEM_MARQUEED        
-    animated                  /**/: 0x00004000,      //10 // STATE_SYSTEM_ANIMATED        
-    invisible                 /**/: 0x00008000,      //11 // STATE_SYSTEM_INVISIBLE       
-    offscreen                 /**/: 0x00010000,      //12 // STATE_SYSTEM_OFFSCREEN       
-    sizeable                  /**/: 0x00020000,      //13 // STATE_SYSTEM_SIZEABLE        
-    moveable                  /**/: 0x00040000,      //14 // STATE_SYSTEM_MOVEABLE        
-    selfvoicing               /**/: 0x00080000,      //15 // STATE_SYSTEM_SELFVOICING     
-    focusable                 /**/: 0x00100000,      //16 // STATE_SYSTEM_FOCUSABLE       
-    selectable                /**/: 0x00200000,      //17 // STATE_SYSTEM_SELECTABLE      
-    linked                    /**/: 0x00400000,      //18 // STATE_SYSTEM_LINKED          
-    traversed                 /**/: 0x00800000,      //19 // STATE_SYSTEM_TRAVERSED       
-    multiselectable           /**/: 0x01000000,      //1A // STATE_SYSTEM_MULTISELECTABLE  // Supports multiple selection
-    extselectable             /**/: 0x02000000,      //1B // STATE_SYSTEM_EXTSELECTABLE    // Supports extended selection
-    alert_low                 /**/: 0x04000000,      //1C // STATE_SYSTEM_ALERT_LOW        // This information is of low priority
-    alert_medium              /**/: 0x08000000,      //1D // STATE_SYSTEM_ALERT_MEDIUM     // This information is of medium priority
-    alert_high                /**/: 0x10000000,      //1E // STATE_SYSTEM_ALERT_HIGH       // This information is of high priority
-    protecteD                 /**/: 0x20000000,      //1F // STATE_SYSTEM_PROTECTED      
-    valid                     /**/: 0x3fffffff,           // STATE_SYSTEM_VALID            // mask
+export const enum MSAA_STATE {
+    none                      /**/ = 0x00000000,      //01 // 0x00000000
+    unavailable               /**/ = 0x00000001,      //02 // STATE_SYSTEM_UNAVAILABLE      // Disabled
+    selected                  /**/ = 0x00000002,      //03 // STATE_SYSTEM_SELECTED        
+    focused                   /**/ = 0x00000004,      //04 // STATE_SYSTEM_FOCUSED         
+    pressed                   /**/ = 0x00000008,      //05 // STATE_SYSTEM_PRESSED         
+    checked                   /**/ = 0x00000010,      //06 // STATE_SYSTEM_CHECKED         
+    mixed                     /**/ = 0x00000020,      //07 // STATE_SYSTEM_MIXED            // 3-state checkbox or toolbar button
+    readonly                  /**/ = 0x00000040,      //08 // STATE_SYSTEM_READONLY        
+    hottracked                /**/ = 0x00000080,      //09 // STATE_SYSTEM_HOTTRACKED      
+    defaulT                   /**/ = 0x00000100,      //0A // STATE_SYSTEM_DEFAULT         
+    expanded                  /**/ = 0x00000200,      //0B // STATE_SYSTEM_EXPANDED        
+    collapsed                 /**/ = 0x00000400,      //0C // STATE_SYSTEM_COLLAPSED       
+    busy                      /**/ = 0x00000800,      //0D // STATE_SYSTEM_BUSY            
+    floating                  /**/ = 0x00001000,      //0E // STATE_SYSTEM_FLOATING         // Children "owned" not "contained" by parent
+    marqueed                  /**/ = 0x00002000,      //0F // STATE_SYSTEM_MARQUEED        
+    animated                  /**/ = 0x00004000,      //10 // STATE_SYSTEM_ANIMATED        
+    invisible                 /**/ = 0x00008000,      //11 // STATE_SYSTEM_INVISIBLE       
+    offscreen                 /**/ = 0x00010000,      //12 // STATE_SYSTEM_OFFSCREEN       
+    sizeable                  /**/ = 0x00020000,      //13 // STATE_SYSTEM_SIZEABLE        
+    moveable                  /**/ = 0x00040000,      //14 // STATE_SYSTEM_MOVEABLE        
+    selfvoicing               /**/ = 0x00080000,      //15 // STATE_SYSTEM_SELFVOICING     
+    focusable                 /**/ = 0x00100000,      //16 // STATE_SYSTEM_FOCUSABLE       
+    selectable                /**/ = 0x00200000,      //17 // STATE_SYSTEM_SELECTABLE      
+    linked                    /**/ = 0x00400000,      //18 // STATE_SYSTEM_LINKED          
+    traversed                 /**/ = 0x00800000,      //19 // STATE_SYSTEM_TRAVERSED       
+    multiselectable           /**/ = 0x01000000,      //1A // STATE_SYSTEM_MULTISELECTABLE  // Supports multiple selection
+    extselectable             /**/ = 0x02000000,      //1B // STATE_SYSTEM_EXTSELECTABLE    // Supports extended selection
+    alert_low                 /**/ = 0x04000000,      //1C // STATE_SYSTEM_ALERT_LOW        // This information is of low priority
+    alert_medium              /**/ = 0x08000000,      //1D // STATE_SYSTEM_ALERT_MEDIUM     // This information is of medium priority
+    alert_high                /**/ = 0x10000000,      //1E // STATE_SYSTEM_ALERT_HIGH       // This information is of high priority
+    protecteD                 /**/ = 0x20000000,      //1F // STATE_SYSTEM_PROTECTED      
+    valid                     /**/ = 0x3fffffff,           // STATE_SYSTEM_VALID            // mask
 } //enum MSAA_STATE
