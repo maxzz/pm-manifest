@@ -68,7 +68,7 @@ export const MSAA_ROLEBITS = {
     r_2_1F_ipaddress          /**/: 0x80000000,    // ROLE_SYSTEM_IPADDRESS             //3F
 
     r_3_00_outlinebutton      /**/: 0x80000001,    // ROLE_SYSTEM_OUTLINEBUTTON         //40
-} //const MSAA_ROLEBITS
+}; //const MSAA_ROLEBITS
 
 export enum MSAA_ROLE {
     none                      /**/ = 0x00,    //00
@@ -174,6 +174,68 @@ export enum MSAA_STATE {
     alert_low                 /**/ = 0x04000000,      //1C // STATE_SYSTEM_ALERT_LOW        // This information is of low priority
     alert_medium              /**/ = 0x08000000,      //1D // STATE_SYSTEM_ALERT_MEDIUM     // This information is of medium priority
     alert_high                /**/ = 0x10000000,      //1E // STATE_SYSTEM_ALERT_HIGH       // This information is of high priority
-    protecteD                 /**/ = 0x20000000,      //1F // STATE_SYSTEM_PROTECTED      
+    protected                 /**/ = 0x20000000,      //1F // STATE_SYSTEM_PROTECTED      
     valid                     /**/ = 0x3fffffff,           // STATE_SYSTEM_VALID            // mask
 } //enum MSAA_STATE
+
+export function getEnumNumberEntries<T extends object>(objEnum: T) {
+    return Object.entries(objEnum).filter(([key]) => Number.isInteger(+key));
+}
+
+export function getEnumNamedEntries<T extends object>(objEnum: T) {
+    return Object.entries(objEnum).filter(([key]) => !Number.isInteger(+key));
+}
+
+let MSAA_STATE_NAMED: [string, number][] | undefined;
+
+export function getStateEntries(state: string | undefined): string[] | undefined {
+    if (!state) {
+        return;
+    }
+
+    let rv: string[] = [];
+    let num = parseInt(state, 16);
+
+    if (!Number.isNaN(num) && num) {
+        if (!MSAA_STATE_NAMED) {
+            MSAA_STATE_NAMED = getEnumNamedEntries(MSAA_STATE) as [string, number][];
+        }
+
+        let key = 0;
+        while (num && key < MSAA_STATE_NAMED.length) {
+            const [k, v] = MSAA_STATE_NAMED[key++];
+            if ((num & v) !== 0) {
+                num = num & ~v;
+                rv.push(k);
+            }
+        }
+    }
+
+    return rv.length ? rv : undefined;
+}
+
+export type RoleStateNames = {
+    role: string | undefined;
+    states: string[] | undefined;
+};
+
+export function getRoleStateNames(roleString: string | undefined): RoleStateNames | undefined {
+    if (!roleString) {
+        return;
+    }
+
+    const parts = roleString.split('_');
+    if (!parts[0] || !parts[1]) {
+        return;
+    }
+
+    const roleNum = parseInt(parts[0], 16);
+    if (Number.isNaN(roleNum)) {
+        return;
+    }
+
+    return {
+        role: MSAA_ROLE[roleNum],
+        states: getStateEntries(parts[1]),
+    };
+}
