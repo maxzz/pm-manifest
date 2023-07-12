@@ -1,5 +1,4 @@
 import { Catalog, Mani } from '../all-types';
-import { TransformEncoding } from '../transforms';
 import { XMLParser } from 'fast-xml-parser';
 
 export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
@@ -19,7 +18,7 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
         form.options && (form.options = (form.options as any)._attributes);
 
         if (form.fields) {
-            let fields = (form.fields as any).field as Mani.Field[];
+            const fields = (form.fields as any).field as Mani.Field[];
             form.fields = Array.isArray(fields) ? fields : [fields];
         }
 

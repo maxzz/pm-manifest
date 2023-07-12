@@ -60,6 +60,7 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
             path: FieldPath.fieldPathItems(pool, field.path_ext || ''),
             pidx: idx,
             ridx: 0,
+            uuid: uuid.asRelativeNumber(),
         }));
 
         const domain = urlDomain(removeQuery(form.detection?.web_ourl));
@@ -79,6 +80,7 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
             view: FieldPath.loc.utils.buildPreviewData(fields),
             fields,
             rother: [],
+            uuid: uuid.asRelativeNumber(),
         };
 
         const bailOuts = Bailouts.getBailouts(newMetaForm);
@@ -87,7 +89,7 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
         }
 
         return newMetaForm;
-    }
+    } //createMetaForm()
 
 } //buildManiMetaForms()
 
