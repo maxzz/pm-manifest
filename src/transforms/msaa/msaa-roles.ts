@@ -197,6 +197,7 @@ export function getStateEntries(state: string | undefined): string[] | undefined
     let num = parseInt(state, 16);
 
     if (!Number.isNaN(num) && num) {
+
         if (!MSAA_STATE_NAMED) {
             MSAA_STATE_NAMED = getEnumNamedEntries(MSAA_STATE) as [string, number][];
         }
@@ -215,8 +216,9 @@ export function getStateEntries(state: string | undefined): string[] | undefined
 }
 
 export type RoleStateNames = {
-    role: string | undefined;
-    states: string[] | undefined;
+    raw: string;                    // this is backup in case if we cannot detect role or state
+    role?: string | undefined;
+    states?: string[] | undefined;
 };
 
 export function getRoleStateNames(roleString: string | undefined): RoleStateNames | undefined {
@@ -224,18 +226,25 @@ export function getRoleStateNames(roleString: string | undefined): RoleStateName
         return;
     }
 
+    const rv: RoleStateNames = {
+        raw: roleString,
+    }
+
     const parts = roleString.split('_');
+    if (parts[0] && !parts[1]) { // sometimes we have something like '2a_'.
+        parts[1] = '0';
+    }
     if (!parts[0] || !parts[1]) {
-        return;
+        return rv;
     }
 
     const roleNum = parseInt(parts[0], 16);
     if (Number.isNaN(roleNum)) {
-        return;
+        return rv;
     }
 
-    return {
-        role: MSAA_ROLE[roleNum],
-        states: getStateEntries(parts[1]),
-    };
+    rv.role = MSAA_ROLE[roleNum];
+    rv.states = getStateEntries(parts[1]);
+
+    return rv;
 }
