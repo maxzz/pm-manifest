@@ -2,7 +2,7 @@ export module Mani {
     export type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
 
     export interface Field {
-        displayname?: string,
+        displayname?: string,   // in filed catalog this is "dispname"
         type: FieldTypeStr;
         dbname?: string;
         path_ext?: string;

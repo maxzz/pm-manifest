@@ -4,7 +4,7 @@ export module Catalog {         // pmat/include/ots_storagecatalog_io.h
     }
 
     export interface Name {
-        dispname: string;
+        dispname: string;       // in Field catalog this is "displayname"
         dbname: string;
         value?: string;
         ownernote?: string;
