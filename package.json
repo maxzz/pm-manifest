@@ -3,6 +3,11 @@
     "globalObject": "pm-manifest",
     "version": "1.0.15",
     "description": "PM manifest definition files",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/maxzz/pm-manifest.git"
+    },
+    "homepage": "https://github.com/maxzz/pm-manifest",
     "type": "module",
     "main": "./src/index.ts",
     "files": [
