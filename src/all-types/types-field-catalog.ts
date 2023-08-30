@@ -1,14 +1,14 @@
 import { Mani } from "./mani";
 
 export module Catalog {         // pmat/include/ots_storagecatalog_io.h
-    export interface Descriptor {
+    export type Descriptor = {
         id?: string;            // default as guid
-    }
+    };
 
-    export interface Name {
+    export type Name = {
         dispname: string;       // In Field this is "displayname"
         dbname: string;
-        
+
         value?: string;
 
         askalways?: boolean;    // undefined | '1'
@@ -17,17 +17,17 @@ export module Catalog {         // pmat/include/ots_storagecatalog_io.h
         password?: boolean;     // undefined | '1'
 
         ownernote?: string;     // This does not exist in Field
-    }
+    };
 
     type NameInCatalogFile = Omit<Mani.FieldValue, 'displayname'> & { // choosevalue not used in catalog file now, but will be stored in catalog file for future use
         dispname: string;
         ownernote?: string;
     };
 
-    export interface Root {
+    export type Root = {
         descriptor?: Descriptor;
         names: Name[];
-    }
+    };
 } //module Catalog
 
 export type CatalogItem =       // Item in memory w/ meta information

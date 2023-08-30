@@ -5,7 +5,7 @@ import { ValueLife } from "./type-value-life";
 
 export module Meta {            // Manifest unpacked forms, as meta data
 
-    export interface Path {     // Collection of path items (chunks)
+    export type Path = {        // Collection of path items (chunks)
         p4a?: MPath.p4a[];
         p4?: MPath.p4[];
         loc?: string;           // "x y w h | x y w h ... | x y w h"
@@ -16,7 +16,7 @@ export module Meta {            // Manifest unpacked forms, as meta data
 
     export type Chunk = keyof Meta.Path; //type ChunkName = 'p4a' | 'p4' | 'loc' | 'sid' | 'did2' | 'sn';
 
-    export interface Field {
+    export type Field = {   
         mani: Mani.Field,
         ftyp: FieldTyp,
         life: ValueLife;
@@ -26,7 +26,7 @@ export module Meta {            // Manifest unpacked forms, as meta data
         uuid: number;           // short relative uuid number in the current session
     }
 
-    export interface Disp {     // Display information about form
+    export type Disp = {        // Display information about form
         domain?: string;        // Form website domain if website.
         isScript: boolean;      // Form has at least one script field.
         noFields: boolean;      // Form has no fields, i.e. excluded website.
@@ -34,19 +34,19 @@ export module Meta {            // Manifest unpacked forms, as meta data
         bailOut?: string[];     // Manifest needs extra attention
     }
 
-    export interface Bounds {
+    export type Bounds = {  
         x1: number;             // x1,y1 ┌──────┐
         y1: number;             //       │      │
         x2: number;             //       └──────┘ x2,y2
         y2: number;
     }
 
-    export interface View {
+    export type View = {    
         rects: MPath.loc[];
         bounds: Bounds;
     }
 
-    export interface Form {
+    export type Form = {    
         mani: Mani.Form;
         type: number;           // 0 - login; 1 - password change
         disp: Disp;

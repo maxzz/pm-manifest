@@ -1,22 +1,22 @@
 export module Mani {
     export type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
 
-    export interface FieldValueValue {
+    export type FieldValueValue = {
         value?: string;
         choosevalue?: string;   // This does not exist in field catalog yet but we can added it to field catalog (as 2023 extension).
         password?: boolean,     // In file it's "1". Only field catalog or manual mode can change this value.
         askalways?: boolean,    // In file it's "1".
         onetvalue?: boolean,    // In file it's "1".
-    }
+    };
 
-    export interface FieldValueIds {
+    export type FieldValueIds = {
         displayname: string,    // It should be '' if undefined (for localization) and empty won't be stored in file. In filed catalog this is "dispname" and is required so we mark it here as required.
         dbname: string;
-    }
+    };
 
     export type FieldValue = FieldValueValue & FieldValueIds;
 
-    export interface Field extends FieldValue {
+    export type Field = FieldValue & {
         type: FieldTypeStr;     // This does not exist in field catalog
 
         path_ext?: string;
@@ -33,7 +33,7 @@ export module Mani {
         controltosubmitdata?: boolean;
         ids?: string;
         options?: string;
-    }
+    };
 
     export enum FORMNAME {      // predefined form names
         noname = -1,
@@ -42,12 +42,12 @@ export module Mani {
         fieldcatalog = -2,
     }
 
-    export interface FContext {
+    export type FContext = {
         type: 'pchange';
         name: number;           // "1"
-    }
+    };
 
-    export interface Detection {
+    export type Detection = {
         caption?: string;
         web_ourl?: string;
         web_murl?: string;
@@ -57,9 +57,9 @@ export module Mani {
         names_ext?: string;
         processname?: string;
         commandline?: string;
-    }
+    };
 
-    export interface Options {
+    export type Options = {
         choosename?: string;
         sidekick?: string;      // "manual mode hint"
         ownernote?: string;
@@ -74,38 +74,38 @@ export module Mani {
         usequicklink?: string;  // ("1" | "usequicklink") | ("2" | "dontusequicklink")
         recheckwindowafterfillin?: string; // boolean
         qlwocred?: string;      // boolean. Quick reauthentication enable/disable (QL wo/ crededntials).
-    }
+    };
 
-    export interface Form {
+    export type Form = {
         fcontext?: FContext;
         detection: Detection;
         options: Options;
         fields: Field[];
-    }
+    };
 
-    export interface Descriptor {
+    export type Descriptor = {
         id: string;             // "{fe94ea4f-ac76-4f7d-9c74-fa14abca889b}"
         created: string;        // "1d57495 61c6f733"
         modified: string;       // "1d57496 87bed3e8",
         integrity?: string;     // "OTS2.056a41167041b1ea2c529494aeb606d0e"
         version: string;        // "2.4.3"
-    }
+    };
 
     export namespace Customization {
-        export interface Process {
+        export type Process = {
             name: string;       // process name like 'outlook.exe'
             type: string;       // 'skip'
-        }
-        export interface Options {
+        };
+        export type Options = {
             processes: Process[];
-        }
+        };
     }
 
-    export interface Manifest {
+    export type Manifest = {
         descriptor: Descriptor;
         options?: Customization.Options;
         forms: Form[];
-    }
+    };
 
 } //module Mani
 
