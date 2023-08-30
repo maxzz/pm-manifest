@@ -1,4 +1,4 @@
-import { Catalog, CatalogItem, FieldCatalog, Mani, Meta, fieldTyp4Str } from '../all-types';
+import { CatalogFile, CatalogItem, FieldCatalog, Mani, Meta, fieldTyp4Str } from '../all-types';
 import { getPool, TransformValue, FieldPath, urlDomain, removeQuery } from '../transforms';
 import { uuid } from '../utils';
 
@@ -95,7 +95,7 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
 
 // Field catalog transformation
 
-export function nameInCatalogFileToFieldValue(catalogName: Catalog.NameInCatalogFile): Mani.FieldValue {
+export function nameInCatalogFileToFieldValue(catalogName: CatalogFile.NameInCatalogFile): Mani.FieldValue {
     const { dispname, ...rest } = catalogName;
     return {
         displayname: dispname,
@@ -103,7 +103,7 @@ export function nameInCatalogFileToFieldValue(catalogName: Catalog.NameInCatalog
     };
 }
 
-export function FieldValueToNameInCatalogFile(fieldValue: Mani.FieldValue): Catalog.NameInCatalogFile {
+export function FieldValueToNameInCatalogFile(fieldValue: Mani.FieldValue): CatalogFile.NameInCatalogFile {
     const { displayname, ...rest } = fieldValue;
     return {
         dispname: displayname,
@@ -111,13 +111,13 @@ export function FieldValueToNameInCatalogFile(fieldValue: Mani.FieldValue): Cata
     };
 }
 
-export function buildCatalogMetaFromNames(catalogNames: Catalog.NameInCatalogFile[] | undefined): FieldCatalog {
+export function buildCatalogMetaFromNames(catalogNames: CatalogFile.NameInCatalogFile[] | undefined): FieldCatalog {
     const items = catalogNames?.map(addInMemInfo) || [];
     return {
         items,
     };
 
-    function addInMemInfo(catalogName: Catalog.NameInCatalogFile, idx: number): CatalogItem {
+    function addInMemInfo(catalogName: CatalogFile.NameInCatalogFile, idx: number): CatalogItem {
         const now = uuid.asRelativeNumber();
         return {
             ...nameInCatalogFileToFieldValue(catalogName),
@@ -128,7 +128,7 @@ export function buildCatalogMetaFromNames(catalogNames: Catalog.NameInCatalogFil
     }
 }
 
-export function buildCatalogMeta(fcat: Catalog.Root | undefined): FieldCatalog {
+export function buildCatalogMeta(fcat: CatalogFile.Root | undefined): FieldCatalog {
     //TODO: handle addtional info
     return buildCatalogMetaFromNames(fcat?.names);
 }

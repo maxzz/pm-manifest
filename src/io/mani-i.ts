@@ -1,4 +1,4 @@
-import { Catalog, Mani } from '../all-types';
+import { CatalogFile, Mani } from '../all-types';
 import { XMLParser } from 'fast-xml-parser';
 
 export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
@@ -52,7 +52,7 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
     return manifest as Mani.Manifest;
 }
 
-export function beautifyXMLCatalog(catalog: Catalog.Root): Catalog.Root {
+export function beautifyXMLCatalog(catalog: CatalogFile.Root): CatalogFile.Root {
     catalog.names = (catalog as any)?.names?.name || [];
     catalog.names = catalog.names.map((item: any) => item?._attributes).filter(Boolean);
     return catalog;
@@ -67,7 +67,7 @@ export const parseOptionsRead = {
 
 export type ParseManifestResult = {
     mani?: Mani.Manifest;
-    fcat?: Catalog.Root;
+    fcat?: CatalogFile.Root;
 };
 
 export function parseXMLFile(cnt: string): ParseManifestResult {
@@ -78,3 +78,5 @@ export function parseXMLFile(cnt: string): ParseManifestResult {
         fcat: obj?.storagecatalog && beautifyXMLCatalog(obj?.storagecatalog),
     };
 }
+
+//TODO: make sure that we convert '1' to true and '0' to false.

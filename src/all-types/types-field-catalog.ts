@@ -1,7 +1,7 @@
 import { Mani } from "./mani";
 
 // TODO rename Catalog to CatalogFile
-export module Catalog {         // pmat/include/ots_storagecatalog_io.h
+export module CatalogFile {         // pmat/include/ots_storagecatalog_io.h
     export type Descriptor = {
         id?: string;            // default as guid
     };
@@ -29,4 +29,3 @@ export type FieldCatalog = {
     items: CatalogItem[];
 };
 
-//TODO: make sure that we convert '1' to true and '0' to false.
