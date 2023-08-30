@@ -95,7 +95,7 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
 
 // Field catalog transformation
 
-export function nameInCatalogFileToFieldValue(catalogName: CatalogFile.NameInCatalogFile): Mani.FieldValue {
+export function catalogItemInFileToFieldValue(catalogName: CatalogFile.ItemInFile): Mani.FieldValue {
     const { dispname, ...rest } = catalogName;
     return {
         displayname: dispname,
@@ -103,7 +103,7 @@ export function nameInCatalogFileToFieldValue(catalogName: CatalogFile.NameInCat
     };
 }
 
-export function FieldValueToNameInCatalogFile(fieldValue: Mani.FieldValue): CatalogFile.NameInCatalogFile {
+export function fieldValueToCatalogItemInFile(fieldValue: Mani.FieldValue): CatalogFile.ItemInFile {
     const { displayname, ...rest } = fieldValue;
     return {
         dispname: displayname,
@@ -111,16 +111,16 @@ export function FieldValueToNameInCatalogFile(fieldValue: Mani.FieldValue): Cata
     };
 }
 
-export function buildCatalogMetaFromNames(catalogNames: CatalogFile.NameInCatalogFile[] | undefined): FieldCatalog {
+export function buildCatalogMetaFromNames(catalogNames: CatalogFile.ItemInFile[] | undefined): FieldCatalog {
     const items = catalogNames?.map(addInMemInfo) || [];
     return {
         items,
     };
 
-    function addInMemInfo(catalogName: CatalogFile.NameInCatalogFile, idx: number): CatalogItem {
+    function addInMemInfo(catalogName: CatalogFile.ItemInFile, idx: number): CatalogItem {
         const now = uuid.asRelativeNumber();
         return {
-            ...nameInCatalogFileToFieldValue(catalogName),
+            ...catalogItemInFileToFieldValue(catalogName),
             index: idx,
             uuid: now,
             mru: now,

@@ -1,20 +1,19 @@
 import { Mani } from "./mani";
 
-// TODO rename Catalog to CatalogFile
-export module CatalogFile {         // pmat/include/ots_storagecatalog_io.h
+export module CatalogFile {     // pmat/include/ots_storagecatalog_io.h
     export type Descriptor = {
         id?: string;            // default as guid
     };
 
-    export type NameInCatalogFile = Omit<Mani.FieldValue, 'displayname'> & { // choosevalue not used in catalog file now, but will be stored in catalog file for future use
+    export type ItemInFile = Omit<Mani.FieldValue, 'displayname'> & { // choosevalue not used in catalog file now, but will be stored in catalog file for future use
         dispname: string;
     };
 
     export type Root = {
         descriptor?: Descriptor;
-        names: NameInCatalogFile[];
+        names: ItemInFile[];
     };
-} //module Catalog 
+}
 
 export type CatalogItem =       // Item in memory w/ meta information
     & Mani.FieldValue
@@ -28,4 +27,3 @@ export type CatalogItem =       // Item in memory w/ meta information
 export type FieldCatalog = {
     items: CatalogItem[];
 };
-

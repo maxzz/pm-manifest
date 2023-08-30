@@ -82,4 +82,4 @@ export namespace TransformValue {
 
 } //namespace TransformValue
 
-//TODO: skip recording of '=== undefined' values
+//TODO: skip writting '=== undefined' values
