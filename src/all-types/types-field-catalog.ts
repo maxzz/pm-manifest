@@ -19,7 +19,10 @@ export module Catalog {         // pmat/include/ots_storagecatalog_io.h
         ownernote?: string;     // This does not exist in Field
     }
 
-    type Name2 = Omit<Mani.FieldValueIds, 'displayname'> & Pick<Name, 'ownernote'>;
+    type NameInCatalogFile = Omit<Mani.FieldValue, 'displayname'> & { // choosevalue not used in catalog file now, but will be stored in catalog file for future use
+        dispname: string;
+        ownernote?: string;
+    };
 
     export interface Root {
         descriptor?: Descriptor;

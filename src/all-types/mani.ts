@@ -4,21 +4,20 @@ export module Mani {
     export interface FieldValueValue {
         value?: string;
         choosevalue?: string;   // This does not exist in field catalog yet but we can added it to field catalog (as 2023 extension).
-
-        askalways?: boolean,    // "1"
-        onetvalue?: boolean,    // "1"
+        password?: boolean,     // In file it's "1". Only field catalog or manual mode can change this value.
+        askalways?: boolean,    // In file it's "1".
+        onetvalue?: boolean,    // In file it's "1".
     }
 
     export interface FieldValueIds {
-        displayname?: string,   // In filed catalog this is "dispname"
-        dbname?: string;
+        displayname: string,    // It should be '' if undefined (for localization) and empty won't be stored in file. In filed catalog this is "dispname" and is required so we mark it here as required.
+        dbname: string;
     }
 
-    type FieldValue = FieldValueValue & FieldValueIds;
+    export type FieldValue = FieldValueValue & FieldValueIds;
 
     export interface Field extends FieldValue {
         type: FieldTypeStr;     // This does not exist in field catalog
-        password?: boolean,     // "1"
 
         path_ext?: string;
         policy?: string;        // this is standard rule: "[p4]g:8:8:withspecial:different_ap"
@@ -74,7 +73,7 @@ export module Mani {
         iconlocation?: string;  // Format is the same as described into feedback_drawing.h. "Q:0:0:0"
         usequicklink?: string;  // ("1" | "usequicklink") | ("2" | "dontusequicklink")
         recheckwindowafterfillin?: string; // boolean
-        qlwocred?: string;      // boolean. Quick reauthentication enable/disable
+        qlwocred?: string;      // boolean. Quick reauthentication enable/disable (QL wo/ crededntials).
     }
 
     export interface Form {
