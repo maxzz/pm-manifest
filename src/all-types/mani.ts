@@ -1,17 +1,20 @@
 export module Mani {
     export type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
 
-    export interface FieldValue {
+    export interface FieldValueLife {
+        askalways?: boolean,    // "1"
+        onetvalue?: boolean,    // "1"
+
+        password?: boolean,     // "1"
+    }
+
+    export interface FieldValue extends FieldValueLife {
         type: FieldTypeStr;     // This does not exist in field catalog
 
         displayname?: string,   // In filed catalog this is "dispname"
         dbname?: string;
         value?: string;
         choosevalue?: string;   // This does not exist in field catalog
-
-        askalways?: boolean,    // "1"
-        onetvalue?: boolean,    // "1"
-        password?: boolean,     // "1"
     }
 
     export interface Field extends FieldValue {
