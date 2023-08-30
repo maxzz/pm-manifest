@@ -95,16 +95,32 @@ export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[]
 
 // Field catalog transformation
 
-export function buildCatalogMetaFromNames(catalogNames: Catalog.Name[] | undefined): FieldCatalog {
+export function nameInCatalogFileToFieldValue(catalogName: Catalog.NameInCatalogFile): Mani.FieldValue {
+    const { dispname, ...rest } = catalogName;
+    return {
+        displayname: dispname,
+        ...rest,
+    };
+}
+
+export function FieldValueToNameInCatalogFile(fieldValue: Mani.FieldValue): Catalog.NameInCatalogFile {
+    const { displayname, ...rest } = fieldValue;
+    return {
+        dispname: displayname,
+        ...rest,
+    };
+}
+
+export function buildCatalogMetaFromNames(catalogNames: Catalog.NameInCatalogFile[] | undefined): FieldCatalog {
     const items = catalogNames?.map(addInMemInfo) || [];
     return {
         items,
     };
 
-    function addInMemInfo(catalogName: Catalog.Name, idx: number): CatalogItem {
+    function addInMemInfo(catalogName: Catalog.NameInCatalogFile, idx: number): CatalogItem {
         const now = uuid.asRelativeNumber();
         return {
-            ...catalogName,
+            ...nameInCatalogFileToFieldValue(catalogName),
             index: idx,
             uuid: now,
             mru: now,

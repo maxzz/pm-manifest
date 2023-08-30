@@ -4,14 +4,15 @@ export module Mani {
     export type FieldValueValue = {
         value?: string;
         choosevalue?: string;   // This does not exist in field catalog yet but we can added it to field catalog (as 2023 extension).
-        password?: boolean,     // In file it's "1". Only field catalog or manual mode can change this value.
-        askalways?: boolean,    // In file it's "1".
-        onetvalue?: boolean,    // In file it's "1".
+        password?: boolean,     // In file it's undefined | '1'. Only field catalog or manual mode can change this value.
+        askalways?: boolean,    // In file it's undefined | '1'.
+        onetvalue?: boolean,    // In file it's undefined | '1'.
     };
 
     export type FieldValueIds = {
-        displayname: string,    // It should be '' if undefined (for localization) and empty won't be stored in file. In filed catalog this is "dispname" and is required so we mark it here as required.
+        displayname: string,    // It should be '' (in momory) if undefined and empty won't be stored in file (for localization). In filed catalog this is "dispname" and is required so we mark it here as required as well.
         dbname: string;
+        ownernote?: string;     // This is not stored in Field and may appear in Field Catalog only.
     };
 
     export type FieldValue = FieldValueValue & FieldValueIds;

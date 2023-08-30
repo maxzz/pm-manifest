@@ -1,37 +1,23 @@
 import { Mani } from "./mani";
 
+// TODO rename Catalog to CatalogFile
 export module Catalog {         // pmat/include/ots_storagecatalog_io.h
     export type Descriptor = {
         id?: string;            // default as guid
     };
 
-    export type Name = {
-        dispname: string;       // In Field this is "displayname"
-        dbname: string;
-
-        value?: string;
-
-        askalways?: boolean;    // undefined | '1'
-        onetvalue?: boolean;    // undefined | '1'
-
-        password?: boolean;     // undefined | '1'
-
-        ownernote?: string;     // This does not exist in Field
-    };
-
-    type NameInCatalogFile = Omit<Mani.FieldValue, 'displayname'> & { // choosevalue not used in catalog file now, but will be stored in catalog file for future use
+    export type NameInCatalogFile = Omit<Mani.FieldValue, 'displayname'> & { // choosevalue not used in catalog file now, but will be stored in catalog file for future use
         dispname: string;
-        ownernote?: string;
     };
 
     export type Root = {
         descriptor?: Descriptor;
-        names: Name[];
+        names: NameInCatalogFile[];
     };
-} //module Catalog
+} //module Catalog 
 
 export type CatalogItem =       // Item in memory w/ meta information
-    Catalog.Name
+    & Mani.FieldValue
     & {
         index: number;          // index in loaded file.
         uuid: number;           // local (in memory only) unique ID (not updated through one session).
@@ -42,3 +28,5 @@ export type CatalogItem =       // Item in memory w/ meta information
 export type FieldCatalog = {
     items: CatalogItem[];
 };
+
+//TODO: make sure that we convert '1' to true and '0' to false.
