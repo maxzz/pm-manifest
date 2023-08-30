@@ -4,10 +4,12 @@ export module Catalog {         // pmat/include/ots_storagecatalog_io.h
     }
 
     export interface Name {
-        dispname: string;       // in Field catalog this is "displayname"
+        dispname: string;       // In Field this is "displayname"
         dbname: string;
         value?: string;
-        ownernote?: string;
+
+        ownernote?: string;     // This does not exist in Field
+
         askalways?: boolean;    // undefined : '1' 
         onetvalue?: boolean;    // undefined : '1'
         password?: boolean;     // undefined : '1'

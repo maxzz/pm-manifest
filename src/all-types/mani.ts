@@ -1,21 +1,24 @@
 export module Mani {
     export type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
 
-    export interface Field {
-        displayname?: string,   // in filed catalog this is "dispname"
-        type: FieldTypeStr;
+    export interface FieldValue {
+        displayname?: string,   // In filed catalog this is "dispname"
+        type: FieldTypeStr;     // This does not exist in field catalog
         dbname?: string;
+
+        value?: string;
+        choosevalue?: string;   // This does not exist in field catalog
+
+        askalways?: boolean,    // "1"
+        onetvalue?: boolean,    // "1"
+        password?: boolean,     // "1"
+    }
+
+    export interface Field extends FieldValue {
         path_ext?: string;
         policy?: string;        // this is standard rule: "[p4]g:8:8:withspecial:different_ap"
         policy2?: string;       // this is custom rule like: "[e1]g:(a{4,4}d{2,2}A{1,1}[@#$%!]{1,1})&lt;8,8&gt;"; both can present at the same time
 
-        value?: string;
-        choosevalue?: string;
-
-        askalways?: boolean,    // "1"
-        onetvalue?: boolean,    // "1"
-
-        password?: boolean,     // "1"
         submit?: boolean,       // "1"
         useit?: boolean,        // "1"
 
