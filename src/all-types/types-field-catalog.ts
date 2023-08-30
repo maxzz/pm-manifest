@@ -8,16 +8,18 @@ export module Catalog {         // pmat/include/ots_storagecatalog_io.h
     export interface Name {
         dispname: string;       // In Field this is "displayname"
         dbname: string;
+        
         value?: string;
 
         askalways?: boolean;    // undefined | '1'
         onetvalue?: boolean;    // undefined | '1'
+
         password?: boolean;     // undefined | '1'
 
         ownernote?: string;     // This does not exist in Field
     }
 
-    type Name2 = Omit<Mani.FieldValue, 'type' | 'displayname'> & Name;
+    type Name2 = Omit<Mani.FieldValueIds, 'displayname'> & Pick<Name, 'ownernote'>;
 
     export interface Root {
         descriptor?: Descriptor;

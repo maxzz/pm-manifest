@@ -6,12 +6,13 @@ export namespace TransformValue {
         askalways?: boolean;
         onetvalue?: boolean;
         value?: string;
+
         password?: boolean;
         fType: FieldTyp;
     };
 
     export function valueLife4ManiLogic({ askalways, onetvalue, value, password, fType }: valueLife4ManiLogicParams): ValueLife {
-        const vl: ValueLife = {
+        const rv: ValueLife = {
             valueAs:
                 (!onetvalue && !askalways)
                     ? ValueAs.askReuse
@@ -22,23 +23,37 @@ export namespace TransformValue {
             //...(field.type !== 'edit' && field.type !== 'combo' && { isBtn: true }),
             fType: fType,
         };
+
         if (value) {
-            vl.isRef = value?.charAt(0) === '@';
-            vl.value = value?.replace(/^@/, '');
-            vl.isRef = vl.isRef && !!vl.value && vl.value.charAt(0) !== '@'; // case for '@@'
+            rv.isRef = value?.charAt(0) === '@';
+            rv.value = value?.replace(/^@/, '');
+            rv.isRef = rv.isRef && !!rv.value && rv.value.charAt(0) !== '@'; // case for '@@'
         }
-        return vl;
+
+        return rv;
     }
 
     export function valueLife4Mani(field: Mani.Field): ValueLife {
         const { askalways, onetvalue, value, password } = field;
-        return valueLife4ManiLogic({ askalways, onetvalue, value, password, fType: fieldTyp4Str(field) });
+        return valueLife4ManiLogic({
+            askalways,
+            onetvalue,
+            value,
+            password,
+            fType: fieldTyp4Str(field),
+        });
     }
 
     export function valueLife4Catalog(item: CatalogItem): ValueLife {
         const { askalways, onetvalue, value, password } = item;
         const fType = item.password ? FieldTyp.psw : FieldTyp.edit;
-        return valueLife4ManiLogic({ askalways, onetvalue, value, password, fType });
+        return valueLife4ManiLogic({
+            askalways,
+            onetvalue,
+            value,
+            password,
+            fType,
+        });
     }
 
     export type valueLife2ManiLogicReturn = {
@@ -49,12 +64,16 @@ export namespace TransformValue {
 
     export function valueLife2ManiLogic(vl: ValueLife, rv: valueLife2ManiLogicReturn): void {
         const { valueAs: va } = vl;
+
         va === ValueAs.askReuse
             ? (rv.onetvalue = undefined, rv.askalways = undefined)
             : va === ValueAs.askConfirm
                 ? (rv.onetvalue = undefined, rv.askalways = true)
                 : (rv.onetvalue = true, rv.askalways = true);
-        vl.value ? (rv.value = `${vl.isRef ? '@' : (vl.value.charAt(0) === '@' ? '@' : '')}${vl.value}`) : (delete rv.value);
+
+        vl.value
+            ? (rv.value = `${vl.isRef ? '@' : (vl.value.charAt(0) === '@' ? '@' : '')}${vl.value}`)
+            : (delete rv.value);
     }
 
     export function valueLife2Mani(vl: ValueLife, rv: Mani.Field | CatalogItem): void {
