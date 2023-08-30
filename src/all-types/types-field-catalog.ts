@@ -8,11 +8,11 @@ export module Catalog {         // pmat/include/ots_storagecatalog_io.h
         dbname: string;
         value?: string;
 
+        askalways?: boolean;    // undefined | '1'
+        onetvalue?: boolean;    // undefined | '1'
+        password?: boolean;     // undefined | '1'
+        
         ownernote?: string;     // This does not exist in Field
-
-        askalways?: boolean;    // undefined : '1' 
-        onetvalue?: boolean;    // undefined : '1'
-        password?: boolean;     // undefined : '1'
     }
 
     export interface Root {
