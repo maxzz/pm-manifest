@@ -1,3 +1,5 @@
+import { Mani } from "./mani";
+
 export module Catalog {         // pmat/include/ots_storagecatalog_io.h
     export interface Descriptor {
         id?: string;            // default as guid
@@ -11,15 +13,17 @@ export module Catalog {         // pmat/include/ots_storagecatalog_io.h
         askalways?: boolean;    // undefined | '1'
         onetvalue?: boolean;    // undefined | '1'
         password?: boolean;     // undefined | '1'
-        
+
         ownernote?: string;     // This does not exist in Field
     }
+
+    type Name2 = Omit<Mani.FieldValue, 'type' | 'displayname'> & Name;
 
     export interface Root {
         descriptor?: Descriptor;
         names: Name[];
     }
-}
+} //module Catalog
 
 export type CatalogItem =       // Item in memory w/ meta information
     Catalog.Name
