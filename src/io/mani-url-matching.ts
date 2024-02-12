@@ -60,7 +60,7 @@ export namespace Matching {
         if (raw.style || raw.opt) {
             const { style, opt, url } = raw;
 
-            let resOpt = [];
+            let resOpt: string[] = [];
             (opt & 1) !== 0 && (resOpt.push('case insensitive'));   // Options.caseinsensitive
             (opt & 2) !== 0 && (resOpt.push('match ext.'));         // Options.matchtext
 
