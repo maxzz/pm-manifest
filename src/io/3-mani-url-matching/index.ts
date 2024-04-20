@@ -1,4 +1,4 @@
-import { TransformEncoding } from "../transforms";
+import { TransformEncoding } from "../../transforms";
 
 export namespace Matching {
     export enum Style {         // cannot use const w/ esbuild

@@ -1,6 +1,6 @@
-import { CatalogFile, CatalogItem, FieldCatalog, Mani, Meta, fieldTyp4Str } from '../all-types';
-import { getPool, TransformValue, FieldPath, urlDomain, removeQuery } from '../transforms';
-import { uuid } from '../utils';
+import { CatalogFile, CatalogItem, FieldCatalog, Mani, Meta, fieldTyp4Str } from '../../all-types';
+import { getPool, TransformValue, FieldPath, urlDomain, removeQuery } from '../../transforms';
+import { uuid } from '../../utils';
 
 namespace Bailouts {
 
