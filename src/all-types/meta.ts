@@ -14,7 +14,7 @@ export module Meta {            // Manifest unpacked forms, as meta data
         sn?: MPath.sn;          // script number
     }
 
-    export type Chunk = keyof Meta.Path; //type ChunkName = 'p4a' | 'p4' | 'loc' | 'sid' | 'did2' | 'sn';
+    export type Chunk = Prettify<keyof Meta.Path>; //type ChunkName = 'p4a' | 'p4' | 'loc' | 'sid' | 'did2' | 'sn';
 
     export type Field = {   
         mani: Mani.Field,
