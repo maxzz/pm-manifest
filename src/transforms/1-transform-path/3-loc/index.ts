@@ -1,4 +1,4 @@
-import { getPoolName } from "../../transform-mani-pool";
+import { getPoolName } from "../../2-transform-mani-pool";
 import * as loc_utils from "./1-location-utils";
 
 export const utils = loc_utils;

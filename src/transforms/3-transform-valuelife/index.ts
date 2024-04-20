@@ -1,4 +1,4 @@
-import { CatalogItem, FieldTyp, Mani, ValueAs, ValueLife, fieldTyp4Str } from "../all-types";
+import { CatalogItem, FieldTyp, Mani, ValueAs, ValueLife, fieldTyp4Str } from "../../all-types";
 
 export namespace TransformValue {
 

@@ -30,7 +30,7 @@ export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
         isIe,
     };
 
-    const newMetaForm: Meta.Form = {
+    const rv: Meta.Form = {
         mani: form,
         type: idx,
         disp: newDisp,
@@ -41,10 +41,7 @@ export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
         uuid: uuid.asRelativeNumber(),
     };
 
-    const bailOuts = getBailouts(newMetaForm);
-    if (bailOuts) {
-        newMetaForm.disp.bailOut = bailOuts;
-    }
+    rv.disp.bailOut = getBailouts(rv);
 
-    return newMetaForm;
+    return rv;
 }

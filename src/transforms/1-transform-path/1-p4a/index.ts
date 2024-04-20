@@ -1,6 +1,6 @@
 import { MPath } from "../../../all-types";
-import { getPoolName } from "../../transform-mani-pool";
-import { TransformEncoding } from "../../transform-xml-enc";
+import { getPoolName } from "../../2-transform-mani-pool";
+import { TransformEncoding } from "../../5-transform-xml-enc";
 
 export function p4a(pool: string[], s: string): MPath.p4a {
     const ss = s.split('.');

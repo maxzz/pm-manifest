@@ -1,5 +1,5 @@
-import { Mani } from "../all-types";
-import { TransformEncoding } from "./transform-xml-enc";
+import { Mani } from "../../all-types";
+import { TransformEncoding } from "../5-transform-xml-enc";
 
 // Manifest specific functions
 
