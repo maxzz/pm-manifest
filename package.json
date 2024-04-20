@@ -1,7 +1,7 @@
 {
     "name": "pm-manifest",
     "globalObject": "pm-manifest",
-    "version": "1.1.4",
+    "version": "1.1.6",
     "description": "PM manifest definition files",
     "license": "MIT",
     "repository": {
@@ -31,6 +31,7 @@
         "dev": "tsc -w",
         "build:min": "rollup -c rollup.config.js --environment targer:es2020,minify",
         "build": "rollup -c rollup.config.js --environment targer:es2020",
-        "npm": "pnpm run build && pnpm publish"
+        "prepublish": "pnpm run build",
+        "to-npm": "pnpm publish --no-git-checks"
     }
 }
