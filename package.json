@@ -1,8 +1,9 @@
 {
     "name": "pm-manifest",
     "globalObject": "pm-manifest",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "PM manifest definition files",
+    "license": "MIT",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/maxzz/pm-manifest.git"
@@ -13,12 +14,6 @@
     "files": [
         "./src"
     ],
-    "license": "MIT",
-    "scripts": {
-        "dev": "tsc -w",
-        "build:min": "rollup -c rollup.config.js --environment targer:es2020,minify",
-        "build": "rollup -c rollup.config.js --environment targer:es2020"
-    },
     "devDependencies": {
         "@rollup/plugin-commonjs": "25.0.4",
         "@rollup/plugin-node-resolve": "15.2.1",
@@ -31,5 +26,10 @@
     },
     "dependencies": {
         "fast-xml-parser": "4.2.7"
+    },
+    "scripts": {
+        "dev": "tsc -w",
+        "build:min": "rollup -c rollup.config.js --environment targer:es2020,minify",
+        "build": "rollup -c rollup.config.js --environment targer:es2020"
     }
 }
