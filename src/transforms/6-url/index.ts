@@ -1,4 +1,3 @@
-//#region trivial URL
 /*
     // https://github.com/websanova/js-url <- has no npm deployment; 2.5.3; was released on Apr 5, 2018
     url();            // http://rob:abcd1234@www.example.co.uk/path/index.html?query1=test&silly=willy&field[0]=zero&field[2]=two#test=hash&chucky=cheese
@@ -146,13 +145,13 @@ export namespace tmurl {
     */
 
     export function url(url: string/*, arg?: IUrlKeys*/): IUrlParts { //: IUrlResult | string | string[] | RegExp | undefined
-        var _l: IUrlParts = {},
-            tmp;
+        let rv: IUrlParts = {};
+        let tmp;
 
         //if (arg === 'tld?') { return _t; }
 
         if (!url) { //!url - includes undefined and 0 length //url = url || ''; // tm: url = url || window.location.toString();
-            return _l;
+            return rv;
         }
 
         //if (!arg) { return url; }
@@ -160,8 +159,8 @@ export namespace tmurl {
         //arg = arg.toString() as IUrlKeys;
 
         if (tmp = url.match(/^mailto:([^\/].+)/)) {
-            _l.protocol = 'mailto';
-            _l.email = tmp[1];
+            rv.protocol = 'mailto';
+            rv.email = tmp[1];
         } else {
             // Ignore Hashbangs.
             if (tmp = url.match(/(.*?)\/#\!(.*)/)) {
@@ -170,103 +169,105 @@ export namespace tmurl {
 
             // Hash.
             if (tmp = url.match(/(.*?)#(.*)/)) {
-                _l.hash = tmp[2];
+                rv.hash = tmp[2];
                 url = tmp[1];
             }
 
             // Return hash parts.
-            //if (_l.hash && arg.match(/^#/)) { return _f(arg, _l.hash); }
+            //if (rv.hash && arg.match(/^#/)) { return _f(arg, rv.hash); }
 
             // Query
             if (tmp = url.match(/(.*?)\?(.*)/)) {
-                _l.query = tmp[2];
+                rv.query = tmp[2];
                 url = tmp[1];
             }
 
             // Return query parts.
-            //if (_l.query && arg.match(/^\?/)) { return _f(arg, _l.query); }
+            //if (rv.query && arg.match(/^\?/)) { return _f(arg, rv.query); }
 
             // Protocol.
             if (tmp = url.match(/(.*?)\:?\/\/(.*)/)) {
-                _l.protocol = tmp[1].toLowerCase();
+                rv.protocol = tmp[1].toLowerCase();
                 url = tmp[2];
             }
 
             // Path.
             if (tmp = url.match(/(.*?)(\/.*)/)) {
-                _l.path = tmp[2];
+                rv.path = tmp[2];
                 url = tmp[1];
             }
 
             // Clean up path.
-            _l.path = (_l.path || '').replace(/^([^\/])/, '/$1');
+            rv.path = (rv.path || '').replace(/^([^\/])/, '/$1');
 
             // Return path parts.
             //if (arg.match(/^[\-0-9]+$/)) { arg = arg.replace(/^([^\/])/, '/$1') as IUrlKeys; }
-            //if (arg.match(/^\//)) { return _i(arg, _l.path.substring(1)); }
+            //if (arg.match(/^\//)) { return _i(arg, rv.path.substring(1)); }
 
             // File.
             /*
-            tmp = _i('/-1', _l.path.substring(1));
+            tmp = _i('/-1', rv.path.substring(1));
 
             if (tmp && (tmp = (tmp as string).match(/(.*?)\.([^.]+)$/))) {
-                _l.file = tmp[0];
-                _l.filename = tmp[1];
-                _l.fileext = tmp[2];
+                rv.file = tmp[0];
+                rv.filename = tmp[1];
+                rv.fileext = tmp[2];
             }
             */
 
             // Port.
             if (tmp = url.match(/(.*)\:([0-9]+)$/)) {
-                _l.port = tmp[2];
+                rv.port = tmp[2];
                 url = tmp[1];
             }
 
             // Auth.
             if (tmp = url.match(/(.*?)@(.*)/)) {
-                _l.auth = tmp[1];
+                rv.auth = tmp[1];
                 url = tmp[2];
             }
 
             // User and pass.
-            if (_l.auth) {
-                tmp = _l.auth.match(/(.*)\:(.*)/);
-                _l.user = tmp ? tmp[1] : _l.auth;
-                _l.pass = tmp ? tmp[2] : undefined;
+            if (rv.auth) {
+                tmp = rv.auth.match(/(.*)\:(.*)/);
+                rv.user = tmp ? tmp[1] : rv.auth;
+                rv.pass = tmp ? tmp[2] : undefined;
             }
 
             // Hostname.
-            _l.hostname = url.toLowerCase();
+            rv.hostname = url.toLowerCase();
 
             // Return hostname parts.
-            //if (arg.charAt(0) === '.') { return _i(arg, _l.hostname); }
+            //if (arg.charAt(0) === '.') { return _i(arg, rv.hostname); }
 
             // Domain, tld and sub domain.
-            if (tmp = _l.hostname.match(_t)) {
-                _l.tld = tmp[3];
-                _l.domain = tmp[2] ? tmp[2] + '.' + tmp[3] : undefined;
-                _l.sub = tmp[1] || undefined;
+            if (tmp = rv.hostname.match(_t)) {
+                rv.tld = tmp[3];
+                rv.domain = tmp[2] ? tmp[2] + '.' + tmp[3] : undefined;
+                rv.sub = tmp[1] || undefined;
             }
 
-            _l.domainhost = _l.domain || _l.hostname;
+            rv.domainhost = rv.domain || rv.hostname;
 
             // Set port and protocol defaults if not set.
-            //_l.port = _l.port || (_l.protocol === 'https' ? '443' : '80');
-            //_l.protocol = _l.protocol || (_l.port === '443' ? 'https' : 'http');
+            //rv.port = rv.port || (rv.protocol === 'https' ? '443' : '80');
+            //rv.protocol = rv.protocol || (rv.port === '443' ? 'https' : 'http');
         }
 
-        return _l; //return arg ? _l[arg] : _l;
+        return rv; //return arg ? rv[arg] : rv;
 
         // Return everything.
-        //if (!arg) { return _l; }
+        //if (!arg) { return rv; }
 
         // Return arg.
-        //if (arg in _l) { return _l[arg]; }
-        //return _l[arg];
+        //if (arg in rv) { return rv[arg]; }
+        //return rv[arg];
 
         // Default to undefined for no match.
         //return undefined;
+        
     } //url()
+
 }//namespace tmurl
 
 export function urlDomain(url: string): string {
