@@ -17,6 +17,7 @@ export function getPoolName(pool: string[], index: string): string {
     }
 
     let n: number = index !== '' ? parseInt(`0x${index}`, 16) : -1;
+    
     if (n < pool.length && n >= 0) {
         return TransformEncoding.removeEscapeChars(pool[n], '\\');
     }

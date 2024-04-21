@@ -1,6 +1,7 @@
 import { Mani } from "./mani";
 
 export module CatalogFile {     // pmat/include/ots_storagecatalog_io.h
+    
     export type Descriptor = {
         id?: string;            // default as guid
     };

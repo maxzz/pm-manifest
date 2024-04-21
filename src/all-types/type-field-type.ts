@@ -1,9 +1,10 @@
 import { Mani } from "./mani";
 
 /**
- * Our UI internal type
+ * Our internal enum mapped from
+ * Mani.FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
  */
-export enum FieldTyp { //type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
+export enum FieldTyp {
     und, // undefined
     edit,
     button,
@@ -14,12 +15,21 @@ export enum FieldTyp { //type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo
     text,
     listbx, // this is not used anywhere but returend by accengine. found with old dpferret 07.09.23
 
-    psw, // combined value 'edit' and 'password'
+    psw,    // combined value 'edit' and 'password'
 }
 
-export function fieldTyp4Str(field: Mani.Field): FieldTyp { // Convert FieldTyp from string
-    let rv = FieldTyp[field.type] || FieldTyp.und;
-    return rv === FieldTyp.edit && field.password ? FieldTyp.psw : rv;
+/**
+ * Convert manifest field type to our internal type
+ * @param field manifest field where type is string
+ * @returns our internal type FieldTyp
+ */
+export function fieldTyp4Str(field: Pick<Mani.Field, 'type' | 'password'>): FieldTyp {
+    const rv = FieldTyp[field.type] || FieldTyp.und;
+    return (
+        rv === FieldTyp.edit && field.password
+            ? FieldTyp.psw
+            : rv
+    );
 }
 
 /*

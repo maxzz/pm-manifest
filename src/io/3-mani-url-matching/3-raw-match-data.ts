@@ -1,5 +1,5 @@
+import { Options, RawMatchData, Style } from "./1-utl-types";
 import { TransformEncoding } from "../../transforms";
-import { Options, RawMatchData, Style } from "./1-types";
 
 const reOtsMatching = /^\[m0\]:([0-4]):([01248ace]{1,4}):\s*(.+)/; // 0: [m0]; 1:style; 2:options; 3:pattern. Example: web_murl="[m0]:2:2:https^2dot;//maxzz.github.io/test-pm/"
 

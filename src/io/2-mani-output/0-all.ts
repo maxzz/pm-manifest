@@ -1,5 +1,5 @@
 import { Mani } from "../../all-types";
-import { parseOptionsRead } from '../1-mani-input/3-parse-xml-file';
+import { parseOptionsRead } from "../1-mani-input/3-parse-xml-file";
 import { showError } from "../5-mani-show-error";
 import { TransformEncoding } from "../../transforms";
 import { J2xParser } from "../../utils/json2xml";

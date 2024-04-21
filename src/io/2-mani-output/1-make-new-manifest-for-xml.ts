@@ -1,6 +1,7 @@
 import { Mani } from "../../all-types";
 
 const ATTRS: string = "_attributes";
+
 function hasKeys(obj?: object): boolean {
     return !!obj && !!Reflect.ownKeys(obj).length;
 }

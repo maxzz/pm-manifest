@@ -1,5 +1,5 @@
-import { Mani, Meta } from '../../../all-types';
-import { createMetaForm } from './1-create-meta-form';
+import { Mani, Meta } from "../../../all-types";
+import { createMetaForm } from "./1-create-meta-form";
 
 export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[] {
 

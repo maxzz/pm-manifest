@@ -1,4 +1,4 @@
-import { Mani } from '../../all-types';
+import { Mani } from "../../all-types";
 
 /**
  * Convert XML object from .dpm file to our manifest format.
@@ -28,9 +28,11 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
             if (form.fcontext) {
                 form.fcontext.name !== undefined && (form.fcontext.name = +form.fcontext.name);
             }
+
             if (form.detection) {
                 form.detection.web_checkurl !== undefined && (form.detection.web_checkurl = !!form.detection.web_checkurl);
             }
+
             if (form.fields) {
                 form.fields = form.fields.map(field => (field as any)._attributes);
 

@@ -1,5 +1,5 @@
-import { CatalogFile, CatalogItem, FieldCatalog, Mani } from '../../../all-types';
-import { uuid } from '../../../utils';
+import { CatalogFile, CatalogItem, FieldCatalog, Mani } from "../../../all-types";
+import { uuid } from "../../../utils";
 
 // Field catalog transformation
 

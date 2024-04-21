@@ -1,6 +1,6 @@
 import { getMatchRawData } from "./3-raw-match-data";
 
-export * from "./1-types";
+export * from "./1-utl-types";
 export * from "./2-regexes";
 export * from "./3-raw-match-data";
 

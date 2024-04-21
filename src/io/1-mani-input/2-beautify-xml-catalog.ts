@@ -1,4 +1,4 @@
-import { CatalogFile } from '../../all-types';
+import { CatalogFile } from "../../all-types";
 
 export function beautifyXMLCatalog(catalog: CatalogFile.Root): CatalogFile.Root {
     catalog.names = (catalog as any)?.names?.name || [];
