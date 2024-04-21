@@ -6,7 +6,7 @@ export const enum ValueAs {
     askAlways,
 }
 
-export const LIST_valueAskNames = ["Ask - Resuse", "Ask - Confirm", "Ask Always ",];
+export const LIST_valueAskNames = ["Ask - Resuse", "Ask - Confirm", "Ask Always "];
 
 export type ValueLife = {
     valueAs: ValueAs;           // how to treat value from user
@@ -14,12 +14,17 @@ export type ValueLife = {
     isRef?: boolean;            // true if value started with '@' but not '@@'
 
     fType?: FieldTyp;           // now it has type psw and edit/psw/rest information
-  //isPsw?: boolean;            // it comes from field.password, and not from ref @password (ref should reflect field type not opposite).
-  //isBtn?: boolean;            // any type but not edit or password
+
+   //isPsw?: boolean;            // it comes from field.password, and not from ref @password (ref should reflect field type not opposite).
+   //isBtn?: boolean;            // any type but not edit or password
     isNon?: boolean;            // true when value is empty and valueAs is default AskReuse, but input cleared by user
 };
 
-export type ReferenceItem = { i: number; f: string; s: string; }; // i - index; f - full name; s - short name.
+export type ReferenceItem = {
+    i: number; // index
+    f: string; // full name
+    s: string; // short name
+};
 
 export type References = {
     txt: Record<string, ReferenceItem>;

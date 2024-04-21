@@ -1,10 +1,10 @@
-export * from './type-field-type';
-export * from './type-submit';
-export * from './mani';
-export * from './mpath';
-export * from './meta';
-export * from './type-value-life';
-export * from './types-field-catalog';
+export * from "./type-field-type";
+export * from "./type-submit";
+export * from "./mani";
+export * from "./mpath";
+export * from "./meta";
+export * from "./type-value-life";
+export * from "./types-field-catalog";
 
 /**
  * Object.entries() type support

@@ -39,4 +39,4 @@ export module MPath {           // Meta path. Manifest unpacked path data
         parts: string[];        // block parts
     };
 
-} //module MPath
+}

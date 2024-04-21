@@ -57,4 +57,4 @@ export module Meta {            // Manifest unpacked forms, as meta data
         uuid: number;           // short relative uuid number in the current session
     }
 
-} //module Meta
+}

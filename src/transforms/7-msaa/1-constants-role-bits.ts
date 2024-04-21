@@ -1,0 +1,71 @@
+export const MSAA_ROLEBITS = {
+    r_1_00_none               /**/: 0x00000001,    // 0                                 //00
+    r_1_01_titlebar           /**/: 0x00000002,    // ROLE_SYSTEM_TITLEBAR              //01
+    r_1_02_menubar            /**/: 0x00000004,    // ROLE_SYSTEM_MENUBAR               //02
+    r_1_03_scrollbar          /**/: 0x00000008,    // ROLE_SYSTEM_SCROLLBAR             //03
+    r_1_04_grip               /**/: 0x00000010,    // ROLE_SYSTEM_GRIP                  //04
+    r_1_05_sound              /**/: 0x00000020,    // ROLE_SYSTEM_SOUND                 //05
+    r_1_06_cursor             /**/: 0x00000040,    // ROLE_SYSTEM_CURSOR                //06
+    r_1_07_caret              /**/: 0x00000080,    // ROLE_SYSTEM_CARET                 //07
+    r_1_08_alert              /**/: 0x00000100,    // ROLE_SYSTEM_ALERT                 //08
+    r_1_09_window             /**/: 0x00000200,    // ROLE_SYSTEM_WINDOW                //09
+    r_1_0A_client             /**/: 0x00000400,    // ROLE_SYSTEM_CLIENT                //0A
+    r_1_0B_menupopup          /**/: 0x00000800,    // ROLE_SYSTEM_MENUPOPUP             //0B
+    r_1_0C_menuitem           /**/: 0x00001000,    // ROLE_SYSTEM_MENUITEM              //0C
+    r_1_0D_tooltip            /**/: 0x00002000,    // ROLE_SYSTEM_TOOLTIP               //0D
+    r_1_0E_application        /**/: 0x00004000,    // ROLE_SYSTEM_APPLICATION           //0E
+    r_1_0F_document           /**/: 0x00008000,    // ROLE_SYSTEM_DOCUMENT              //0F
+    r_1_10_pane               /**/: 0x00010000,    // ROLE_SYSTEM_PANE                  //10
+    r_1_11_chart              /**/: 0x00020000,    // ROLE_SYSTEM_CHART                 //11
+    r_1_12_dialog             /**/: 0x00040000,    // ROLE_SYSTEM_DIALOG                //12
+    r_1_13_border             /**/: 0x00080000,    // ROLE_SYSTEM_BORDER                //13
+    r_1_14_grouping           /**/: 0x00100000,    // ROLE_SYSTEM_GROUPING              //14
+    r_1_15_separator          /**/: 0x00200000,    // ROLE_SYSTEM_SEPARATOR             //15
+    r_1_16_toolbar            /**/: 0x00400000,    // ROLE_SYSTEM_TOOLBAR               //16
+    r_1_17_statusbar          /**/: 0x00800000,    // ROLE_SYSTEM_STATUSBAR             //17
+    r_1_18_table              /**/: 0x01000000,    // ROLE_SYSTEM_TABLE                 //18
+    r_1_19_columnheader       /**/: 0x02000000,    // ROLE_SYSTEM_COLUMNHEADER          //19
+    r_1_1A_rowheader          /**/: 0x04000000,    // ROLE_SYSTEM_ROWHEADER             //1A
+    r_1_1B_column             /**/: 0x08000000,    // ROLE_SYSTEM_COLUMN                //1B
+    r_1_1C_row                /**/: 0x10000000,    // ROLE_SYSTEM_ROW                   //1C
+    r_1_1D_cell               /**/: 0x20000000,    // ROLE_SYSTEM_CELL                  //1D
+    r_1_1E_link               /**/: 0x40000000,    // ROLE_SYSTEM_LINK                  //1E
+    r_1_1F_helpballoon        /**/: 0x80000000,    // ROLE_SYSTEM_HELPBALLOON           //1F
+
+    r_2_00_character          /**/: 0x00000001,    // ROLE_SYSTEM_CHARACTER             //20
+    r_2_01_list               /**/: 0x00000002,    // ROLE_SYSTEM_LIST                  //21
+    r_2_02_listitem           /**/: 0x00000004,    // ROLE_SYSTEM_LISTITEM              //22
+    r_2_03_outline            /**/: 0x00000008,    // ROLE_SYSTEM_OUTLINE               //23
+    r_2_04_outlineitem        /**/: 0x00000010,    // ROLE_SYSTEM_OUTLINEITEM           //24
+    r_2_05_pagetab            /**/: 0x00000020,    // ROLE_SYSTEM_PAGETAB               //25
+    r_2_06_propertypage       /**/: 0x00000040,    // ROLE_SYSTEM_PROPERTYPAGE          //26
+    r_2_07_indicator          /**/: 0x00000080,    // ROLE_SYSTEM_INDICATOR             //27
+    r_2_08_graphic            /**/: 0x00000100,    // ROLE_SYSTEM_GRAPHIC               //28
+    r_2_09_statictext         /**/: 0x00000200,    // ROLE_SYSTEM_STATICTEXT            //29
+    r_2_0A_text               /**/: 0x00000400,    // ROLE_SYSTEM_TEXT                  //2A
+    r_2_0B_pushbutton         /**/: 0x00000800,    // ROLE_SYSTEM_PUSHBUTTON            //2B
+    r_2_0C_checkbutton        /**/: 0x00001000,    // ROLE_SYSTEM_CHECKBUTTON           //2C
+    r_2_0D_radiobutton        /**/: 0x00002000,    // ROLE_SYSTEM_RADIOBUTTON           //2D
+    r_2_0E_combobox           /**/: 0x00004000,    // ROLE_SYSTEM_COMBOBOX              //2E
+    r_2_0F_droplist           /**/: 0x00008000,    // ROLE_SYSTEM_DROPLIST              //2F
+    r_2_10_progressbar        /**/: 0x00010000,    // ROLE_SYSTEM_PROGRESSBAR           //30
+    r_2_11_dial               /**/: 0x00020000,    // ROLE_SYSTEM_DIAL                  //31
+    r_2_12_hotkeyfield        /**/: 0x00040000,    // ROLE_SYSTEM_HOTKEYFIELD           //32
+    r_2_13_slider             /**/: 0x00080000,    // ROLE_SYSTEM_SLIDER                //33
+    r_2_14_spinbutton         /**/: 0x00100000,    // ROLE_SYSTEM_SPINBUTTON            //34
+    r_2_15_diagram            /**/: 0x00200000,    // ROLE_SYSTEM_DIAGRAM               //35
+    r_2_16_animation          /**/: 0x00400000,    // ROLE_SYSTEM_ANIMATION             //36
+    r_2_17_equation           /**/: 0x00800000,    // ROLE_SYSTEM_EQUATION              //37
+    r_2_18_buttondropdown     /**/: 0x01000000,    // ROLE_SYSTEM_BUTTONDROPDOWN        //38
+    r_2_19_buttonmenu         /**/: 0x02000000,    // ROLE_SYSTEM_BUTTONMENU            //39
+    r_2_1A_buttondropdowngrid /**/: 0x04000000,    // ROLE_SYSTEM_BUTTONDROPDOWNGRID    //3A
+    r_2_1B_whitespace         /**/: 0x08000000,    // ROLE_SYSTEM_WHITESPACE            //3B
+    r_2_1C_pagetablist        /**/: 0x10000000,    // ROLE_SYSTEM_PAGETABLIST           //3C
+    r_2_1D_clock              /**/: 0x20000000,    // ROLE_SYSTEM_CLOCK                 //3D
+    r_2_1E_splitbutton        /**/: 0x40000000,    // 0x3e//ie                          //3E
+    r_2_1F_ipaddress          /**/: 0x80000000,    // ROLE_SYSTEM_IPADDRESS             //3F
+
+    r_3_00_outlinebutton      /**/: 0x80000001,    // ROLE_SYSTEM_OUTLINEBUTTON         //40
+}; //const MSAA_ROLEBITS
+
+// #include "acc_const.h" // C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um/oleacc.h

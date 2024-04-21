@@ -1,4 +1,5 @@
 export module Mani {
+
     export type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
 
     export type FieldValueValue = {
@@ -108,5 +109,5 @@ export module Mani {
         forms: Form[];
     };
 
-} //module Mani
+}
 

@@ -1,0 +1,34 @@
+export enum MSAA_STATE {
+    none                      /**/ = 0x00000000,      //01 // 0x00000000
+    unavailable               /**/ = 0x00000001,      //02 // STATE_SYSTEM_UNAVAILABLE      // Disabled
+    selected                  /**/ = 0x00000002,      //03 // STATE_SYSTEM_SELECTED        
+    focused                   /**/ = 0x00000004,      //04 // STATE_SYSTEM_FOCUSED         
+    pressed                   /**/ = 0x00000008,      //05 // STATE_SYSTEM_PRESSED         
+    checked                   /**/ = 0x00000010,      //06 // STATE_SYSTEM_CHECKED         
+    mixed                     /**/ = 0x00000020,      //07 // STATE_SYSTEM_MIXED            // 3-state checkbox or toolbar button
+    readonly                  /**/ = 0x00000040,      //08 // STATE_SYSTEM_READONLY        
+    hottracked                /**/ = 0x00000080,      //09 // STATE_SYSTEM_HOTTRACKED      
+    defaulT                   /**/ = 0x00000100,      //0A // STATE_SYSTEM_DEFAULT         
+    expanded                  /**/ = 0x00000200,      //0B // STATE_SYSTEM_EXPANDED        
+    collapsed                 /**/ = 0x00000400,      //0C // STATE_SYSTEM_COLLAPSED       
+    busy                      /**/ = 0x00000800,      //0D // STATE_SYSTEM_BUSY            
+    floating                  /**/ = 0x00001000,      //0E // STATE_SYSTEM_FLOATING         // Children "owned" not "contained" by parent
+    marqueed                  /**/ = 0x00002000,      //0F // STATE_SYSTEM_MARQUEED        
+    animated                  /**/ = 0x00004000,      //10 // STATE_SYSTEM_ANIMATED        
+    invisible                 /**/ = 0x00008000,      //11 // STATE_SYSTEM_INVISIBLE       
+    offscreen                 /**/ = 0x00010000,      //12 // STATE_SYSTEM_OFFSCREEN       
+    sizeable                  /**/ = 0x00020000,      //13 // STATE_SYSTEM_SIZEABLE        
+    moveable                  /**/ = 0x00040000,      //14 // STATE_SYSTEM_MOVEABLE        
+    selfvoicing               /**/ = 0x00080000,      //15 // STATE_SYSTEM_SELFVOICING     
+    focusable                 /**/ = 0x00100000,      //16 // STATE_SYSTEM_FOCUSABLE       
+    selectable                /**/ = 0x00200000,      //17 // STATE_SYSTEM_SELECTABLE      
+    linked                    /**/ = 0x00400000,      //18 // STATE_SYSTEM_LINKED          
+    traversed                 /**/ = 0x00800000,      //19 // STATE_SYSTEM_TRAVERSED       
+    multiselectable           /**/ = 0x01000000,      //1A // STATE_SYSTEM_MULTISELECTABLE  // Supports multiple selection
+    extselectable             /**/ = 0x02000000,      //1B // STATE_SYSTEM_EXTSELECTABLE    // Supports extended selection
+    alert_low                 /**/ = 0x04000000,      //1C // STATE_SYSTEM_ALERT_LOW        // This information is of low priority
+    alert_medium              /**/ = 0x08000000,      //1D // STATE_SYSTEM_ALERT_MEDIUM     // This information is of medium priority
+    alert_high                /**/ = 0x10000000,      //1E // STATE_SYSTEM_ALERT_HIGH       // This information is of high priority
+    protected                 /**/ = 0x20000000,      //1F // STATE_SYSTEM_PROTECTED      
+    valid                     /**/ = 0x3fffffff,           // STATE_SYSTEM_VALID            // mask
+} //enum MSAA_STATE
