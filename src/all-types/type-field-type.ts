@@ -32,6 +32,14 @@ export function fieldTyp4Str(field: Pick<Mani.Field, 'type' | 'password'>): Fiel
     );
 }
 
+export function fieldTyp2Obj(typ: FieldTyp): { password?: boolean | undefined; type: Mani.FieldTypeStr; } {
+    const type = FieldTyp[typ] as Mani.FieldTypeStr;
+    return {
+        type,
+        ...(typ === FieldTyp.psw && { 'password': true }),
+    };
+}
+
 /*
     const enum FieldType {       // This is internal type used by Bkg and Cs, but these definitions are close to DPAgent definitions.
         uni = 0,                 // Uninitialized

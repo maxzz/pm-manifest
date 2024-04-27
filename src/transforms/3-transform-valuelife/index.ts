@@ -8,7 +8,7 @@ export namespace TransformValue {
         value?: string;
 
         password?: boolean;
-        fType: FieldTyp;
+        fType: FieldTyp; // mostly used for field catalog selection
     };
 
     export function valueLife4ManiLogic({ askalways, onetvalue, value, password, fType }: valueLife4ManiLogicParams): ValueLife {
@@ -56,7 +56,7 @@ export namespace TransformValue {
         });
     }
 
-    export type valueLife2ManiLogicReturn = {
+    export type valueLife2ManiLogicReturn = { // as part of Mani.Field | CatalogItem
         onetvalue?: boolean;
         askalways?: boolean;
         value?: string;
@@ -76,7 +76,7 @@ export namespace TransformValue {
             : (delete rv.value);
     }
 
-    export function valueLife2Mani(vl: ValueLife, rv: Mani.Field | CatalogItem): void {
+    export function valueLife2Mani(vl: ValueLife, rv: valueLife2ManiLogicReturn): void {
         valueLife2ManiLogic(vl, rv);
     }
 
