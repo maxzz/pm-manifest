@@ -66,7 +66,7 @@ export module Mani {
         sidekick?: string;      // "manual mode hint"
         ownernote?: string;
         quicklink?: string;     // QL menu name
-        auth_pl?: string;       // policy
+        auth_pl?: string;       // extended policy (see AuthTokenValues); only one bit as hex string (auth_pl="100"); used only for login form
         balooncount?: string;
         autoprompt?: string;    // boolean
         lockfields?: string;    // "0" | "1"
