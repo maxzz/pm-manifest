@@ -34,7 +34,7 @@ export module Mani {
 
         controltosubmitdata?: boolean;
         ids?: string;
-        options?: string;
+        options?: string;       // Field options (Eg. password change field policy options stringify'd JSON object). "norep" and "chkppos" //TODO: who puts it here? It's part of policy and policy2, not field.
     };
 
     export enum FORMNAME {      // predefined form names
