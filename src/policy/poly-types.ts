@@ -1,33 +1,37 @@
-export enum ConstrainSet { // former CharsetType
-    alphanumeric,		// TODO: describe
-    alpha,				// TODO: describe
-    numeric,			// TODO: describe
-    withspecial,		// TODO: describe
-    atleastonenumber,	// TODO: describe
-}
+export namespace Poli {
 
-export enum ConstrainPsw {// former RESTRICTTYPE
-    none,               // former none.         Nothing specified. former 'no_restrictions' // none,      // "None"
-    diffWp,             // former different_wp. Different from window password.             // notWinPsw, // "Different than the Windows password"
-    diffAp,             // former different_ap. Different from any password.                // notPmPsw,  // "Unique within Password Manager logons"
-    diffPp,             // former different_pp. Different from previous password.           // notCurPsw, // "Different than the current password"
-}
+    export enum ConstrainSet {      // former CharsetType
+        alphanumeric,		        // alphabetic and numeric
+        alpha,				        // alphabetic
+        numeric,			        // numeric
+        withspecial,		        // alphabetic, numeric and special characters
+        atleastonenumber,	        // alphabetic, numeric and special characters with at least one number
+    }
 
-export enum UseAs {     // former PolicyType
-    none,
-    verify,				// TODO: describe; maybe as by user
-    generate,			// TODO: describe; maybe as by system
-}
+    export enum ConstrainPsw {      // former RESTRICTTYPE
+        none,                       // former none.         Nothing specified. former 'no_restrictions' // none,      // Nothing specified
+        diffWp,                     // former different_wp. Different from window password.             // notWinPsw, // Different from Windows password
+        diffAp,                     // former different_ap. Different from any password.                // notPmPsw,  // Unique within Password Manager logons
+        diffPp,                     // former different_pp. Different from previous password.           // notCurPsw, // Different than the current password
+    }
 
-export type Policy = {
-    useAs: UseAs;       // former type; generate or verify
-    constrainSet: ConstrainSet; // former simpleChSet
-    constrainsPsw: ConstrainPsw;
-    minLen: number;     // min password length
-    maxLen: number;     // max password length
-    useExt: boolean;    // ? use customRule
-    custom: string;     // customRule former policyExt
-};
+    export enum UseAs {             // former PolicyType
+        none,
+        verify,				        // TODO: describe; maybe as by user
+        generate,			        // TODO: describe; maybe as by system
+    }
+
+    export type Policy = {
+        useAs: UseAs;               // former type; generate or verify
+        constrainSet: ConstrainSet; // former simpleChSet
+        constrainPsw: ConstrainPsw;
+        minLen: number;             // min password length
+        maxLen: number;             // max password length
+        useExt: boolean;            // ? use customRule
+        custom: string;             // customRule former policyExt
+    };
+
+} // namespace Poli
 
 export const namesConstrainSet = [
     "Letters and numbers",
@@ -39,7 +43,7 @@ export const namesConstrainSet = [
 
 export const namesConstrainPsw = [
     "None",
-    "Different than the Windows password",
+    "Different from Windows password",
     "Unique within Password Manager logons",
     "Different than the current password",
 ];
