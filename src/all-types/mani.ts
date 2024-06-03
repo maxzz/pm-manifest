@@ -24,6 +24,8 @@ export module Mani {
         options?: string | undefined;   // see FieldPolicyOptiion type
     };
 
+    export type FieldPolicyAll = Required<FieldPolicy>;
+
     export type FieldPolicyOptions = {  // Names are case-sensitive here as it comes from file.
         chgpolopts: {                   // Field options (e.g. password change field policy options stringify'd JSON object). "norep" and "chkppos"
             norep: boolean;             // TODO: Who puts FieldPolicyOptiion into manifest?
