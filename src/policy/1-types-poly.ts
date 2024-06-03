@@ -27,7 +27,6 @@ export namespace Poli {
         constrainPsw: ConstrainPsw; // Password repetition constrains
         minLen: number;             // min length of password
         maxLen: number;             // max length of password
-      //useExt: boolean;            // Is extended (custom rule) policy in effective now? This is not in manifest, but in c++.
         custom: string;             // Extended (custom rule) policy string; former policyExt
     };
 

@@ -21,9 +21,16 @@ export module Mani {
     export type FieldPolicy = {
         policy?: string | undefined;    // This is standard rule: "[p4]g:8:8:withspecial:different_ap"
         policy2?: string | undefined;   // This is custom rule like: "[e1]g:(a{4,4}d{2,2}A{1,1}[@#$%!]{1,1})&lt;8,8&gt;"; both can present at the same time. It's defined in file, but not in c++.
-        options?: string | undefined;   // Field options (e.g. password change field policy options stringify'd JSON object). "norep" and "chkppos" //TODO: who puts it here? It's part of policy and policy2, not field. This should not exist in manifest, but...
+        options?: string | undefined;   // see FieldPolicyOptiion type
     };
 
+    export type FieldPolicyOptions = {  // Names are case-sensitive here as it comes from file.
+        chgpolopts: {                   // Field options (e.g. password change field policy options stringify'd JSON object). "norep" and "chkppos"
+            norep: boolean;             // TODO: Who puts FieldPolicyOptiion into manifest?
+            chkppos: boolean;           //       These options are part of policy2, not field itself. This should not exist in manifest, but...
+        }
+    };
+    
     export type FieldDirection = {
         rfield?: 'in' | 'out';
         rfieldindex?: number;           // "2"
