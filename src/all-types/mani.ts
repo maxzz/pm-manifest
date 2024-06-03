@@ -18,13 +18,13 @@ export module Mani {
 
     export type FieldValue = FieldValueValue & FieldValueIds;
 
-    export type FieldPolicy = {
+    export type FieldPolicySome = {
         policy?: string | undefined;    // This is standard rule: "[p4]g:8:8:withspecial:different_ap"
         policy2?: string | undefined;   // This is custom rule like: "[e1]g:(a{4,4}d{2,2}A{1,1}[@#$%!]{1,1})&lt;8,8&gt;"; both can present at the same time. It's defined in file, but not in c++.
         options?: string | undefined;   // see FieldPolicyOptiion type
     };
 
-    export type FieldPolicyAll = Required<FieldPolicy>;
+    export type FieldPolicy = Required<FieldPolicySome>;
 
     export type FieldPolicyOptions = {  // Names are case-sensitive here as it comes from file.
         chgpolopts: {                   // Field options (e.g. password change field policy options stringify'd JSON object). "norep" and "chkppos"
@@ -39,7 +39,7 @@ export module Mani {
         rfieldform?: string;            // refs from login form
     };
 
-    export type Field = FieldValue & FieldPolicy & FieldDirection & {
+    export type Field = FieldValue & FieldPolicySome & FieldDirection & {
         type: FieldTypeStr;             // This does not exist in field catalog
 
         path_ext?: string;              // path to this control with accessiblity info if exists
