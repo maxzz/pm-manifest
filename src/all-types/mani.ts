@@ -21,14 +21,14 @@ export module Mani {
     export type FieldPolicySome = {
         policy?: string | undefined;    // This is standard rule: "[p4]g:8:8:withspecial:different_ap"
         policy2?: string | undefined;   // This is custom rule like: "[e1]g:(a{4,4}d{2,2}A{1,1}[@#$%!]{1,1})&lt;8,8&gt;"; both can present at the same time. It's defined in file, but not in c++.
-        options?: string | undefined;   // see FieldPolicyOptiion type
+        options?: string | undefined;   // see FieldPolicyOptions type
     };
 
-    export type FieldPolicy = Required<FieldPolicySome>;
+    export type FieldPolicy = Prettify<Required<FieldPolicySome>>;
 
     export type FieldPolicyOptions = {  // Names are case-sensitive here as it comes from file.
         chgpolopts: {                   // Field options (e.g. password change field policy options stringify'd JSON object). "norep" and "chkppos"
-            norep: boolean;             // TODO: Who puts FieldPolicyOptiion into manifest?
+            norep: boolean;             // TODO: Who puts FieldPolicyOptions into manifest?
             chkppos: boolean;           //       These options are part of policy2, not field itself. This should not exist in manifest, but...
         }
     };

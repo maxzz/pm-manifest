@@ -33,10 +33,15 @@ export function fieldTyp4Str(field: Pick<Mani.Field, 'type' | 'password'>): Fiel
 }
 
 export function fieldTyp2Obj(typ: FieldTyp): { password?: boolean | undefined; type: Mani.FieldTypeStr; } {
-    const type = FieldTyp[typ] as Mani.FieldTypeStr;
+    const isPsw = typ === FieldTyp.psw;
+    const type = (
+        isPsw
+            ? FieldTyp[FieldTyp.edit]
+            : FieldTyp[typ]
+    ) as Mani.FieldTypeStr;
     return {
         type,
-        ...(typ === FieldTyp.psw && { 'password': true }),
+        ...(isPsw && { 'password': true }),
     };
 }
 
