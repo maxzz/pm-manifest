@@ -95,6 +95,8 @@ export module Mani {
         commandline?: string;           // commandline of the current process
     };
 
+    export type SubmitType = 'dosubmit' | 'nosubmit' | undefined;
+
     export type Options = {
         choosename?: string;
         sidekick?: string;              // "manual mode hint"
@@ -104,7 +106,7 @@ export module Mani {
         balooncount?: string;
         autoprompt?: string;            // boolean
         lockfields?: string;            // "0" | "1"
-        submittype?: string;            // "dosubmit" | "nosubmit"
+        submittype?: string;            // "dosubmit" | "nosubmit" We have this information only if it was said in clear, i.e. no defaults, or guesses.
         iconkey?: string;               // Any name not necessarily unique
         iconlocation?: string;          // Format is the same as described into feedback_drawing.h. "Q:0:0:0"
         usequicklink?: string;          // ("1" | "usequicklink") | ("2" | "dontusequicklink")
