@@ -1,5 +1,7 @@
 export module Mani {
 
+    // Field types
+
     export type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
 
     export type FieldValueValue = {
@@ -51,6 +53,8 @@ export module Mani {
         ids?: string;
     };
 
+    // Form types
+
     export enum FORMNAME {              // predefined form names
         noname = -1,
         signon = 0,
@@ -64,15 +68,31 @@ export module Mani {
     };
 
     export type Detection = {
+        //windowtitle_t
+        //matchtype?: string;           // is taken from caption as '[m0]:2:2:' | [m0]:2:1: | '[m0]:2:3:': "full" | "left" | "right" | "both"
         caption?: string;
-        web_ourl?: string;
-        web_murl?: string;
-        web_qurl?: string;
-        web_checkurl?: boolean;         // "1"
+        variablecaption: string;	    // If variablecaption is not empty and different from caption field then we are using vcm (variable cation match)
+
+        //web_detection_t
+        web_ourl?: string;              // The original URL. This should not be edited
+        web_murl?: string;              // URL for matching. Admin can edit it and after that App may become not not Web any more.
+        web_qurl?: string;              // URL for quicklink
+        web_checkurl?: boolean;         // "1" // The same story as murl. Somebody clean qurl if we are not using Quicklinks. But we should use this flag instead of cleaning qurl.
+
+        //dlg_detection_t
+        dlg_tab?: string;
         dlg_class?: string;
+        dlg_checkexe?: boolean;         // "1" matchprocessname: Whether to perform process name match for autoamtic logons or not. Process name match is always done for manual mode logons.
+
+        //emu_detection_t
+        emu_pattern?: string;           // screen pattern to match
+
+        names?: string;                 // names is a string pool of all strings for this form. used by ots engine
         names_ext?: string;
-        processname?: string;
-        commandline?: string;
+        monitor?: boolean;              // "1" this defines: do the live monitor of the form content for this form or don't do it
+
+        processname?: string;           // name of the process
+        commandline?: string;           // commandline of the current process
     };
 
     export type Options = {
@@ -99,11 +119,13 @@ export module Mani {
         fields: Field[];
     };
 
+    // Manifest types
+
     export type Descriptor = {
         id: string;                     // "{fe94ea4f-ac76-4f7d-9c74-fa14abca889b}"
         created: string;                // "1d57495 61c6f733"
         modified: string;               // "1d57496 87bed3e8",
-        integrity?: string;             // "OTS2.056a41167041b1ea2c529494aeb606d0e"
+        integrity?: string;             // "OTS2.056a41167041b1ea2c529494aeb606d0e" // optional and not used for a long time
         version: string;                // "2.4.3"
     };
 
