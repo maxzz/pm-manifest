@@ -1,4 +1,4 @@
-import { Mani } from "./mani";
+import * as Mani from "./1-mani";
 
 export module CatalogFile {     // pmat/include/ots_storagecatalog_io.h
     

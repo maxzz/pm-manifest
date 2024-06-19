@@ -1,8 +1,10 @@
-export * from "./type-field-type";
-export * from "./type-submit";
-export * from "./mani";
+export * as Mani from "./1-mani";
+
 export * from "./mpath";
 export * from "./meta";
+
+export * from "./type-field-type";
+export * from "./type-submit";
 export * from "./type-token-ids";
 export * from "./type-value-life";
 export * from "./types-field-catalog";

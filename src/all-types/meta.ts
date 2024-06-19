@@ -1,5 +1,5 @@
 import { FieldTyp } from "./type-field-type";
-import { Mani } from "./mani";
+import * as Mani from "./1-mani";
 import { MPath } from "./mpath";
 import { ValueLife } from "./type-value-life";
 

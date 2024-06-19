@@ -1,4 +1,4 @@
-import { Mani } from "./mani";
+import * as Mani from "./1-mani";
 
 /**
  * Our internal enum mapped from

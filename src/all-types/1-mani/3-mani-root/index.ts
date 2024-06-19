@@ -1,4 +1,4 @@
-import { Form } from "./2-mani-form";
+import { Form } from "../2-mani-form";
 
 // Manifest types
 

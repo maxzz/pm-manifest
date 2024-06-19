@@ -1,4 +1,4 @@
-import { Field } from "./1-mani-field";
+import { Field } from "../1-mani-field";
 
 // Form types
 
