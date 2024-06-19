@@ -50,6 +50,7 @@ export type FieldDirection = {
 export type Field = FieldValue & FieldPolicySome & FieldDirection & {
     type: FieldTypeStr;             // This does not exist in field catalog
 
+    path?: string;                  // this is old path, so just preserve it if it exists
     path_ext?: string;              // path to this control with accessiblity info if exists
 
     submit?: boolean,               // "1"
