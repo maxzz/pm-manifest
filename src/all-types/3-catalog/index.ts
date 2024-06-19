@@ -1,1 +1,1 @@
-export * from "./types-field-catalog";
+export * from "./0-all-field-catalog";

@@ -1,4 +1,4 @@
-import { FieldTyp } from "./type-field-type";
+import { FieldTyp } from "./1-field-typ";
 
 export const enum ValueAs {
     askReuse,
