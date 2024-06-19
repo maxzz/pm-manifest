@@ -18,6 +18,7 @@ function styleName(style: number): string {
 
 export function getMatchInfo(murl: string): { prefix: string; join: string; url: string; } | undefined {
     const raw = getMatchRawData(murl);
+    
     if (raw.style || raw.opt) {
         const { style, opt, url } = raw;
 

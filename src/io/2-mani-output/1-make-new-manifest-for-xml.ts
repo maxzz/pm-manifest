@@ -26,16 +26,18 @@ export function makeNewManifest4Xml(mani: Mani.Manifest): Mani.Manifest {
     // 3. Manifest forms
     if (forms?.length) {
         rv.manifest.forms = {
-            form: forms.map((form) => {
-                const { fcontext, detection, options, fields, ...rest } = form;
-                return {
-                    ...(hasKeys(fcontext) && { fcontext: { [ATTRS]: form.fcontext } }),
-                    ...(hasKeys(detection) && { detection: { [ATTRS]: form.detection } }),
-                    ...(hasKeys(options) && { options: { [ATTRS]: form.options } }),
-                    ...(fields?.length && { fields: { field: form.fields.map((field) => ({ [ATTRS]: field })) } }),
-                    ...rest,
-                };
-            })
+            form: forms.map(
+                (form) => {
+                    const { fcontext, detection, options, fields, ...rest } = form;
+                    return {
+                        ...(hasKeys(fcontext) && { fcontext: { [ATTRS]: form.fcontext } }),
+                        ...(hasKeys(detection) && { detection: { [ATTRS]: form.detection } }),
+                        ...(hasKeys(options) && { options: { [ATTRS]: form.options } }),
+                        ...(fields?.length && { fields: { field: form.fields.map((field) => ({ [ATTRS]: field })) } }),
+                        ...rest,
+                    };
+                }
+            )
         };
     }
 

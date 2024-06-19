@@ -34,7 +34,7 @@ export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
         mani: form,
         type: idx,
         disp: newDisp,
-        pool: pool,
+        pool,
         view: FieldPath.loc.utils.buildPreviewData(fields),
         fields,
         rother: [],

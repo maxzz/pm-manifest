@@ -2,6 +2,8 @@
 
 export type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
 
+// Field Value and Ids
+
 export type FieldValueValue = {
     value?: string;
     choosevalue?: string;           // This does not exist in field catalog yet but we can added it to field catalog (as 2023 extension).
@@ -18,6 +20,8 @@ export type FieldValueIds = {
 
 export type FieldValue = FieldValueValue & FieldValueIds;
 
+// Field Policy
+
 export type FieldPolicySome = {
     policy?: string | undefined;    // This is standard rule: "[p4]g:8:8:withspecial:different_ap"
     policy2?: string | undefined;   // This is custom rule like: "[e1]g:(a{4,4}d{2,2}A{1,1}[@#$%!]{1,1})&lt;8,8&gt;"; both can present at the same time. It's defined in file, but not in c++.
@@ -33,11 +37,15 @@ export type FieldPolicyOptions = {  // Names are case-sensitive here as it comes
     };
 };
 
+// Field Direction
+
 export type FieldDirection = {
     rfield?: 'in' | 'out';
     rfieldindex?: number;           // "2"
     rfieldform?: string;            // refs from login form
 };
+
+// All together
 
 export type Field = FieldValue & FieldPolicySome & FieldDirection & {
     type: FieldTypeStr;             // This does not exist in field catalog
