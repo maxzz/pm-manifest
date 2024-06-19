@@ -1,4 +1,4 @@
-export module MPath {           // Meta path. Manifest unpacked path data
+//export module MPath {           // Meta path. Manifest unpacked path data
 
     export type p4a = {         // Chunk: p4a (from: unpack_fromstring())
         rnumber: number;
@@ -39,4 +39,4 @@ export module MPath {           // Meta path. Manifest unpacked path data
         parts: string[];        // block parts
     };
 
-}
+//}

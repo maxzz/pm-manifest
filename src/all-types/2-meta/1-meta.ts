@@ -1,9 +1,9 @@
-import { FieldTyp } from "./type-field-type";
-import * as Mani from "./1-mani";
-import { MPath } from "./mpath";
-import { ValueLife } from "./type-value-life";
+import { FieldTyp } from "../type-field-type";
+import * as Mani from "../1-mani";
+import * as  MPath from "./2-mpath";
+import { ValueLife } from "../type-value-life";
 
-export module Meta {            // Manifest unpacked forms, as meta data
+//export module Meta {            // Manifest unpacked forms, as meta data
 
     export type Path = {        // Collection of path items (chunks)
         p4a?: MPath.p4a[];
@@ -14,7 +14,7 @@ export module Meta {            // Manifest unpacked forms, as meta data
         sn?: MPath.sn;          // script number
     }
 
-    export type Chunk = Prettify<keyof Meta.Path>; //type ChunkName = 'p4a' | 'p4' | 'loc' | 'sid' | 'did2' | 'sn';
+    export type Chunk = Prettify<keyof Path>; //type ChunkName = 'p4a' | 'p4' | 'loc' | 'sid' | 'did2' | 'sn';
 
     export type Field = {   
         mani: Mani.Field,
@@ -57,4 +57,4 @@ export module Meta {            // Manifest unpacked forms, as meta data
         uuid: number;           // short relative uuid number in the current session
     }
 
-}
+//}

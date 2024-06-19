@@ -1,7 +1,5 @@
 export * as Mani from "./1-mani";
-
-export * from "./mpath";
-export * from "./meta";
+export * from "./2-meta";
 
 export * from "./type-field-type";
 export * from "./type-submit";
