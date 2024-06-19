@@ -1,4 +1,4 @@
-import * as Mani from "./1-mani";
+import * as Mani from "./1-field";
 
 /**
  * Our internal enum mapped from

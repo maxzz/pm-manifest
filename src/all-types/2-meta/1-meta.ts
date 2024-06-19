@@ -1,7 +1,7 @@
-import { FieldTyp } from "../type-field-type";
+import { FieldTyp } from "../1-mani/1-mani-field/type-field-type";
 import * as Mani from "../1-mani";
 import * as  MPath from "./2-mpath";
-import { ValueLife } from "../type-value-life";
+import { ValueLife } from "../1-mani/1-mani-field/type-value-life";
 
 //export module Meta {            // Manifest unpacked forms, as meta data
 
