@@ -7,6 +7,7 @@ export function getEnumNumberEntries<T extends object>(objEnum: T) {
 export function getEnumNamedEntries<T extends object>(objEnum: T) {
     return Object.entries(objEnum).filter(([key]) => !Number.isInteger(+key));
 }
+
 let MSAA_STATE_NAMED: [string, number][] | undefined;
 
 export function getStateEntries(state: string | undefined): string[] | undefined {

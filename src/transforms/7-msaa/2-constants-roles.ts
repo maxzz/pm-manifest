@@ -69,4 +69,4 @@ export enum MSAA_ROLE {
     dpattention               /**/ = 0x97,    //61 // for dp debugging only
     html_script               /**/ = 0x98,    //62 // for dp debugging only
     html_text                 /**/ = 0x99,    //63 // for dp debugging only
-} //enum MSAA_ROLE
+}

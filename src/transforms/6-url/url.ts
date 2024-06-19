@@ -265,7 +265,6 @@ export function url(url: string/*, arg?: IUrlKeys*/): IUrlParts { //: IUrlResult
 
     // Default to undefined for no match.
     //return undefined;
-
-} //url()
+}
 
 //}//namespace tmurl

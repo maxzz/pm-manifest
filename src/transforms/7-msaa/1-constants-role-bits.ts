@@ -66,6 +66,6 @@ export const MSAA_ROLEBITS = {
     r_2_1F_ipaddress          /**/: 0x80000000,    // ROLE_SYSTEM_IPADDRESS             //3F
 
     r_3_00_outlinebutton      /**/: 0x80000001,    // ROLE_SYSTEM_OUTLINEBUTTON         //40
-}; //const MSAA_ROLEBITS
+};
 
 // #include "acc_const.h" // C:/Program Files (x86)/Windows Kits/10/Include/10.0.19041.0/um/oleacc.h

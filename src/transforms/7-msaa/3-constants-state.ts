@@ -31,4 +31,4 @@ export enum MSAA_STATE {
     alert_high                /**/ = 0x10000000,      //1E // STATE_SYSTEM_ALERT_HIGH       // This information is of high priority
     protected                 /**/ = 0x20000000,      //1F // STATE_SYSTEM_PROTECTED      
     valid                     /**/ = 0x3fffffff,           // STATE_SYSTEM_VALID            // mask
-} //enum MSAA_STATE
+}
