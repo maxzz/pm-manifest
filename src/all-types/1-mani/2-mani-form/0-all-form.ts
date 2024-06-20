@@ -57,6 +57,7 @@ export type Options = {
     usequicklink?: string;          // ("1" | "usequicklink") | ("2" | "dontusequicklink")
     recheckwindowafterfillin?: string; // boolean
     qlwocred?: string;              // boolean. Quick reauthentication enable/disable (QL wo/ crededntials).
+    unknownattributes?: string;     //
 };
 
 export type Form = {
