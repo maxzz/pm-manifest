@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       fast-xml-parser:
-        specifier: 4.2.7
-        version: 4.2.7
+        specifier: 4.4.0
+        version: 4.4.0
     devDependencies:
       '@rollup/plugin-commonjs':
         specifier: 26.0.1
@@ -422,8 +422,8 @@ packages:
   estree-walker@2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
-  fast-xml-parser@4.2.7:
-    resolution: {integrity: sha512-J8r6BriSLO1uj2miOk1NW0YVm8AGOOu3Si2HQp/cSmo6EA4m3fcwu2WKjJ4RK9wMLBtg69y1kS8baDiQBR41Ig==}
+  fast-xml-parser@4.4.0:
+    resolution: {integrity: sha512-kLY3jFlwIYwBNDojclKsNAC12sfD6NwW74QB2CoNGPvtVxjliYehVunB3HYyNi+n4Tt1dAcgwYvmKF/Z18flqg==}
     hasBin: true
 
   foreground-child@3.2.1:
@@ -875,7 +875,7 @@ snapshots:
 
   estree-walker@2.0.2: {}
 
-  fast-xml-parser@4.2.7:
+  fast-xml-parser@4.4.0:
     dependencies:
       strnum: 1.0.5
 
