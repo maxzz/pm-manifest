@@ -23,3 +23,76 @@ Block parts:
      ['keys,key=home', 'delay,ms=1000', 'keys,key=tab', 'field']
      ['keys,key=tab', 'keys,key=home', 'keys,key=tab,repeat=3', 'field']
 */
+
+export namespace modifiers {
+
+    class modifier_t {
+        g: boolean = false; //generic
+        l: boolean = false; //left
+        r: boolean = false; //right
+
+        initFrom(modifier: modifier_t) {
+            this.g = modifier.g;
+            this.l = modifier.l;
+            this.r = modifier.r;
+        }
+
+        clear() {
+            this.g = false;
+            this.l = false;
+            this.r = false;
+        }
+    };
+
+    class modifiers_t {
+        shift: modifier_t = new modifier_t();
+        ctrl: modifier_t = new modifier_t();
+        alt: modifier_t = new modifier_t();
+    };
+
+    function buildMod(modifier: modifier_t, name: string): string {
+        let rv = '';
+
+        if (modifier.g) {
+            return name;
+        }
+
+        if (modifier.l) rv += 'l';
+        if (modifier.r) rv += 'r';
+
+        if (modifier.l || modifier.r) {
+            rv += name;
+        }
+
+        return rv;
+    }
+
+    export function buildToString(modifiers: modifiers_t): string {
+        let rv = '';
+
+        rv = buildMod(modifiers.shift, 's');
+        rv += buildMod(modifiers.ctrl, 'c');
+        rv += buildMod(modifiers.alt, 'a');
+
+        return rv;
+    }
+
+    export function buildFromString(v_: string): modifiers_t {
+        let rv: modifiers_t = new modifiers_t();
+        let mod: modifier_t = new modifier_t();
+
+        v_.split('').forEach(
+            (currentchar: string) => {
+                switch (currentchar) {
+                    case 'l': mod.l = true; break;
+                    case 'r': mod.r = true; break;
+                    case 's': if (!mod.l && !mod.r) mod.g = true; rv.shift.initFrom(mod); mod.clear(); break;
+                    case 'c': if (!mod.l && !mod.r) mod.g = true; rv.ctrl.initFrom(mod); mod.clear(); break;
+                    case 'a': if (!mod.l && !mod.r) mod.g = true; rv.alt.initFrom(mod); mod.clear(); break;
+                }
+            }
+        );
+        return rv;
+    }
+
+} //namespace modifiers
