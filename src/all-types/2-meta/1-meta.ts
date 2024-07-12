@@ -47,7 +47,7 @@ export type View = {
 export type Form = {
     mani: Mani.Form;
     type: number;           // 0 - login; 1 - password change
-    disp: Disp;
+    disp: Disp;             // Display information about form
     pool: string[];
     view?: View;            // view exists only for IE and win32
     fields: Field[];        // each item corresponds to each field
