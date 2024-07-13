@@ -1,4 +1,4 @@
-import { EditorDataForKbd, KeyModifierNumbers, ScriptChunkEditorData, ScriptInFile } from "./9-types";
+import { EditorDataForDly, EditorDataForKbd, EditorDataForPos, KeyModifierNumbers, ScriptChunkEditorData, ScriptInFile } from "./9-types";
 
 export const actionKeys: string[] = [
     'Tab',
@@ -172,7 +172,7 @@ function convertOptions(options: string[]): Record<string, string> {
  * 
  * @param chunkValue keys,key=ins,repeat=20,mode=sca
  */
-function parseChunkString(chunkValue: string): ScriptChunkEditorData | undefined {
+export function parseChunkString(chunkValue: string): ScriptChunkEditorData | undefined {
     const ss = chunkValue.split(',');
     const [key, ...rest] = ss;
     switch (key) {
@@ -180,19 +180,38 @@ function parseChunkString(chunkValue: string): ScriptChunkEditorData | undefined
             {
                 const obj = convertOptions(rest) as ScriptInFile.Key;
                 const mods = modifiers.fromString(obj.mode || '');
+                const rep = +(obj.repeat || '0');
                 const rv: EditorDataForKbd = {
                     type: 'kbd',
-                    char: obj.key,
-                    repeat: obj.repeat ? +obj.repeat : 0,
+                    char: obj.key || '',
+                    repeat: isNaN(rep) ? 0 : rep,
                     ...modifiers.modifiersToNumbers(mods),
                 };
                 return rv;
             }
-        // case 'field':
-        //     return parseField(ss);
-        // case 'pos':
-        //     return parsePos(ss);
-        // case 'delay':
-        //     return parseDelay(ss);
+        case 'field':
+            return { type: 'fld', id: '' };
+        case 'pos':
+            {
+                const obj = convertOptions(rest) as ScriptInFile.Pos;
+                const x = +(obj.x || '0');
+                const y = +(obj.y || '0');
+                const rv: EditorDataForPos = {
+                    type: 'pos',
+                    x: isNaN(x) ? 0 : x,
+                    y: isNaN(y) ? 0 : y,
+                };
+                return rv;
+            }
+        case 'delay':
+            {
+                const obj = convertOptions(rest) as ScriptInFile.Delay;
+                const n = +(obj.ms || '0');
+                const rv: EditorDataForDly = {
+                    type: 'dly',
+                    n: isNaN(n) ? 0 : n,
+                };
+                return rv;
+            }
     }
 }
