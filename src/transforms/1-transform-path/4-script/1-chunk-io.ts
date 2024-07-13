@@ -1,5 +1,6 @@
 import { modifiers } from "./4-mpath-script-keys";
-import { ScriptChunkEditorData, ScriptInFile, EditorDataForKbd, EditorDataForPos, EditorDataForDly } from "./9-types";
+import { ScriptChunkEditorData, EditorDataForKbd, EditorDataForPos, EditorDataForDly } from "./9-types";
+import { ScriptInFile } from "./9-types-in-file";
 
 function convertOptions(options: string[]): Record<string, string> {
     const rv: Record<string, string> = {};
