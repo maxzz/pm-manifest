@@ -28,3 +28,38 @@ export const actionKeys: (readonly [dispalyName: string, fileName: string])[] = 
     ['F11',                   /**/ 'f11',       /**/],
     ['F12',                   /**/ 'f12',       /**/],
 ];
+
+export enum actionKeysEnum {
+    'tab'       /**/ = 'Tab'                   /**/,
+    'enter'     /**/ = 'Enter'                 /**/,
+    'escape'    /**/ = 'Esc'                   /**/,
+    'left'      /**/ = 'Left arrow'            /**/,
+    'right'     /**/ = 'Right arrow'           /**/,
+    'up'        /**/ = 'Up arrow'              /**/,
+    'down'      /**/ = 'Down arrow'            /**/,
+    'prior'     /**/ = 'Page Up'               /**/,
+    'next'      /**/ = 'Page Down'             /**/,
+    'home'      /**/ = 'Home'                  /**/,
+    'end'       /**/ = 'End'                   /**/,
+    'ins'       /**/ = 'Ins'                   /**/,
+    'del'       /**/ = 'Del'                   /**/,
+    'back'      /**/ = 'Backspace'             /**/,
+    'space'     /**/ = 'Spacebar'              /**/,
+    'none'      /**/ = 'Shift / Control / Alt' /**/,
+    'f1'        /**/ = 'F1'                    /**/,
+    'f2'        /**/ = 'F2'                    /**/,
+    'f3'        /**/ = 'F3'                    /**/,
+    'f4'        /**/ = 'F4'                    /**/,
+    'f5'        /**/ = 'F5'                    /**/,
+    'f6'        /**/ = 'F6'                    /**/,
+    'f7'        /**/ = 'F7'                    /**/,
+    'f8'        /**/ = 'F8'                    /**/,
+    'f9'        /**/ = 'F9'                    /**/,
+    'f10'       /**/ = 'F10'                   /**/,
+    'f11'       /**/ = 'F11'                   /**/,
+    'f12'       /**/ = 'F12'                   /**/,
+};
+
+console.log(JSON.stringify(actionKeysEnum));
+console.log(actionKeysEnum['tab']);
+// console.log(actionKeysEnum['Tab']);
