@@ -1,3 +1,5 @@
+import { EditorDataForKbd, KeyModifierNumbers, ScriptChunkEditorData, ScriptInFile } from "./9-types";
+
 export const actionKeys: string[] = [
     'Tab',
     'Enter',
@@ -37,21 +39,6 @@ export const modifierKeys: SelectItemText[] = [
     ['Left', '1'],
     ['Right', '2'],
 ];
-
-export type KeyModifierNumbers = {
-    shift: number;
-    ctrl: number;
-    alt: number;
-};
-
-export type EditorDataForKey = Prettify<
-    & {
-        type: 'key',
-        char: string;
-        repeat: number;
-    }
-    & KeyModifierNumbers
->;
 
 export namespace modifiers {
 
@@ -169,3 +156,43 @@ export namespace modifiers {
     }
 
 } //namespace modifiers
+
+function convertOptions(options: string[]): Record<string, string> {
+    const rv: Record<string, string> = {};
+
+    options.forEach((option: string) => {
+        const [key, value] = option.split('=');
+        rv[key] = value;
+    });
+
+    return rv;    
+}
+
+/**
+ * 
+ * @param chunkValue keys,key=ins,repeat=20,mode=sca
+ */
+function parseChunkString(chunkValue: string): ScriptChunkEditorData | undefined {
+    const ss = chunkValue.split(',');
+    const [key, ...rest] = ss;
+    switch (key) {
+        case 'keys':
+            {
+                const obj = convertOptions(rest) as ScriptInFile.Key;
+                const mods = modifiers.fromString(obj.mode || '');
+                const rv: EditorDataForKbd = {
+                    type: 'kbd',
+                    char: obj.key,
+                    repeat: obj.repeat ? +obj.repeat : 0,
+                    ...modifiers.modifiersToNumbers(mods),
+                };
+                return rv;
+            }
+        // case 'field':
+        //     return parseField(ss);
+        // case 'pos':
+        //     return parsePos(ss);
+        // case 'delay':
+        //     return parseDelay(ss);
+    }
+}
