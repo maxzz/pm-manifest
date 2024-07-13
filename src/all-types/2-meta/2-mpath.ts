@@ -31,4 +31,8 @@ export type loc = {         // Chunk: loc (size is in client area or against 192
     i?: number;             // index of rect before dedupe (this is internal and not saved).
 };
 
-export * from "./3-mpath-script";
+export type sn = {          // Chunk: sn. Format: ['[sn]'<script line>]*
+    total: number;          // total blocks
+    current: number;        // current block
+    parts: string[];        // Block parts
+};

@@ -1,11 +1,5 @@
 export type SnPartsKey = "keys" | "delay" | "field" | "pos"; // Script key inside sn.parts (dpcorescript/script_io.h.lines_io::cast_lines())
 
-export type sn = {          // Chunk: sn. Format: ['[sn]'<script line>]*
-    total: number;          // total blocks
-    current: number;        // current block
-    parts: string[];        // Block parts
-};
-
 /*
 void cast_lineperfields(const wstring_t& lineperfield_, const wstring_t& lineperfield_field_, lineperfields_t& lineperfields_)
 Format: ['[sn]'<script line>]*
