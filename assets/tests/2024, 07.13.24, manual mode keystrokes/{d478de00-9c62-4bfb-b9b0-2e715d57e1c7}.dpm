@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<descriptor
+		id="{09d521c0-28da-4aac-89d2-0fc70851a618}"
+		created="1dad566 20d8dde"
+		modified="1dad56b 1a116fd6"
+		version="2.4.3"
+	/>
+	<forms>
+		<form>
+			<detection
+				dlg_class="Windows.UI.Core.CoreWindow"
+				processname="C:\Windows\ImmersiveControlPanel\SystemSettings.exe"
+				commandline="C:\Windows\ImmersiveControlPanel\SystemSettings.exe"
+			/>
+			<options
+				choosename="07.13.24, test key strokes"
+				usequicklink="2"
+			/>
+			<fields>
+				<field
+					displayname="first"
+					type="edit"
+					dbname="{c8b1db28-25e1-49b0-a1e1-f16ad3824398}"
+					path_ext="[sn]4.0.field;"
+					useit="1"
+				/>
+				<field
+					displayname="Middle"
+					type="edit"
+					dbname="{333cf5d9-3b4b-4122-a823-f05d26de8340}"
+					path_ext="[sn]4.1.pos,x=10,y=200,res=144;field;"
+					useit="1"
+				/>
+				<field
+					displayname="Username"
+					type="edit"
+					dbname="{eb08ffdb-4a2a-403f-ac30-3bdca23f0605}"
+					path_ext="[sn]4.2.keys,key=tab;keys,key=enter;keys,key=escape;keys,key=left;keys,key=right;keys,key=up;keys,key=down;keys,key=prior;keys,key=next;keys,key=home;keys,key=end;keys,key=ins;keys,key=del;keys,key=back;keys,key=space;keys,key=none;keys,key=f1;keys,key=f2,mode=lrscla;keys,key=f3;keys,key=f12;field;"
+					value="123"
+					useit="1"
+				/>
+				<field
+					displayname="Password"
+					type="edit"
+					dbname="{ac69eaa6-41a4-42ac-94d4-a89052efb1f5}"
+					path_ext="[sn]4.3.field;delay,ms=1000;"
+					password="1"
+					useit="1"
+				/>
+			</fields>
+		</form>
+	</forms>
+</manifest>
