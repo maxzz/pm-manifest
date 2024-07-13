@@ -238,3 +238,7 @@ export function stringifyChunk(chunk: ScriptChunkEditorData): string {
             return `delay,ms=${chunk.n}`;
     }
 }
+
+export function stringifyChunks(chunks: ScriptChunkEditorData[]): string[] {
+    return chunks.map(stringifyChunk);
+}
