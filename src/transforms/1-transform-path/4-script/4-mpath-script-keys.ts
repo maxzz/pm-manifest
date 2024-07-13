@@ -169,10 +169,13 @@ function convertOptions(options: string[]): Record<string, string> {
 }
 
 /**
- * 
- * @param chunkValue keys,key=ins,repeat=20,mode=sca
+ * @param chunkValue one of the following:
+ *      * "keys,key=ins,repeat=20,mode=sca"
+ *      * "field"
+ *      * "pos,x=10,y=19"
+ *      * "delay,ms=1000"
  */
-export function parseChunkString(chunkValue: string): ScriptChunkEditorData | undefined {
+export function parseChunk(chunkValue: string): ScriptChunkEditorData | undefined {
     const ss = chunkValue.split(',');
     const [key, ...rest] = ss;
     switch (key) {
@@ -213,5 +216,25 @@ export function parseChunkString(chunkValue: string): ScriptChunkEditorData | un
                 };
                 return rv;
             }
+    }
+}
+
+export function parseChunks(chunks: string[]): ScriptChunkEditorData[] {
+    return chunks.map(parseChunk).filter((chunk): chunk is ScriptChunkEditorData => !!chunk);
+}
+
+export function stringifyChunk(chunk: ScriptChunkEditorData): string {
+    switch (chunk.type) {
+        case 'kbd':
+            {
+                const mods = modifiers.toString(modifiers.numbersToModifiers(chunk));
+                return `keys,key=${chunk.char},repeat=${chunk.repeat},mode=${mods}`;
+            }
+        case 'fld':
+            return 'field';
+        case 'pos':
+            return `pos,x=${chunk.x},y=${chunk.y}`;
+        case 'dly':
+            return `delay,ms=${chunk.n}`;
     }
 }
