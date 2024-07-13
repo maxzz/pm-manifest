@@ -38,33 +38,20 @@ export const modifierKeys: SelectItemText[] = [
     ['Right', '2'],
 ];
 
-export function modifierToNumber(mod: modifiers.modifier_t): number {
-    if (mod.g) {
-        return 3;
+export type KeyModifierNumbers = {
+    shift: number;
+    ctrl: number;
+    alt: number;
+};
+
+export type EditorDataForKey = Prettify<
+    & {
+        type: 'key',
+        char: string;
+        repeat: number;
     }
-
-    if (mod.l) {
-        return 1;
-    }
-
-    if (mod.r) {
-        return 2;
-    }
-
-    return 0;
-}
-
-export function numberToModifier(v: number): modifiers.modifier_t {
-    let rv: modifiers.modifier_t = new modifiers.modifier_t();
-
-    switch (v) {
-        case 1: rv.l = true; break;
-        case 2: rv.r = true; break;
-        case 3: rv.g = true; break;
-    }
-
-    return rv;
-}
+    & KeyModifierNumbers
+>;
 
 export namespace modifiers {
 
@@ -109,7 +96,7 @@ export namespace modifiers {
         return rv;
     }
 
-    export function buildToString(modifiers: modifiers_t): string {
+    export function toString(modifiers: modifiers_t): string {
         let rv = '';
 
         rv = buildMod(modifiers.shift, 's');
@@ -119,7 +106,7 @@ export namespace modifiers {
         return rv;
     }
 
-    export function buildFromString(v_: string): modifiers_t {
+    export function fromString(v_: string): modifiers_t {
         let rv: modifiers_t = new modifiers_t();
         let mod: modifier_t = new modifier_t();
 
@@ -137,9 +124,48 @@ export namespace modifiers {
         return rv;
     }
 
-} //namespace modifiers
+    function modifierToNumber(mod: modifier_t): number {
+        if (mod.g) {
+            return 3;
+        }
 
-export type ActionKeys = {
-    key: string;
-    modifiers: string;
-};
+        if (mod.l) {
+            return 1;
+        }
+
+        if (mod.r) {
+            return 2;
+        }
+
+        return 0;
+    }
+
+    function numberToModifier(v: number): modifier_t {
+        let rv: modifier_t = new modifier_t();
+
+        switch (v) {
+            case 1: rv.l = true; break;
+            case 2: rv.r = true; break;
+            case 3: rv.g = true; break;
+        }
+
+        return rv;
+    }
+
+    export function modifiersToNumbers(v: modifiers_t): KeyModifierNumbers {
+        return {
+            shift: modifierToNumber(v.shift),
+            ctrl: modifierToNumber(v.ctrl),
+            alt: modifierToNumber(v.alt),
+        };
+    }
+
+    export function numbersToModifiers(v: KeyModifierNumbers): modifiers_t {
+        return {
+            shift: numberToModifier(v.shift),
+            ctrl: numberToModifier(v.ctrl),
+            alt: numberToModifier(v.alt),
+        };
+    }
+
+} //namespace modifiers
