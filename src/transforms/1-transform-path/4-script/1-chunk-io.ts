@@ -1,3 +1,4 @@
+import { Meta } from "../../../all-types";
 import { modifiers } from "./4-mpath-script-keys";
 import { ScriptChunkEditorData, EditorDataForKbd, EditorDataForPos, EditorDataForDly } from "./9-types";
 import { ScriptInFile } from "./9-types-in-file";
@@ -18,7 +19,7 @@ function convertOptions(options: string[]): Record<string, string> {
  *      * "pos,x=10,y=19"
  *      * "delay,ms=1000"
  */
-export function parseChunk(chunkValue: string): ScriptChunkEditorData | undefined {
+export function parseChunk(chunkValue: string, metaField: Meta.Field): ScriptChunkEditorData | undefined {
     const ss = chunkValue.split(',');
     const [key, ...rest] = ss;
     switch (key) {
@@ -65,10 +66,6 @@ export function parseChunk(chunkValue: string): ScriptChunkEditorData | undefine
     }
 }
 
-export function parseChunks(chunks: string[]): ScriptChunkEditorData[] {
-    return chunks.map(parseChunk).filter(Boolean);
-}
-
 export function stringifyChunk(chunk: ScriptChunkEditorData): string {
     switch (chunk.type) {
         case 'kbd': {
@@ -101,4 +98,24 @@ export function stringifyChunk(chunk: ScriptChunkEditorData): string {
 
 export function stringifyChunks(chunks: ScriptChunkEditorData[]): string[] {
     return chunks.map(stringifyChunk);
+}
+
+export function parseChunks(chunks: string[], metaField: Meta.Field): ScriptChunkEditorData[] {
+    return chunks.map((chunk) => parseChunk(chunk, metaField)).filter(Boolean);
+}
+
+export function parseForEditor(fields: Meta.Field[]): ScriptChunkEditorData[] {
+    const rv = fields.map(
+        (field: Meta.Field) => {
+            const chunks = field.path?.sn?.parts
+                .map(
+                    (part: string) => {
+                        return parseChunk(part, field);
+                    }
+                )
+                .filter(Boolean) || [];
+            return chunks;
+        }
+    ).flat();
+    return rv;
 }
