@@ -4,14 +4,13 @@ import { ScriptInFile } from "./9-types-in-file";
 
 function convertOptions(options: string[]): Record<string, string> {
     const rv: Record<string, string> = {};
-
     options.forEach((option: string) => {
         const [key, value] = option.split('=');
         rv[key] = value;
     });
-
     return rv;
 }
+
 /**
  * @param chunkValue one of the following:
  *      * "keys,key=ins,repeat=20,mode=sca"
@@ -19,7 +18,6 @@ function convertOptions(options: string[]): Record<string, string> {
  *      * "pos,x=10,y=19"
  *      * "delay,ms=1000"
  */
-
 export function parseChunk(chunkValue: string): ScriptChunkEditorData | undefined {
     const ss = chunkValue.split(',');
     const [key, ...rest] = ss;
@@ -37,8 +35,6 @@ export function parseChunk(chunkValue: string): ScriptChunkEditorData | undefine
                 };
                 return rv;
             }
-        case 'field':
-            return { type: 'fld', id: '' };
         case 'pos':
             {
                 const obj = convertOptions(rest) as ScriptInFile.Pos;
@@ -64,11 +60,13 @@ export function parseChunk(chunkValue: string): ScriptChunkEditorData | undefine
                 };
                 return rv;
             }
+        case 'field':
+            return { type: 'fld', id: '' };
     }
 }
 
 export function parseChunks(chunks: string[]): ScriptChunkEditorData[] {
-    return chunks.map(parseChunk).filter((chunk): chunk is ScriptChunkEditorData => !!chunk);
+    return chunks.map(parseChunk).filter(Boolean);
 }
 
 export function stringifyChunk(chunk: ScriptChunkEditorData): string {
