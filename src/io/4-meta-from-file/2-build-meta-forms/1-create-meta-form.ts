@@ -18,15 +18,11 @@ export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
         })
     );
 
-    const domain = urlDomain(removeQuery(form.detection?.web_ourl));
-    const isScript = isAnyFieldManual(fields);
-    const isIe = isIeServer(form) || isIeProcess(form);
-
     const newDisp: Meta.Disp = {
-        domain,
-        isScript,
+        domain: urlDomain(removeQuery(form.detection?.web_ourl)),
+        isScript: isAnyFieldManual(fields),
         noFields: !fields.length,
-        isIe,
+        isIe: isIeServer(form) || isIeProcess(form),
     };
 
     const rv: Meta.Form = {

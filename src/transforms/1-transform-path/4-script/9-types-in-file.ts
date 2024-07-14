@@ -13,7 +13,7 @@ export namespace ScriptInFile {
     export type Pos = {
         x: string; // number
         y: string; // number
-        units?: string; // "dlg"
+        units?: string; // "abs" or ""
         res?: string; // number, resolution
     };
 

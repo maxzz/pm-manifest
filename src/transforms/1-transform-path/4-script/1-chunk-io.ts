@@ -44,10 +44,13 @@ export function parseChunk(chunkValue: string): ScriptChunkEditorData | undefine
                 const obj = convertOptions(rest) as ScriptInFile.Pos;
                 const x = +(obj.x || '0');
                 const y = +(obj.y || '0');
+                const dlgunits = obj.units !== 'abs';
                 const rv: EditorDataForPos = {
                     type: 'pos',
                     x: isNaN(x) ? 0 : x,
                     y: isNaN(y) ? 0 : y,
+                    units: dlgunits,
+                    res: 0,
                 };
                 return rv;
             }
@@ -70,15 +73,29 @@ export function parseChunks(chunks: string[]): ScriptChunkEditorData[] {
 
 export function stringifyChunk(chunk: ScriptChunkEditorData): string {
     switch (chunk.type) {
-        case 'kbd':
-            {
-                const mods = modifiers.toString(modifiers.numbersToModifiers(chunk));
-                return `keys,key=${chunk.char},repeat=${chunk.repeat},mode=${mods}`;
+        case 'kbd': {
+            const mods = modifiers.toString(modifiers.numbersToModifiers(chunk));
+            let rv = `keys,key=${chunk.char}`;
+            if (chunk.repeat !== 1) {
+                rv += `,repeat=${chunk.repeat}`;
             }
+            if (mods) {
+                rv += `,mode=${mods}`;
+            }
+            return rv;
+        }
         case 'fld':
             return 'field';
-        case 'pos':
-            return `pos,x=${chunk.x},y=${chunk.y}`;
+        case 'pos': {
+            let rv = `pos,x=${chunk.x},y=${chunk.y}`;
+            if (!chunk.units) {
+                rv += ',units=abs';
+            }
+            if (chunk.res !== 0 && chunk.res !== 96) {
+                rv += `,res=${chunk.res}`;
+            }
+            return rv;
+        }
         case 'dly':
             return `delay,ms=${chunk.n}`;
     }
