@@ -20,14 +20,14 @@ export const isAnyIe6 = (meta: Meta.Form[] | undefined): boolean => !!meta?.[0]?
 
 export const isAnyWhy = (meta: Meta.Form[] | undefined): boolean => !!meta?.[0]?.disp.bailOut || !!meta?.[1]?.disp.bailOut;
 
-export function isAnyCap(mani: Mani.Manifest | undefined, regex: RegExp | undefined): boolean {
+export function isAnyCap(mani: Mani.Manifest | undefined, regex: RegExp | undefined): boolean { // isAnyCaption
     const forms = mani?.forms;
     const form0 = forms?.[0]?.detection?.caption;
     const form1 = forms?.[1]?.detection?.caption;
     return regex ? !!form0?.match(regex) || !!form1?.match(regex) : !!form0 || !!form1;
 }
 
-export function isAnyCls(mani: Mani.Manifest | undefined, regex: RegExp | undefined): boolean {
+export function isAnyCls(mani: Mani.Manifest | undefined, regex: RegExp | undefined): boolean { // isAnyClass
     const forms = mani?.forms;
     const form0 = forms?.[0]?.detection?.dlg_class;
     const form1 = forms?.[1]?.detection?.dlg_class;
@@ -38,4 +38,20 @@ export function isAnyCls(mani: Mani.Manifest | undefined, regex: RegExp | undefi
 
 function stripFirstFolder(s: string): string {
     return (s || '').split(/[\/\\]/).slice(1).join('/');
+}
+
+// Utilities at field level
+
+export function isAnyFieldManual(fields: Meta.Field[]): boolean {
+    return !!fields.length && fields.some(({ path }: { path: Meta.Path; }) => path.sn);
+}
+
+// Utilities at mani form level
+
+export function isIeServer(form: Mani.Form): boolean {
+    return !!form.detection?.names_ext?.match(/Internet Explorer_Server/);
+}
+
+export function isIeProcess(form: Mani.Form): boolean {
+    return !!form.detection?.processname?.match(/(iexplore|msedge|microsoftedgecp)\.exe"?$/i);
 }

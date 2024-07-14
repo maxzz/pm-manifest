@@ -1,8 +1,7 @@
 import { Mani, Meta, fieldTyp4Str } from "../../../all-types";
 import { getPool, TransformValue, FieldPath, urlDomain, removeQuery } from "../../../transforms";
+import { isAnyFieldManual, isIeProcess, isIeServer, uuid } from "../../../utils";
 import { getBailouts } from "../1-bailouts";
-import { isManual, isIeServer, isIeProcess } from "./2-checks";
-import { uuid } from "../../../utils";
 
 export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
     const pool: string[] = getPool(form) || [];
@@ -20,7 +19,7 @@ export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
     );
 
     const domain = urlDomain(removeQuery(form.detection?.web_ourl));
-    const isScript = isManual(fields);
+    const isScript = isAnyFieldManual(fields);
     const isIe = isIeServer(form) || isIeProcess(form);
 
     const newDisp: Meta.Disp = {

@@ -3,19 +3,19 @@ import { createMetaForm } from "./1-create-meta-form";
 
 export function buildManiMetaForms(mani: Mani.Manifest | undefined): Meta.Form[] {
 
-    const forms: Meta.Form[] =
-        !mani || !mani.forms || !mani.forms.length
+    const metaForms: Meta.Form[] =
+        !mani?.forms?.length
             ? []
             : mani.forms.map(createMetaForm);
 
     [0, 1].forEach(
         (formIdx: number) => {
-            if (forms[formIdx]) {
+            if (metaForms[formIdx]) {
                 const otherIdx = formIdx === 0 ? 1 : 0;
-                forms[formIdx].rother = forms[otherIdx]?.fields.map((field) => field.ridx) || [];
+                metaForms[formIdx].rother = metaForms[otherIdx]?.fields.map((field) => field.ridx) || [];
             }
         }
     );
 
-    return forms;
+    return metaForms;
 }

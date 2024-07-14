@@ -1,4 +1,6 @@
-export const actionKeys: (readonly [dispalyName: string, fileName: string])[] = [
+export type ActionKey = readonly [dispalyName: string, fileName: string];
+
+export const actionKeys: ActionKey[] = [
     ['Tab',                   /**/ 'tab',       /**/],
     ['Enter',                 /**/ 'enter',     /**/],
     ['Esc',                   /**/ 'escape',    /**/],
