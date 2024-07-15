@@ -1,3 +1,5 @@
+import { Meta } from "../../../all-types";
+
 // Key
 
 export type KeyModifierNumbers = {
@@ -19,7 +21,7 @@ export type EditorDataForKbd = Prettify<
 
 export type EditorDataForFld = {
     type: 'fld', // 'field'
-    id: string;
+    field: Meta.Field | undefined;
 };
 
 // Position
