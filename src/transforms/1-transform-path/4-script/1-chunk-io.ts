@@ -133,34 +133,38 @@ export function stringifyFromEditor(chunks: ScriptChunkEditorData[]): Meta.Field
 function prepareFromEditor(v: ScriptChunkEditorData[]): Meta.Field[] {
     const rv: Meta.Field[] = [];
 
-    let sum = '';
+    let sum: string[] = [];
 
     for (const chunk of v) {
         if (chunk.type === 'fld') {
             const field = chunk.field as Meta.Field;
 
-            sum += 'field;';
+            sum.push('field');
 
             const newField: Meta.Field = {
                 ...field,
             };
-            
+
+            newField.path = newField.path || {};
+            newField.path.sn = newField.path.sn || {} as MPath.sn;
+            newField.path.sn.parts = [...sum];
+
             rv.push(newField);
-            sum = '';
+            sum = [];
         }
         else {
-            sum += `${chunk.type},${stringifyChunk(chunk)};`;
+            sum.push(`${chunk.type},${stringifyChunk(chunk)}`);
         }
     }
 
-    if (sum && rv.length) {
+    if (sum.length && rv.length) {
         const lastField = rv[rv.length - 1];
 
         lastField.path = lastField.path || {};
         lastField.path.sn = lastField.path.sn || {} as MPath.sn;
 
         lastField.path.sn.parts = lastField.path.sn?.parts || [];
-        lastField.path.sn.parts.push(sum);
+        lastField.path.sn.parts.push(...sum);
     }
 
     rv.forEach((field, idx) => {
@@ -170,6 +174,7 @@ function prepareFromEditor(v: ScriptChunkEditorData[]): Meta.Field[] {
         field.path.sn.current = idx;
     });
 
+    //TODO: combine every path.sn with ';' separator
     return rv;
 }
 
