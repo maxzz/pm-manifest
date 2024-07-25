@@ -153,7 +153,7 @@ function prepareFromEditor(v: ScriptChunkEditorData[]): Meta.Field[] {
             sum = [];
         }
         else {
-            sum.push(`${chunk.type},${stringifyChunk(chunk)}`);
+            sum.push(stringifyChunk(chunk));
         }
     }
 
