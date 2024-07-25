@@ -132,6 +132,7 @@ export function stringifyFromEditor(chunks: ScriptChunkEditorData[]): Meta.Field
 
 function prepareFromEditor(v: ScriptChunkEditorData[]): Meta.Field[] {
     const rv: Meta.Field[] = [];
+    
     let sum = '';
 
     for (const chunk of v) {
@@ -161,6 +162,13 @@ function prepareFromEditor(v: ScriptChunkEditorData[]): Meta.Field[] {
             lastField.path.sn.parts.push(sum);
         }
     }
+
+    rv.forEach((field, idx) => {
+        field.path = field.path || {};
+        field.path.sn = field.path.sn || {} as MPath.sn;
+        field.path.sn.total = rv.length;
+        field.path.sn.current = idx;
+    });
 
     return rv;
 }
