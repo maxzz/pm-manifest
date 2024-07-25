@@ -1,4 +1,4 @@
-import { Meta } from "../../../all-types";
+import { Meta, MPath } from "../../../all-types";
 import { modifiers } from "./4-mpath-script-keys";
 import { ScriptChunkEditorData, EditorDataForKbd, EditorDataForPos, EditorDataForDly, EditorDataForFld } from "./9-types";
 import { ScriptInFile } from "./9-types-in-file";
@@ -129,3 +129,93 @@ export function stringifyFromEditor(chunks: ScriptChunkEditorData[]): Meta.Field
     );
     return rv;
 }
+
+function prepareFromEditor(v: ScriptChunkEditorData[]): Meta.Field[] {
+    const rv: Meta.Field[] = [];
+    let sum = '';
+
+    for (const chunk of v) {
+        if (chunk.type === 'fld') {
+            const field = chunk.field as Meta.Field;
+            sum += 'field;';
+            const newField: Meta.Field = {
+                ...field,
+            };
+            rv.push(newField);
+            sum = '';
+        }
+        else {
+            sum += `${chunk.type},${stringifyChunk(chunk)};`;
+        }
+    }
+
+    if (sum) {
+        if (rv.length) {
+            const lastField = rv[rv.length - 1];
+
+            lastField.path = lastField.path || {};
+
+            lastField.path.sn = lastField.path.sn || {} as MPath.sn;
+
+            lastField.path.sn.parts = lastField.path.sn?.parts || [];
+            lastField.path.sn.parts.push(sum);
+        }
+    }
+
+    return rv;
+}
+
+/*
+    inline script::manifestapi::fields_t preparefromeditor(const lines_t& v_)
+    {
+        script::manifestapi::fields_t rv;
+
+        //1. pack parts separated by fields
+        //
+        wstring_t sum;
+        for (lines_t::const_iterator it=v_.begin(); it!=v_.end(); ++it)
+        {
+            if ((*it).action == ACTION::field)
+            {
+                linedata::field_t lfield;
+                lfield.set((*it).line);
+
+                sum += L"field;";
+                script::manifestapi::field_t field;
+                field.enginepath = sum;
+                field.field = lfield.fcfield;
+                back_inserter(rv) = field;
+                sum.clear();
+            }
+            else
+                sum += wstrprintf(L"%s,%s;", lines_io::cast_action((*it).action), (*it).line);
+        }
+        //1.1. pack last part to last field
+        //
+        if (!sum.empty())
+        {
+            if (!rv.empty()) //otherwise bad script
+            {
+                script::manifestapi::field_t& lastfield = rv.back();
+                lastfield.enginepath += sum;
+                sum.clear();
+            }
+        }
+        //2. set part numbers
+        //
+        int partnumber = 0;
+        for (script::manifestapi::fields_t::iterator it = rv.begin(); it != rv.end(); ++it)
+        {
+            (*it).enginepath = wstrprintf(L"[sn]%d.%d.%s", (int)rv.size(), partnumber++, (*it).enginepath);
+        }
+        /*
+        ATLTRACE("\n\n""parts\n");
+        for (script::manifestapi::fields_t::const_iterator it=rv.begin(); it!=rv.end(); ++it)
+        {
+            ATLTRACE("  field = '%S'\n", (*it).enginepath.c_str());
+        }
+        * /
+        return rv;
+    }
+
+*/
