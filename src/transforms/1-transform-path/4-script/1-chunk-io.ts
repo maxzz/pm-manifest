@@ -118,24 +118,11 @@ export function parseForEditor(fields: Meta.Field[]): ScriptChunkEditorData[] {
 
 //TODO: test it
 export function stringifyFromEditor(chunks: ScriptChunkEditorData[]): Meta.Field[] {
-    const rv = chunks.reduce(
-        (acc: Meta.Field[], chunk: ScriptChunkEditorData) => {
-            if (chunk.type === 'fld') {
-                acc.push(chunk.field as Meta.Field);
-            }
-            return acc;
-        },
-        []
-    );
-    return rv;
-}
-
-function prepareFromEditor(v: ScriptChunkEditorData[]): Meta.Field[] {
     const rv: Meta.Field[] = [];
 
     let acc: string[] = [];
 
-    for (const chunk of v) {
+    for (const chunk of chunks) {
         if (chunk.type === 'fld') {
             const field = chunk.field as Meta.Field;
 
