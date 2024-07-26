@@ -117,7 +117,7 @@ export function parseForEditor(fields: Meta.Field[]): ScriptChunkEditorData[] {
 }
 
 //TODO: test it
-export function stringifyFromEditor(chunks: ScriptChunkEditorData[]): Meta.Field[] {
+export function stringifyFromEditor(chunks: ScriptChunkEditorData[]): Meta.Field[] { // former: preparefromeditor()
     const rv: Meta.Field[] = [];
 
     let acc: string[] = [];
@@ -134,10 +134,10 @@ export function stringifyFromEditor(chunks: ScriptChunkEditorData[]): Meta.Field
 
             newField.path = newField.path || {};
             newField.path.sn = newField.path.sn || {} as MPath.sn;
-            newField.path.sn.parts = [...acc];
+            newField.path.sn.parts = acc;
+            acc = [];
 
             rv.push(newField);
-            acc = [];
         }
         else {
             acc.push(stringifyChunk(chunk));
