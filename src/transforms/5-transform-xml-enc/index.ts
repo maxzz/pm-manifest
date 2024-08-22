@@ -7,3 +7,5 @@ export const TransformEncoding = {
     ...xml,
     ...esc,
 };
+
+export * from "./4-swap-key-val-pairs"; // This is for keys/values mapping utilities; has nothing to do with pm-manifest.
