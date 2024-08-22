@@ -19,7 +19,7 @@ function convertOptions(options: string[]): Record<string, string> {
  *      * "pos,x=10,y=19"
  *      * "delay,ms=1000"
  */
-export function parseChunk(chunkValue: string, metaField: Meta.Field): ScriptChunkEditorData | undefined {
+function parseChunk(chunkValue: string, metaField: Meta.Field): ScriptChunkEditorData | undefined {
     const pieces = chunkValue.split(',');
     const [key, ...rest] = pieces;
     switch (key) {
@@ -68,7 +68,19 @@ export function parseChunk(chunkValue: string, metaField: Meta.Field): ScriptChu
     }
 }
 
-export function stringifyChunk(chunk: ScriptChunkEditorData): string {
+export function parseForEditor(fields: Meta.Field[]): ScriptChunkEditorData[] {
+    const rv = fields.map(
+        (field: Meta.Field) => {
+            const chunks = field.path?.sn?.parts
+                .map((part: string) => parseChunk(part, field))
+                .filter(Boolean) || [];
+            return chunks;
+        }
+    ).flat();
+    return rv;
+}
+
+function stringifyChunk(chunk: ScriptChunkEditorData): string {
     switch (chunk.type) {
         case 'kbd': {
             const mods = modifiers.toString(modifiers.numbersToModifiers(chunk));
@@ -98,22 +110,6 @@ export function stringifyChunk(chunk: ScriptChunkEditorData): string {
             return 'field';
         }
     }
-}
-
-export function stringifyChunks(chunks: ScriptChunkEditorData[]): string[] {
-    return chunks.map(stringifyChunk);
-}
-
-export function parseForEditor(fields: Meta.Field[]): ScriptChunkEditorData[] {
-    const rv = fields.map(
-        (field: Meta.Field) => {
-            const chunks = field.path?.sn?.parts
-                .map((part: string) => parseChunk(part, field))
-                .filter(Boolean) || [];
-            return chunks;
-        }
-    ).flat();
-    return rv;
 }
 
 //TODO: test it
@@ -164,6 +160,10 @@ export function stringifyFromEditor(chunks: ScriptChunkEditorData[]): Meta.Field
     //TODO: combine every path.sn with ';' separator
     return rv;
 }
+
+// function stringifyChunks(chunks: ScriptChunkEditorData[]): string[] {
+//     return chunks.map(stringifyChunk);
+// }
 
 /*
     inline script::manifestapi::fields_t preparefromeditor(const lines_t& v_)
