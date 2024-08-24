@@ -2,25 +2,25 @@ import { Meta } from "../../../all-types";
 
 // Key
 
-export type KeyModifierNumbers = {
-    shift: number;
-    ctrl: number;
-    alt: number;
-};
-
 export type EditorDataForKbd = Prettify<
-    & {
-        type: 'kbd', // 'key'
+    {
+        type: 'kbd',                // 'key' in manifest file
         char: string;
         repeat: number;
     }
     & KeyModifierNumbers
 >;
 
+export type KeyModifierNumbers = {
+    shift: number;
+    ctrl: number;
+    alt: number;
+};
+
 // Field
 
 export type EditorDataForFld = {
-    type: 'fld', // 'field'
+    type: 'fld',                    // 'field' in manifest file
     field: Meta.Field | undefined;
 };
 
@@ -30,14 +30,14 @@ export type EditorDataForPos = {
     type: 'pos',
     x: number;
     y: number;
-    units: boolean;         // dlgunits if false then units='abs'
-    res: number;            // resolution defaults are 0, 96
+    units: boolean;                 // dlgunits if false then units='abs'
+    res: number;                    // resolution defaults are 0, 96
 };
 
 // Delay
 
 export type EditorDataForDly = {
-    type: 'dly', // 'delay'
+    type: 'dly',                    // 'delay' in manifest file
     n: number;
 };
 
@@ -48,4 +48,4 @@ export type ScriptChunkEditorData = Prettify<
     | EditorDataForDly
 >;
 
-export type ChunkKey = ScriptChunkEditorData['type'];
+export type ChunkKey = ScriptChunkEditorData['type']; // "kbd" | "fld" | "pos" | "dly"

@@ -1,6 +1,8 @@
-export type ActionKey = readonly [dispalyName: string, fileName: string];
+// Key
 
-export const actionKeys: ActionKey[] = [
+export type ActionKeyDisplayText = readonly [dispalyName: string, fileName: string];
+
+export const actionKeys: ActionKeyDisplayText[] = [
     ['Tab',                   /**/ 'tab',       /**/],
     ['Enter',                 /**/ 'enter',     /**/],
     ['Esc',                   /**/ 'escape',    /**/],
@@ -34,3 +36,14 @@ export const actionKeys: ActionKey[] = [
 export function actionKeyIndexFromFileName(fileNameKey: string): number {
     return actionKeys.findIndex(([, fileName]) => fileName === fileNameKey);
 }
+
+// Modifiers
+
+export type ModifierDisplayText = string | readonly [label: string, value: string];
+
+export const modifierKeys: ModifierDisplayText[] = [
+    ['None', '0'],
+    ['Any', '3'],
+    ['Left', '1'],
+    ['Right', '2'],
+];

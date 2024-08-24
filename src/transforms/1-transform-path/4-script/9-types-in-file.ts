@@ -4,20 +4,20 @@ export namespace ScriptInFile {
 
     export type Key = {
         key: string;
-        repeat?: string; // number
+        repeat?: string;    // number
         mode?: string;
     };
 
     export type Field = {};
 
     export type Pos = {
-        x: string; // number
-        y: string; // number
-        units?: string; // "abs" or ""
-        res?: string; // number, resolution
+        x: string;          // number
+        y: string;          // number
+        units?: string;     // "abs" or ""
+        res?: string;       // number, resolution
     };
 
     export type Delay = {
-        ms: string; // number
+        ms: string;         // number
     };
 }

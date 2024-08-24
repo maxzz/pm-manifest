@@ -5,10 +5,12 @@ import { ScriptInFile } from "./9-types-in-file";
 
 function convertOptions(options: string[]): Record<string, string> {
     const rv: Record<string, string> = {};
-    options.forEach((option: string) => {
-        const [key, value] = option.split('=');
-        rv[key] = value;
-    });
+    options.forEach(
+        (option: string) => {
+            const [key, value] = option.split('=');
+            rv[key] = value;
+        }
+    );
     return rv;
 }
 
