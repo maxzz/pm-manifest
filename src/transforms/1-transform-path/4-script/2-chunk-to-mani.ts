@@ -1,8 +1,8 @@
 import { Meta, MPath } from "../../../all-types";
 import { modifiers } from "./4-mpath-script-keys";
-import { ScriptChunkEditorData } from "./9-types";
+import { EditorDataForOne } from "./9-types";
 
-function stringifyChunk(chunk: ScriptChunkEditorData): string {
+function stringifyChunk(chunk: EditorDataForOne): string {
     switch (chunk.type) {
         case 'kbd': {
             const mods = modifiers.toString(modifiers.numbersToModifiers(chunk));
@@ -35,7 +35,7 @@ function stringifyChunk(chunk: ScriptChunkEditorData): string {
 }
 
 //TODO: test it
-export function stringifyFromEditor(chunks: ScriptChunkEditorData[]): Meta.Field[] { // former: preparefromeditor()
+export function stringifyFromEditor(chunks: EditorDataForOne[]): Meta.Field[] { // former: preparefromeditor()
     const rv: Meta.Field[] = [];
 
     let acc: string[] = [];

@@ -21,7 +21,7 @@ export type KeyModifierNumbers = {
 
 export type EditorDataForFld = {
     type: 'fld',                    // 'field' in manifest file
-    field: Meta.Field | undefined;
+    field: Meta.Field;
 };
 
 // Position
@@ -41,11 +41,11 @@ export type EditorDataForDly = {
     n: number;
 };
 
-export type ScriptChunkEditorData = Prettify<
+export type EditorDataForOne = Prettify<
     | EditorDataForKbd
     | EditorDataForFld
     | EditorDataForPos
     | EditorDataForDly
 >;
 
-export type ChunkKey = ScriptChunkEditorData['type']; // "kbd" | "fld" | "pos" | "dly"
+export type ChunkKey = EditorDataForOne['type']; // "kbd" | "fld" | "pos" | "dly"

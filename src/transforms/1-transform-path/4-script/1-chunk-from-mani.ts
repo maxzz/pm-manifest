@@ -1,6 +1,6 @@
 import { Meta } from "../../../all-types";
 import { modifiers } from "./4-mpath-script-keys";
-import { ScriptChunkEditorData, EditorDataForKbd, EditorDataForPos, EditorDataForDly, EditorDataForFld } from "./9-types";
+import { EditorDataForOne, EditorDataForKbd, EditorDataForPos, EditorDataForDly, EditorDataForFld } from "./9-types";
 import { ScriptInFile } from "./9-types-in-file";
 
 function convertOptions(options: string[]): Record<string, string> {
@@ -21,7 +21,7 @@ function convertOptions(options: string[]): Record<string, string> {
  *      * "pos,x=10,y=19"
  *      * "delay,ms=1000"
  */
-function parseChunk(chunkValue: string, metaField: Meta.Field): ScriptChunkEditorData | undefined {
+function parseChunk(chunkValue: string, metaField: Meta.Field): EditorDataForOne | undefined {
     const pieces = chunkValue.split(',');
     const [key, ...rest] = pieces;
     switch (key) {
@@ -70,7 +70,7 @@ function parseChunk(chunkValue: string, metaField: Meta.Field): ScriptChunkEdito
     }
 }
 
-export function parseForEditor(fields: Meta.Field[]): ScriptChunkEditorData[] {
+export function parseForEditor(fields: Meta.Field[]): EditorDataForOne[] {
     const rv = fields.map(
         (field: Meta.Field) => {
             const chunks = field.path?.sn?.parts
