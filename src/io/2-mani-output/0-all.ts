@@ -2,7 +2,7 @@ import { Mani } from "../../all-types";
 import { parseOptionsRead } from "../1-mani-input/3-parse-xml-file";
 import { showError } from "../5-mani-show-error";
 import { TransformEncoding } from "../../transforms";
-import { J2xParser } from "../../utils/json2xml";
+import { J2xParser } from "../../utils/2-json2xml";
 import { makeNewManifest4Xml } from "./1-make-new-manifest-for-xml";
 
 export const parseOptionsWrite = {

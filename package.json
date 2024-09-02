@@ -1,7 +1,7 @@
 {
     "name": "pm-manifest",
     "globalObject": "pm-manifest",
-    "version": "1.2.25",
+    "version": "1.2.26",
     "description": "PM manifest definition files",
     "license": "MIT",
     "repository": {
@@ -25,7 +25,9 @@
         "typescript": "5.5.4"
     },
     "dependencies": {
-        "fast-xml-parser": "4.4.1"
+        "@types/uuid": "^10.0.0",
+        "fast-xml-parser": "4.4.1",
+        "uuid": "^10.0.0"
     },
     "scripts": {
         "dev": "tsc -w",
