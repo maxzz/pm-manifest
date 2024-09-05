@@ -1,4 +1,4 @@
-import { Meta } from "../../../all-types";
+import { type Mani, type Meta } from "../../../all-types";
 
 // Key
 
@@ -21,7 +21,8 @@ export type KeyModifierNumbers = {
 
 export type EditorDataForFld = {
     type: 'fld',                    // 'field' in manifest file
-    field: Meta.Field;
+    field: Meta.Field;              // Meta.Field created from manifest file
+    editField: Mani.Field;          // manifest field for editing from editors
 };
 
 // Position
