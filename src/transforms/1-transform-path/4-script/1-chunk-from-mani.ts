@@ -64,6 +64,11 @@ function parseChunk(chunkValue: string, metaField: Meta.Field): EditorDataForOne
             const rv: EditorDataForFld = {
                 type: 'fld',
                 field: metaField,
+                editField: {
+                    dbname: metaField.mani.dbname,
+                    displayname: metaField.mani.displayname,
+                    type: metaField.mani.type,
+                }
             };
             return rv;
         }
