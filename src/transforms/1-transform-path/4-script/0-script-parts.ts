@@ -1,4 +1,4 @@
-import { MPath } from "../../../all-types";
+import { type MPath } from "../../../all-types";
 
 /**
 ```js

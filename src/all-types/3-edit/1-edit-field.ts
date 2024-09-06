@@ -1,6 +1,6 @@
 import { type Field, type FieldPolicy } from "../1-mani/1-mani-field";
-import { type FieldTyp } from "../1-mani/1-mani-field/1-field-typ";
 import { type ValueLife } from "../1-mani/1-mani-field/2-value-life";
+import { type FieldTyp } from "../1-mani/1-mani-field/1-field-typ";
 
 export namespace EditorField {
 

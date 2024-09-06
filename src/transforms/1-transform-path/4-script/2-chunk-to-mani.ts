@@ -72,12 +72,14 @@ export function stringifyFromEditor(chunks: EditorDataForOne[]): Meta.Field[] { 
         lastField.path.sn.parts.push(...acc);
     }
 
-    rv.forEach((field, idx) => {
-        field.path = field.path || {};
-        field.path.sn = field.path.sn || {} as MPath.sn;
-        field.path.sn.total = rv.length;
-        field.path.sn.current = idx;
-    });
+    rv.forEach(
+        (field, idx) => {
+            field.path = field.path || {};
+            field.path.sn = field.path.sn || {} as MPath.sn;
+            field.path.sn.total = rv.length;
+            field.path.sn.current = idx;
+        }
+    );
 
     //TODO: combine every path.sn with ';' separator
     return rv;
