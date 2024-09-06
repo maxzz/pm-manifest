@@ -1,10 +1,10 @@
-import { type Mani, type Meta } from "../../../all-types";
+import { type EditorField, type Mani, type Meta } from "../../../all-types";
 
 // Key
 
 export type EditorDataForKbd = Prettify<
     {
-        type: 'kbd',                // 'key' in manifest file
+        type: 'kbd',                    // 'key' in manifest file
         char: string;
         repeat: number;
     }
@@ -20,9 +20,9 @@ export type KeyModifierNumbers = {
 // Field
 
 export type EditorDataForFld = {
-    type: 'fld',                    // 'field' in manifest file
-    field: Meta.Field;              // Meta.Field created from manifest file
-    editField: Mani.Field;          // manifest field for editing from editors
+    type: 'fld',                        // 'field' in manifest file
+    field: Meta.Field;                  // Meta.Field created from manifest file
+    editField: EditorField.ForAtoms;    // manifest field for editing from editors
 };
 
 // Position
@@ -31,14 +31,14 @@ export type EditorDataForPos = {
     type: 'pos',
     x: number;
     y: number;
-    units: boolean;                 // dlgunits if false then units='abs'
-    res: number;                    // resolution defaults are 0, 96
+    units: boolean;                     // dlgunits if false then units='abs'
+    res: number;                        // resolution defaults are 0, 96
 };
 
 // Delay
 
 export type EditorDataForDly = {
-    type: 'dly',                    // 'delay' in manifest file
+    type: 'dly',                        // 'delay' in manifest file
     n: number;
 };
 
