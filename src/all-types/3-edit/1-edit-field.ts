@@ -14,7 +14,25 @@ export namespace EditorField {
     };
 
     /**
-     * Members ot the Field type that are used in the normal/manual field editors
+     * Members ot the Field type that are used in the normal/manual field editors.
+     * 
+     * Other members are not used in the editor
+     *  | 'path'                         // string
+     *  | 'path_ext'                     // string
+     *  | 'submit'                       // boolean
+     *  
+     *  | 'controltosubmitdata'          // boolean
+     *  | 'ids'                          // string
+     *  
+     *  | 'rfield'                       // 'in' | 'out'
+     *  | 'rfieldindex'                  // number // '2' - field catalog
+     *  | 'rfieldform'                   // string // refs from login form
+     *  
+     *  | 'choosevalue'                  // string
+     *  
+     *  | chgpolopts                     // FieldPolicyOptions. it should not be used anymore
+     *  |
+     *  | ownernote                      // string
      */
     export type Type = Pick<Field,
         | 'useit'
