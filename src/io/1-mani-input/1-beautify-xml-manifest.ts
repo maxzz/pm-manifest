@@ -30,7 +30,10 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
             }
 
             if (form.detection) {
-                form.detection.web_checkurl !== undefined && (form.detection.web_checkurl = !!form.detection.web_checkurl);
+                const det = form.detection;
+                !det.web_murl && (det.web_murl = det.web_ourl); // this was optimization to save space in the XML
+                !det.web_qurl && (det.web_qurl = det.web_ourl); // this was optimization to save space in the XML
+                det.web_checkurl !== undefined && (det.web_checkurl = !!det.web_checkurl);
             }
 
             if (form.fields) {
