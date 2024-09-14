@@ -7,6 +7,7 @@ export * from "./1-mani/1-mani-field/2-value-life";
 
 export * from "./2-meta";
 export * from "./3-edit";
+export * from "./4-file";
 export * from "./8-catalog";
 
 /**

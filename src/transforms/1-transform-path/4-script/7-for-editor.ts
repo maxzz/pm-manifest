@@ -2,7 +2,7 @@ import { type Field, type FieldPolicy } from "../../../all-types/1-mani";
 import { type EditorField, fieldTyp4Str } from "../../../all-types";
 import { TransformValue } from "../../3-transform-valuelife";
 
-export function fieldForEditor(maniField: Field): EditorField.ForAtoms {
+export function convFieldForEditor(maniField: Field): EditorField.ForAtoms {
     const { useit, displayname } = maniField;
 
     const valueLife = TransformValue.valueLife4Mani(maniField);

@@ -2,7 +2,7 @@ import { type Meta } from "../../../all-types";
 import { type EditorDataForOne, type EditorDataForKbd, type EditorDataForPos, type EditorDataForDly, type EditorDataForFld } from "./9-types";
 import { type ScriptInFile } from "./9-types-in-file";
 import { modifiers } from "./4-mpath-script-keys";
-import { fieldForEditor } from "./7-for-editor";
+import { convFieldForEditor } from "./7-for-editor";
 
 function convertOptions(options: string[]): Record<string, string> {
     const rv: Record<string, string> = {};
@@ -65,7 +65,7 @@ function parseChunk(chunkValue: string, metaField: Meta.Field): EditorDataForOne
             const rv: EditorDataForFld = {
                 type: 'fld',
                 field: metaField,
-                editField: fieldForEditor(metaField.mani),
+                editField: convFieldForEditor(metaField.mani),
             };
             return rv;
         }

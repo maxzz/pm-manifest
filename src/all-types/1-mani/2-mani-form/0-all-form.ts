@@ -48,7 +48,7 @@ export type Options = {
     ownernote?: string;
     quicklink?: string;             // QL menu name
     auth_pl?: string;               // extended policy (see AuthTokenValues); only one bit as hex string (auth_pl="100"); used only for login form
-    balooncount?: string;
+    balooncount?: string;           // number of times to show baloon; -1: never, 0: always. Name with typo got into file format, so keep it as is.
     autoprompt?: string;            // boolean
     lockfields?: string;            // "0" | "1"
     submittype?: string;            // "dosubmit" | "nosubmit" We have this information only if it was said in clear, i.e. no defaults, or guesses. // export type SubmitType = 'dosubmit' | 'nosubmit' | undefined;
