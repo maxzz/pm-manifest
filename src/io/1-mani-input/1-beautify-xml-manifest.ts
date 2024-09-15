@@ -1,4 +1,4 @@
-import { Mani } from "../../all-types";
+import { type Mani } from "../../all-types";
 
 /**
  * Convert XML object from .dpm file to our manifest format.
@@ -29,11 +29,8 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
                 form.fcontext.name !== undefined && (form.fcontext.name = +form.fcontext.name);
             }
 
-            if (form.detection) {
-                const det = form.detection;
-                !det.web_murl && (det.web_murl = det.web_ourl); // this was optimization to save space in the XML
-                !det.web_qurl && (det.web_qurl = det.web_ourl); // this was optimization to save space in the XML
-                det.web_checkurl !== undefined && (det.web_checkurl = !!det.web_checkurl);
+            if (form.detection) { // Url wrapping is done in the 2-urls-wrapping.ts
+                form.detection.web_checkurl !== undefined && (form.detection.web_checkurl = !!form.detection.web_checkurl);
             }
 
             if (form.fields) {
