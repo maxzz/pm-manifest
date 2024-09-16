@@ -1,7 +1,7 @@
 {
     "name": "pm-manifest",
     "globalObject": "pm-manifest",
-    "version": "1.2.35",
+    "version": "1.2.36",
     "description": "PM manifest definition files",
     "license": "MIT",
     "repository": {

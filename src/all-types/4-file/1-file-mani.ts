@@ -1,4 +1,4 @@
-import { FieldTypeStr } from "../1-mani";
+import { type FieldTypeStr } from "../1-mani";
 
 export namespace FileMani {             // This is a file structure wo/ boolean values
 

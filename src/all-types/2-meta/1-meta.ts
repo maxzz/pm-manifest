@@ -1,7 +1,7 @@
 import * as Mani from "../1-mani";
 import * as  MPath from "./2-mpath";
-import { FieldTyp } from "../1-mani/1-mani-field/1-field-typ";
-import { ValueLife } from "../1-mani/1-mani-field/2-value-life";
+import { type FieldTyp } from "../1-mani/1-mani-field/1-field-typ";
+import { type ValueLife } from "../1-mani/1-mani-field/2-value-life";
 
 export type Path = {        // Collection of path items (chunks)
     p4a?: MPath.p4a[];

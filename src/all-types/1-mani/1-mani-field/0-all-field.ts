@@ -2,7 +2,13 @@
 
 export type FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
 
-// Field Value and Ids
+// Field Ids and Value
+
+export type FieldValueIds = {
+    displayname: string,            // It should be '' (in momory) if undefined and empty won't be stored in file (for localization). In filed catalog this is "dispname" and is required so we mark it here as required as well.
+    dbname: string;
+    ownernote?: string;             // This is not stored in Field and may appear in Field Catalog only.
+};
 
 export type FieldValueValue = {
     value?: string;
@@ -12,13 +18,7 @@ export type FieldValueValue = {
     onetvalue?: boolean,            // In file it's undefined | '1'.
 };
 
-export type FieldValueIds = {
-    displayname: string,            // It should be '' (in momory) if undefined and empty won't be stored in file (for localization). In filed catalog this is "dispname" and is required so we mark it here as required as well.
-    dbname: string;
-    ownernote?: string;             // This is not stored in Field and may appear in Field Catalog only.
-};
-
-export type FieldValue = FieldValueValue & FieldValueIds;
+export type FieldValue = Prettify<FieldValueIds & FieldValueValue>;
 
 // Field Policy
 
@@ -47,7 +47,7 @@ export type FieldDirection = {
 
 // All together
 
-export type Field = FieldValue & FieldPolicySome & FieldDirection & {
+export type Field = Prettify<FieldValue & FieldPolicySome & FieldDirection & {
     type: FieldTypeStr;             // This does not exist in field catalog
 
     path?: string;                  // this is old path, so just preserve it if it exists
@@ -58,4 +58,4 @@ export type Field = FieldValue & FieldPolicySome & FieldDirection & {
 
     controltosubmitdata?: boolean;
     ids?: string;
-};
+}>;

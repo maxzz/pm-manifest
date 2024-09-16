@@ -34,7 +34,7 @@ export namespace EditorField {
      *  |
      *  | ownernote                      // string
      */
-    export type Type = Pick<Field,
+    export type Members = Pick<Field,
         | 'useit'
         | 'displayname'
         | 'type'
