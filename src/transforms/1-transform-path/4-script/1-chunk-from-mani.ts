@@ -29,11 +29,11 @@ function parseChunk(chunkValue: string, metaField: Meta.Field): EditorDataForOne
         case 'keys': {
             const obj = convertOptions(rest) as ScriptInFile.Key;
             const mods = modifiers.fromString(obj.mode || '');
-            const rep = +(obj.repeat || '0');
+            const rep = +(obj.repeat || '1');
             const rv: EditorDataForKbd = {
                 type: 'kbd',
                 char: obj.key || '',
-                repeat: isNaN(rep) ? 0 : rep,
+                repeat: isNaN(rep) ? 1 : rep,
                 ...modifiers.modifiersToNumbers(mods),
             };
             return rv;
