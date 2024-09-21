@@ -76,5 +76,5 @@ export function stringifyFromEditor(chunks: EditorDataForOne[]): EditorDataForOn
 }
 
 export function mergeSn(sn: MPath.sn): string {
-    return `${sn.total}.${sn.current}.${sn.parts.join(';')}`
+    return `[sn]${sn.total}.${sn.current}.${sn.parts.join(';')};`;
 }
