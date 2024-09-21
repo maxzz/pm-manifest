@@ -1,4 +1,4 @@
-import { type EditorField, type Mani, type Meta } from "../../../all-types";
+import { type MPath, type EditorField, type Meta } from "../../../all-types";
 
 // Key
 
@@ -48,5 +48,10 @@ export type EditorDataForOne = Prettify<
     | EditorDataForPos
     | EditorDataForDly
 >;
+
+export type EditorDataForOneAndSn = {   // This is returned from stringifyFromEditor()
+    chunk: EditorDataForFld;
+    sn: MPath.sn;
+};
 
 export type ChunkKey = EditorDataForOne['type']; // "kbd" | "fld" | "pos" | "dly"

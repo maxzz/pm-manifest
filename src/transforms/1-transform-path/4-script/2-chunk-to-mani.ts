@@ -1,6 +1,6 @@
-import { Meta, MPath } from "../../../all-types";
+import { type MPath } from "../../../all-types";
+import { type EditorDataForOneAndSn, type EditorDataForOne } from "./9-types";
 import { modifiers } from "./4-mpath-script-keys";
-import { EditorDataForOne } from "./9-types";
 
 function stringifyChunk(chunk: EditorDataForOne): string {
     switch (chunk.type) {
@@ -33,8 +33,6 @@ function stringifyChunk(chunk: EditorDataForOne): string {
         }
     }
 }
-
-type EditorDataForOneAndSn = { chunk: EditorDataForOne; sn: MPath.sn; };
 
 export function stringifyFromEditor(chunks: EditorDataForOne[]): EditorDataForOneAndSn[] { // former: preparefromeditor()
     const rv: EditorDataForOneAndSn[] = [];
