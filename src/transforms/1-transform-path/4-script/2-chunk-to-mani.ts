@@ -38,35 +38,38 @@ function stringifyChunk(chunk: EditorDataForOne): string {
 export function stringifyFromEditor(chunks: EditorDataForOne[]): Meta.Field[] { // former: preparefromeditor()
     const rv: Meta.Field[] = [];
 
-    let scriptPartsAcc: string[] = [];
+    let partsAcc: string[] = [];
 
     for (const chunk of chunks) {
         if (chunk.type === 'fld') {
-            scriptPartsAcc.push('field');
+            partsAcc.push('field');
 
             const newField: Meta.Field = {
                 ...chunk.field,
             };
+            newField.mani = {
+                ...chunk.field.mani,
+            }
             newField.path = newField.path || {};
             newField.path.sn = newField.path.sn || {} as MPath.sn;
-            newField.path.sn.parts = scriptPartsAcc;
-            scriptPartsAcc = [];
+            newField.path.sn.parts = partsAcc;
+            partsAcc = [];
 
             rv.push(newField);
         }
         else {
-            scriptPartsAcc.push(stringifyChunk(chunk));
+            partsAcc.push(stringifyChunk(chunk));
         }
     }
 
-    if (scriptPartsAcc.length && rv.length) {
+    if (partsAcc.length && rv.length) {
         const lastField = rv[rv.length - 1];
 
         lastField.path = lastField.path || {};
         lastField.path.sn = lastField.path.sn || {} as MPath.sn;
 
         lastField.path.sn.parts = lastField.path.sn?.parts || [];
-        lastField.path.sn.parts.push(...scriptPartsAcc);
+        lastField.path.sn.parts.push(...partsAcc);
     }
 
     rv.forEach(
@@ -75,6 +78,8 @@ export function stringifyFromEditor(chunks: EditorDataForOne[]): Meta.Field[] { 
             field.path.sn = field.path.sn || {} as MPath.sn;
             field.path.sn.total = rv.length;
             field.path.sn.current = idx;
+
+            field.mani.path = `${field.path.sn.total}.${field.path.sn.current}.${field.path.sn.parts.join(';')}`;
         }
     );
 
