@@ -34,9 +34,10 @@ function stringifyChunk(chunk: EditorDataForOne): string {
     }
 }
 
-//TODO: test it
-export function stringifyFromEditor(chunks: EditorDataForOne[]): Meta.Field[] { // former: preparefromeditor()
-    const rv: Meta.Field[] = [];
+type EditorDataForOneAndSn = { chunk: EditorDataForOne; sn: MPath.sn; };
+
+export function stringifyFromEditor(chunks: EditorDataForOne[]): EditorDataForOneAndSn[] { // former: preparefromeditor()
+    const rv: EditorDataForOneAndSn[] = [];
 
     let partsAcc: string[] = [];
 
@@ -44,18 +45,17 @@ export function stringifyFromEditor(chunks: EditorDataForOne[]): Meta.Field[] { 
         if (chunk.type === 'fld') {
             partsAcc.push('field');
 
-            const newField: Meta.Field = {
-                ...chunk.field,
+            const newItem: EditorDataForOneAndSn = {
+                chunk,
+                sn: {
+                    total: 0,
+                    current: 0,
+                    parts: partsAcc,
+                },
             };
-            newField.mani = {
-                ...chunk.field.mani,
-            }
-            newField.path = newField.path || {};
-            newField.path.sn = newField.path.sn || {} as MPath.sn;
-            newField.path.sn.parts = partsAcc;
-            partsAcc = [];
+            rv.push(newItem);
 
-            rv.push(newField);
+            partsAcc = [];
         }
         else {
             partsAcc.push(stringifyChunk(chunk));
@@ -64,28 +64,77 @@ export function stringifyFromEditor(chunks: EditorDataForOne[]): Meta.Field[] { 
 
     if (partsAcc.length && rv.length) {
         const lastField = rv[rv.length - 1];
-
-        lastField.path = lastField.path || {};
-        lastField.path.sn = lastField.path.sn || {} as MPath.sn;
-
-        lastField.path.sn.parts = lastField.path.sn?.parts || [];
-        lastField.path.sn.parts.push(...partsAcc);
+        lastField.sn.parts.push(...partsAcc);
     }
 
     rv.forEach(
         (field, idx) => {
-            field.path = field.path || {};
-            field.path.sn = field.path.sn || {} as MPath.sn;
-            field.path.sn.total = rv.length;
-            field.path.sn.current = idx;
-
-            field.mani.path = `${field.path.sn.total}.${field.path.sn.current}.${field.path.sn.parts.join(';')}`;
+            field.sn.total = rv.length;
+            field.sn.current = idx;
         }
     );
 
-    //TODO: combine every path.sn with ';' separator
     return rv;
 }
+
+export function mergeSn(sn: MPath.sn): string {
+    return `${sn.total}.${sn.current}.${sn.parts.join(';')}`
+}
+
+// export function stringifyFromEditor(chunks: EditorDataForOne[]): Meta.Field[] { // former: preparefromeditor()
+//     const rv: Meta.Field[] = [];
+
+//     let partsAcc: string[] = [];
+
+//     for (const chunk of chunks) {
+//         if (chunk.type === 'fld') {
+//             partsAcc.push('field');
+
+//             const newField: Meta.Field = {
+//                 ...chunk.field,
+//             };
+//             // newField.mani = {
+//             //     ...chunk.field.mani,
+//             // }
+//             newField.path = newField.path || {};
+//             newField.path.sn = newField.path.sn || {} as MPath.sn;
+//             newField.path.sn.parts = partsAcc;
+//             partsAcc = [];
+
+//             rv.push(newField);
+//         }
+//         else {
+//             partsAcc.push(stringifyChunk(chunk));
+//         }
+//     }
+
+//     if (partsAcc.length && rv.length) {
+//         const lastField = rv[rv.length - 1];
+
+//         lastField.path = lastField.path || {};
+//         lastField.path.sn = lastField.path.sn || {} as MPath.sn;
+
+//         lastField.path.sn.parts = lastField.path.sn?.parts || [];
+//         lastField.path.sn.parts.push(...partsAcc);
+//     }
+
+//     rv.forEach(
+//         (field, idx) => {
+//             field.path = field.path || {};
+//             field.path.sn = field.path.sn || {} as MPath.sn;
+//             field.path.sn.total = rv.length;
+//             field.path.sn.current = idx;
+
+//             // field.mani.path = `${field.path.sn.total}.${field.path.sn.current}.${field.path.sn.parts.join(';')}`;
+//         }
+//     );
+
+//     //TODO: combine every path.sn with ';' separator
+//     return rv;
+// }
+
+
+
 
 // function stringifyChunks(chunks: ScriptChunkEditorData[]): string[] {
 //     return chunks.map(stringifyChunk);
