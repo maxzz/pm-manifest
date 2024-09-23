@@ -64,7 +64,8 @@ export namespace TimeUtils {
      */
     export function timeNowAsDpTime(): string {
         const hex = TimeUtils.dateToFileTime(new Date()).toString(16);
-        return hex.slice(0, 7) + ' ' + hex.slice(7);
+        const second = hex.length - 8;
+        return `${hex.slice(0, second)} ${hex.slice(second)}`; // second is 8 chars from the end
     }
 }
 
