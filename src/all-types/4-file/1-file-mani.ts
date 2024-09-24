@@ -1,4 +1,4 @@
-import { type FieldTypeStr } from "../1-mani";
+import { type FContext, type FieldTypeStr } from "../1-mani";
 
 export namespace FileMani {             // This is a file structure wo/ boolean values
 
@@ -94,6 +94,7 @@ export namespace FileMani {             // This is a file structure wo/ boolean 
     };
 
     export type Form = {
+        fcontext?: FContext;            // This exists on cpass form only
         detection: Detection;
         options: Options;
         fields: Field[];
