@@ -7,7 +7,7 @@ export type Descriptor = {
     created: string;                // "1d57495 61c6f733"
     modified: string;               // "1d57496 87bed3e8",
     integrity?: string;             // "OTS2.056a41167041b1ea2c529494aeb606d0e" // optional and not used for a long time
-    version: string;                // "2.4.3"
+    version: string;                // "2.4.3"; starting 09.23.24 with pmat25 it will be "2.4.5"
 };
 
 export namespace Customization {

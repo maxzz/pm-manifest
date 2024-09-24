@@ -123,7 +123,7 @@ export namespace FileMani {             // This is a file structure wo/ boolean 
     export type Manifest = {
         descriptor: Descriptor;
         options?: Customization.Options;
-        forms: Form[];
+        forms?: Form[];
     };
 
     //#endregion Manifest
