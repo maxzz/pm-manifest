@@ -1,4 +1,4 @@
-import { type FContext, type FieldTypeStr } from "../1-mani";
+import { type FieldTypeStr } from "../1-mani";
 
 export namespace FileMani {             // This is a file structure wo/ boolean values
 
@@ -47,6 +47,29 @@ export namespace FileMani {             // This is a file structure wo/ boolean 
     //#endregion Field
     //#region Form
 
+    export type FContext = {
+        type: 'pchange';
+        name: string;                   // "1"
+    };
+    
+    export type Options = {
+        choosename?: string;
+        sidekick?: string;              // "manual mode hint"
+        ownernote?: string;
+        quicklink?: string;             // QL menu name
+        auth_pl?: string;               // extended policy (see AuthTokenValues); only one bit as hex string (auth_pl="100"); used only for login form
+        balooncount?: string;           // number as string
+        autoprompt?: '1';               // boolean
+        lockfields?: '1';               // "0" | "1"
+        submittype?: 'dosubmit' | `nosubmit`;
+        iconkey?: string;               // Any name not necessarily unique
+        iconlocation?: string;          // Format is the same as described into feedback_drawing.h. "Q:0:0:0"
+        usequicklink?: '1' | '2';       // ("1" | "usequicklink") | ("2" | "dontusequicklink")
+        recheckwindowafterfillin?: '1'; // boolean
+        qlwocred?: '1';                 // boolean. Quick reauthentication enable/disable (QL wo/ crededntials).
+        unknownattributes?: string;
+    };
+
     export type Detection = {
         // --- windowtitle_t
         //matchtype?: string;           // is taken from caption as '[m0]:2:2:' | [m0]:2:1: | '[m0]:2:3:': "full" | "left" | "right" | "both"
@@ -73,24 +96,6 @@ export namespace FileMani {             // This is a file structure wo/ boolean 
 
         processname?: string;           // name of the process
         commandline?: string;           // commandline of the current process
-    };
-
-    export type Options = {
-        choosename?: string;
-        sidekick?: string;              // "manual mode hint"
-        ownernote?: string;
-        quicklink?: string;             // QL menu name
-        auth_pl?: string;               // extended policy (see AuthTokenValues); only one bit as hex string (auth_pl="100"); used only for login form
-        balooncount?: string;           // number as string
-        autoprompt?: '1';               // boolean
-        lockfields?: '1';               // "0" | "1"
-        submittype?: 'dosubmit' | `nosubmit`;
-        iconkey?: string;               // Any name not necessarily unique
-        iconlocation?: string;          // Format is the same as described into feedback_drawing.h. "Q:0:0:0"
-        usequicklink?: '1' | '2';       // ("1" | "usequicklink") | ("2" | "dontusequicklink")
-        recheckwindowafterfillin?: '1'; // boolean
-        qlwocred?: '1';                 // boolean. Quick reauthentication enable/disable (QL wo/ crededntials).
-        unknownattributes?: string;
     };
 
     export type Form = {
