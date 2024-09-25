@@ -64,7 +64,7 @@ export namespace FileMani {             // This is a file structure wo/ boolean 
         submittype?: 'dosubmit' | `nosubmit`;
         iconkey?: string;               // Any name not necessarily unique
         iconlocation?: string;          // Format is the same as described into feedback_drawing.h. "Q:0:0:0"
-        usequicklink?: '1' | '2';       // ("1" | "usequicklink") | ("2" | "dontusequicklink")
+        usequicklink?: '1' | '2';       // ("1" | "usequicklink") | ("2" | "dontusequicklink") if undefined then it's "1"
         recheckwindowafterfillin?: '1'; // boolean
         qlwocred?: '1';                 // boolean. Quick reauthentication enable/disable (QL wo/ crededntials).
         unknownattributes?: string;

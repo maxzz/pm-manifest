@@ -39,7 +39,7 @@ export type Detection = {
     monitor?: boolean;              // "1" this defines: do the live monitor of the form content for this form or don't do it
 
     processname?: string;           // name of the process
-    commandline?: string;           // commandline of the current process
+    commandline?: string;           // commandline of the current process; TBD: may be allow to run .bat files or add option to set working directory
 };
 
 export type Options = {
