@@ -1,4 +1,4 @@
-import { CatalogFile, CatalogItem, FieldCatalog, Mani } from "../../../all-types";
+import { type CatalogFile, type CatalogItem, type FieldCatalog, type Mani } from "../../../all-types";
 import { uuid } from "../../../utils";
 
 // Field catalog transformation
@@ -32,6 +32,7 @@ export function buildCatalogMetaFromNames(catalogNames: CatalogFile.ItemInFile[]
             index: idx,
             uuid: now,
             mru: now,
+            selected: false,
         };
     }
 }

@@ -1,4 +1,4 @@
-import { CatalogFile, Mani } from "../../all-types";
+import { type CatalogFile, type Mani } from "../../all-types";
 import { XMLParser } from "fast-xml-parser";
 import { beautifyXMLManifest } from "./1-beautify-xml-manifest";
 import { beautifyXMLCatalog } from "./2-beautify-xml-catalog";
