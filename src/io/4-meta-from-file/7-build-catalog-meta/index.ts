@@ -32,7 +32,9 @@ export function buildCatalogMetaFromNames(catalogNames: CatalogFile.ItemInFile[]
             index: idx,
             uuid: now,
             mru: now,
-            selected: false,
+            editor: {
+                selected: false,
+            },
         };
     }
 }
