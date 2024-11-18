@@ -1,6 +1,6 @@
 import * as Mani from "../1-mani";
 
-export namespace CatalogFile {     // pmat/include/ots_storagecatalog_io.h
+export namespace CatalogFile {  // pmat/include/ots_storagecatalog_io.h
 
     export type Descriptor = {
         id?: string;            // default as guid
