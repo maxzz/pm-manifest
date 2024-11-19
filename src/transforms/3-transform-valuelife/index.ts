@@ -34,7 +34,10 @@ export namespace TransformValue {
         return rv;
     }
 
-    export function valueLife4Mani(field: Mani.Field): ValueLife {
+    export type ValueLife4 = Pick<Mani.Field, 'askalways' | 'onetvalue' | 'value' | 'password' | 'type'>;   // Minimum fields for valueLife from manifest
+    export type ValueLife4WoType = Omit<ValueLife4, 'type'>;                                                // Minimum fields for valueLife from catalog
+
+    export function valueLife4Mani(field: ValueLife4): ValueLife {
         const { askalways, onetvalue, value, password } = field;
         return valueLife4ManiLogic({
             askalways,
@@ -45,7 +48,7 @@ export namespace TransformValue {
         });
     }
 
-    export function valueLife4Catalog(item: CatalogItem): ValueLife {
+    export function valueLife4Catalog(item: ValueLife4WoType): ValueLife {
         const { askalways, onetvalue, value, password } = item;
         const fType = item.password ? FieldTyp.psw : FieldTyp.edit;
         return valueLife4ManiLogic({
