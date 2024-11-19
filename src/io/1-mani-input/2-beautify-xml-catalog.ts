@@ -15,9 +15,9 @@ export function beautifyXMLCatalog(catalog: CatalogFile.Root): CatalogFile.Root 
     //TODO: Check: Was this missing for manifest? and for save as well.
 
     catalog.names.forEach((item: CatalogFile.ItemInFile) => {
-        item.dispname = item.dispname ? TransformEncoding.xmlRestore(item.dispname) : '';
-        item.value = item.value ? TransformEncoding.xmlRestore(item.value) : '';
-        item.choosevalue = item.choosevalue ? TransformEncoding.xmlRestore(item.choosevalue) : '';
+        item.dispname !== undefined && (item.dispname = TransformEncoding.cppRestore(item.dispname));
+        item.value !== undefined && (item.value = TransformEncoding.cppRestore(item.value));
+        item.choosevalue !== undefined && (item.choosevalue = TransformEncoding.cppRestore(item.choosevalue));
     });
 
     return catalog;
