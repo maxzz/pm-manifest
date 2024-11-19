@@ -17,7 +17,7 @@ export type ValueLife = {
 
    //isPsw?: boolean;           // it comes from field.password, and not from ref @password (ref should reflect field type not opposite).
    //isBtn?: boolean;           // any type but not edit or password
-    isNon?: boolean;            // true when value is empty and valueAs is default AskReuse, but input cleared by user
+    isNon: boolean;             // true when value is empty and valueAs is default AskReuse, but input cleared by user; default is false but will be updated by editor
 };
 
 export type ReferenceItem = {

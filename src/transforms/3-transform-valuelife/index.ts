@@ -22,6 +22,7 @@ export namespace TransformValue {
             ...(password && { isPsw: true }),
             //...(field.type !== 'edit' && field.type !== 'combo' && { isBtn: true }),
             fType: fType,
+            isNon: false,
         };
 
         if (value) {
