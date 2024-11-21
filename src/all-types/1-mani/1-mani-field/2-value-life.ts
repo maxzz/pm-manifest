@@ -10,8 +10,8 @@ export const LIST_valueAskNames = ["Ask - Resuse", "Ask - Confirm", "Ask Always 
 
 export type ValueLife = {
     valueAs: ValueAs;           // how to treat value from user
-    value?: string;             // key in 'references' if started with '@' otherwise it's a constant value
-    isRef?: boolean;            // true if value started with '@' but not '@@'
+    value: string;              // key in 'references' if started with '@' otherwise it's a constant value; default is ''
+    isRef: boolean;             // true if value started with '@' but not '@@'; default is false
 
     fType: FieldTyp;            // now it has type psw and edit/psw/rest information
 

@@ -20,6 +20,8 @@ export namespace TransformValue {
                         ? ValueAs.askConfirm
                         : ValueAs.askAlways, // legal:(onetvalue && askalways) and illegal:(onetvalue && !askalways)
             ...(password && { isPsw: true }),
+            value: '',
+            isRef: false,
             //...(field.type !== 'edit' && field.type !== 'combo' && { isBtn: true }),
             fType: fType,
             isNon: false,
@@ -66,7 +68,7 @@ export namespace TransformValue {
         value?: string;
     };
 
-    export function valueLife2ManiLogic(vl: ValueLife, rv: valueLife2ManiLogicReturn): void {
+    function valueLife2ManiLogic(vl: ValueLife, rv: valueLife2ManiLogicReturn): void {
         const { valueAs: va } = vl;
 
         va === ValueAs.askReuse
