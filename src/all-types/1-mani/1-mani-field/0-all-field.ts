@@ -39,15 +39,15 @@ export type FieldPolicyOptions = {  // Names are case-sensitive here as it comes
 
 // Field Direction
 
-export type FieldDirection = {
-    rfield?: 'in' | 'out';
-    rfieldindex?: number;           // "2"
-    rfieldform?: string;            // refs from login form
+export type FieldLinks = {          // rfieldindex and rfield come together and defined only on cpass form
+    rfield?: 'in' | 'out';          // in(old psw) - from login form field value, out(new psw) - to login form field value
+    rfieldindex?: number;           // index to password field in login from cpass, like "2"
+    rfieldform?: number;            // "-2" if field is comming from catalog; Defined mostly on login form or on cpass if it's a new password field not from login form.
 };
 
 // All together
 
-export type Field = Prettify<FieldValue & FieldPolicySome & FieldDirection & {
+export type Field = Prettify<FieldValue & FieldPolicySome & FieldLinks & {
     type: FieldTypeStr;             // This does not exist in field catalog
 
     path?: string;                  // this is old path, so just preserve it if it exists

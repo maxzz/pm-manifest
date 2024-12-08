@@ -26,13 +26,13 @@ export namespace FileMani {             // This is a file structure wo/ boolean 
         options?: string;               // see FieldPolicyOptions type
     };
 
-    export type FieldDirection = {
-        rfield?: 'in' | 'out';
-        rfieldindex?: string;           // "2"
-        rfieldform?: string;            // refs from login form
+    export type FieldLinks = {          // rfieldindex and rfield come together and defined only on cpass form
+        rfield?: 'in' | 'out';          // in(old psw) - from login form field value, out(new psw) - to login form field value
+        rfieldindex?: string;           // index to password field in login from cpass, like "2"
+        rfieldform?: string;            // "-2" if field is comming from catalog; Defined mostly on login form or on cpass if it's a new password field not from login form.
     };
 
-    export type Field = FieldValue & FieldPolicySome & FieldDirection & Prettify<{
+    export type Field = FieldValue & FieldPolicySome & FieldLinks & Prettify<{
         type: FieldTypeStr;             // This does not exist in field catalog
 
         path_ext?: string;              // path to this control with accessiblity info if exists
