@@ -42,6 +42,7 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
                         field.submit && (field.submit = !!field.submit);
                         field.useit && (field.useit = !!field.useit);
                         field.rfieldindex && (field.rfieldindex = +field.rfieldindex);
+                        field.rfieldform && (field.rfieldform = +field.rfieldform);
                     }
                 );
             }
