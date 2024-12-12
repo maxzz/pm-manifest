@@ -6,7 +6,6 @@ export function convFieldForEditor(maniField: Field): EditorField.ForAtoms {
     const { useit, displayname } = maniField;
 
     const valueLife = TransformValue.valueLife4Mani(maniField);
-
     !valueLife.value && (valueLife.value = "");     //TODO: cleanup all empty values to undefined when saving manifest
     !valueLife.isRef && (valueLife.isRef = false);  //TODO: cleanup all empty values to undefined when saving manifest
 
@@ -22,7 +21,11 @@ export function convFieldForEditor(maniField: Field): EditorField.ForAtoms {
         type: fieldTyp4Str(maniField),
         valueLife,
         dbname: maniField.dbname,
-        policies: policies,
+        policies,
+        
+        rfield: maniField.rfield || '',
+        rfieldIndex: maniField.rfieldindex || 0,
+        rfieldForm: maniField.rfieldform || 0,
     };
     return rv;
 }

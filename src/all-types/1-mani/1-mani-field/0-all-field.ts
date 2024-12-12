@@ -25,7 +25,7 @@ export type FieldValue = Prettify<FieldValueIds & FieldValueValue>;
 export type FieldPolicySome = {
     policy?: string | undefined;    // This is standard rule: "[p4]g:8:8:withspecial:different_ap"
     policy2?: string | undefined;   // This is custom rule like: "[e1]g:(a{4,4}d{2,2}A{1,1}[@#$%!]{1,1})&lt;8,8&gt;"; both can present at the same time. It's defined in file, but not in c++.
-    options?: string | undefined;   // see FieldPolicyOptions type
+    options?: string | undefined;   // See FieldPolicyOptions type
 };
 
 export type FieldPolicy = Prettify<Required<FieldPolicySome>>;
@@ -37,25 +37,30 @@ export type FieldPolicyOptions = {  // Names are case-sensitive here as it comes
     };
 };
 
-// Field Direction
+// Field and value cross-references
 
 export type FieldLinks = {          // rfieldindex and rfield come together and defined only on cpass form
-    rfield?: 'in' | 'out';          // in(old psw) - from login form field value, out(new psw) - to login form field value
-    rfieldindex?: number;           // index to password field in login from cpass, like "2"
-    rfieldform?: number;            // "-2" if field is comming from catalog; Defined mostly on login form or on cpass if it's a new password field not from login form.
+    rfield?: 'in' | 'out';          // 'in'(old psw) - from login form field value, 'out'(new psw) - to login form field value
+    rfieldindex?: number;           // Index to password field in login from cpass, like '2'
+    rfieldform?: number;            // '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
 };
 
 // All together
 
-export type Field = Prettify<FieldValue & FieldPolicySome & FieldLinks & {
-    type: FieldTypeStr;             // This does not exist in field catalog
+export type Field = Prettify<
+    & {
+        type: FieldTypeStr;         // This does not exist in field catalog
+    }
+    & FieldValue
+    & {
+        path?: string;              // This is old path, so just preserve it if it exists
+        path_ext?: string;          // Path to this control with accessiblity info if exists
 
-    path?: string;                  // this is old path, so just preserve it if it exists
-    path_ext?: string;              // path to this control with accessiblity info if exists
-
-    submit?: boolean,               // "1"
-    useit?: boolean,                // "1"
-
-    controltosubmitdata?: boolean;
-    ids?: string;
-}>;
+        useit?: boolean,            // "1"
+        submit?: boolean,           // "1"
+        controltosubmitdata?: boolean;
+        ids?: string;
+    }
+    & FieldPolicySome
+    & FieldLinks
+>;

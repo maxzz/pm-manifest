@@ -8,9 +8,13 @@ export namespace EditorField {
         useIt: boolean;
         label: string;
         type: FieldTyp;
-        valueLife: ValueLife;           // this includes value and valueAs
-        dbname: string;                 // field guid from manifest or field catalog
-        policies: FieldPolicy;          // policy, policy2, options
+        valueLife: ValueLife;           // This includes value and valueAs
+        dbname: string;                 // Field guid from manifest or field catalog
+        policies: FieldPolicy;          // Policy, policy2, options
+
+        rfield: string;                 // 'in' | 'out': in(old psw) - from login form field value, out(new psw) - to login form field value
+        rfieldIndex: number;            // Index to password field in login from cpass, like '2'
+        rfieldForm: number;             // '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
     };
 
     /**
