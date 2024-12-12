@@ -45,6 +45,9 @@ export namespace EditorField {
         | 'onetvalue'
         | 'policy'
         | 'policy2'
+        | 'rfield'
+        | 'rfieldindex'
+        | 'rfieldform'
         | 'options'
     >;
 }
