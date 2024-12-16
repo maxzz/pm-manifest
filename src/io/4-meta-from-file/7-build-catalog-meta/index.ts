@@ -3,15 +3,7 @@ import { uuid } from "../../../utils";
 
 // Field catalog transformation
 
-export function catalogItemInFileToFieldValue(catalogName: CatalogFile.ItemInFile): Mani.FieldValue {
-    const { dispname, ...rest } = catalogName;
-    return {
-        displayname: dispname,
-        ...rest,
-    };
-}
-
-export function fieldValueToCatalogItemInFile(fieldValue: Mani.FieldValue): CatalogFile.ItemInFile {
+export function fcItemInFileFromFieldValue(fieldValue: Mani.FieldValue): CatalogFile.ItemInFile {
     const { displayname, ...rest } = fieldValue;
     return {
         dispname: displayname,
@@ -19,26 +11,32 @@ export function fieldValueToCatalogItemInFile(fieldValue: Mani.FieldValue): Cata
     };
 }
 
-export function buildCatalogMetaFromNames(catalogNames: CatalogFile.ItemInFile[] | undefined): FieldCatalog {
-    const items = catalogNames?.map(addInMemInfo) || [];
+export function fcItemInFileToFieldValue(catalogName: CatalogFile.ItemInFile): Mani.FieldValue {
+    const { dispname, ...rest } = catalogName;
     return {
-        items,
+        displayname: dispname,
+        ...rest,
     };
-
-    function addInMemInfo(catalogName: CatalogFile.ItemInFile, idx: number): CatalogItem {
-        const now = uuid.asRelativeNumber();
-        return {
-            ...catalogItemInFileToFieldValue(catalogName),
-            index: idx,
-            uuid: now,
-            editor: {
-                selected: false,
-            },
-        };
-    }
 }
 
-export function buildCatalogMeta(fcat: CatalogFile.Root | undefined): FieldCatalog {
-    //TODO: handle addtional info
-    return buildCatalogMetaFromNames(fcat?.names);
+function addFcItemInMemInfo(catalogName: CatalogFile.ItemInFile, idx: number): CatalogItem {
+    const now = uuid.asRelativeNumber();
+    return {
+        ...fcItemInFileToFieldValue(catalogName),
+        index: idx,
+        uuid: now,
+        editor: {
+            selected: false,
+        },
+    };
+}
+
+export function fcFileToFcInMemory(fcat: CatalogFile.Root | undefined): FieldCatalog {
+
+    const rv: FieldCatalog = {
+        descriptor: fcat?.descriptor || {},
+        items: fcat?.names?.map(addFcItemInMemInfo) || [],
+    };
+
+    return rv;
 }
