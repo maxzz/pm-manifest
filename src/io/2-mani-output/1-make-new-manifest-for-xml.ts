@@ -1,4 +1,4 @@
-import { Mani } from "../../all-types";
+import { CatalogFile, FieldCatalog, Mani } from "../../all-types";
 
 const ATTRS: string = "_attributes";
 
@@ -9,7 +9,7 @@ function hasKeys(obj?: object): boolean {
 export function makeNewManifest4Xml(mani: Mani.Manifest): Mani.Manifest {
     const { options, descriptor, forms, ...rest } = mani;
 
-    let rv: any = { manifest: {}, };
+    const rv: any = { manifest: {}, };
 
     // 1. Customization
     if (options) {
@@ -29,11 +29,12 @@ export function makeNewManifest4Xml(mani: Mani.Manifest): Mani.Manifest {
             form: forms.map(
                 (form) => {
                     const { fcontext, detection, options, fields, ...rest } = form;
+                    const xmlFields = fields?.map((field) => ({ [ATTRS]: field }));
                     return {
                         ...(hasKeys(fcontext) && { fcontext: { [ATTRS]: form.fcontext } }),
                         ...(hasKeys(detection) && { detection: { [ATTRS]: form.detection } }),
                         ...(hasKeys(options) && { options: { [ATTRS]: form.options } }),
-                        ...(fields?.length && { fields: { field: form.fields.map((field) => ({ [ATTRS]: field })) } }),
+                        ...(fields?.length && { fields: { field: xmlFields } }),
                         ...rest,
                     };
                 }
@@ -43,3 +44,27 @@ export function makeNewManifest4Xml(mani: Mani.Manifest): Mani.Manifest {
 
     return { ...rv, ...rest, };
 }
+
+// export function makeNewFc4Xml(fc: CatalogFile.Root): CatalogFile.Root {
+//     const { descriptor, names, ...rest } = fc;
+//     const rv: any = { names: [] };
+
+//     // 1. Customization
+//     if (hasKeys(descriptor)) {
+//         rv.descriptor = { [ATTRS]: descriptor };
+//     }
+
+//     // 2. Names
+//     if (names?.length) {
+//         rv.names = {
+//             name: names.map(
+//                 (name: CatalogFile.ItemInFile) => {
+//                     const { id, dispname, ...rest } = name;
+//                     return { ...rest, [ATTRS]: { id, dispname } };
+//                 }
+//             )
+//         };
+//     }
+
+//     return { ...rv, ...rest, };
+// }
