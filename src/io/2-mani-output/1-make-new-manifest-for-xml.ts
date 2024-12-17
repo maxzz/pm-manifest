@@ -7,7 +7,7 @@ function hasKeys(obj?: object): boolean {
     return !!obj && !!Reflect.ownKeys(obj).length;
 }
 
-export function makeNewManifest4Xml(mani: Mani.Manifest): Mani.Manifest {
+export function prepareNewMani4Xml(mani: Mani.Manifest): Mani.Manifest {
     const { options, descriptor, forms, ...rest } = mani;
 
     const rv: any = { manifest: {}, };
@@ -46,7 +46,7 @@ export function makeNewManifest4Xml(mani: Mani.Manifest): Mani.Manifest {
     return { ...rv, ...rest, };
 }
 
-export function makeNewFc4Xml(fc: FieldCatalog): CatalogFile.Root {
+export function prepareNewFc4Xml(fc: FieldCatalog): CatalogFile.Root {
     const { descriptor, items, ...rest } = fc;
     const rv: any = {};
 
