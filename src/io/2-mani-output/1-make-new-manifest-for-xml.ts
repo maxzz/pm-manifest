@@ -1,4 +1,5 @@
-import { CatalogFile, FieldCatalog, Mani } from "../../all-types";
+import { type CatalogFile, type CatalogItem, type FieldCatalog, type Mani } from "../../all-types";
+import { fcItemInFileFromFieldValue } from "../4-meta-from-file";
 
 const ATTRS: string = "_attributes";
 
@@ -27,7 +28,7 @@ export function makeNewManifest4Xml(mani: Mani.Manifest): Mani.Manifest {
     if (forms?.length) {
         rv.manifest.forms = {
             form: forms.map(
-                (form) => {
+                (form: Mani.Form) => {
                     const { fcontext, detection, options, fields, ...rest } = form;
                     const xmlFields = fields?.map((field) => ({ [ATTRS]: field }));
                     return {
@@ -45,26 +46,26 @@ export function makeNewManifest4Xml(mani: Mani.Manifest): Mani.Manifest {
     return { ...rv, ...rest, };
 }
 
-// export function makeNewFc4Xml(fc: CatalogFile.Root): CatalogFile.Root {
-//     const { descriptor, names, ...rest } = fc;
-//     const rv: any = { names: [] };
+export function makeNewFc4Xml(fc: FieldCatalog): CatalogFile.Root {
+    const { descriptor, items, ...rest } = fc;
+    const rv: any = {};
 
-//     // 1. Customization
-//     if (hasKeys(descriptor)) {
-//         rv.descriptor = { [ATTRS]: descriptor };
-//     }
+    // 1. Descriptor
+    if (hasKeys(descriptor)) {
+        rv.descriptor = { [ATTRS]: descriptor };
+    }
 
-//     // 2. Names
-//     if (names?.length) {
-//         rv.names = {
-//             name: names.map(
-//                 (name: CatalogFile.ItemInFile) => {
-//                     const { id, dispname, ...rest } = name;
-//                     return { ...rest, [ATTRS]: { id, dispname } };
-//                 }
-//             )
-//         };
-//     }
+    // 2. Names
+    if (items?.length) {
+        rv.names = {
+            name: items.map(
+                (item: CatalogItem) => {
+                    const name = fcItemInFileFromFieldValue(item);
+                    return { [ATTRS]: name };
+                }
+            )
+        };
+    }
 
-//     return { ...rv, ...rest, };
-// }
+    return { ...rv, ...rest, };
+}

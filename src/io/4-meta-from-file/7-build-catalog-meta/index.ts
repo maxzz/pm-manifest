@@ -1,5 +1,5 @@
 import { type CatalogFile, type CatalogItem, type FieldCatalog, type Mani } from "../../../all-types";
-import { uuid } from "../../../utils";
+import { createGuid, uuid } from "../../../utils";
 
 // Field catalog transformation
 
@@ -34,7 +34,7 @@ function addFcItemInMemInfo(catalogName: CatalogFile.ItemInFile, idx: number): C
 export function fcFileToFcInMemory(fcat: CatalogFile.Root | undefined): FieldCatalog {
 
     const rv: FieldCatalog = {
-        descriptor: fcat?.descriptor || {},
+        descriptor: fcat?.descriptor || { id: createGuid() },
         items: fcat?.names?.map(addFcItemInMemInfo) || [],
     };
 
