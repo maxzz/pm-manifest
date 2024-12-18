@@ -7,7 +7,7 @@ function hasKeys(obj?: object): boolean {
 }
 
 export function prepareNewMani4Xml(mani: Mani.Manifest): Mani.Manifest {
-    const { options, descriptor, forms, ...rest } = mani;
+    const { options, descriptor, forms } = mani;
 
     const rv: any = { manifest: {}, };
 
@@ -42,11 +42,11 @@ export function prepareNewMani4Xml(mani: Mani.Manifest): Mani.Manifest {
         };
     }
 
-    return { ...rv, ...rest, };
+    return rv;
 }
 
 export function prepareNewFc4Xml(fc: CatalogFile.Root): CatalogFile.Root {
-    const { descriptor, names, ...rest } = fc;
+    const { descriptor, names } = fc;
     const rv: any = { storagecatalog: {} }; // empty to preserve fields order
 
     // 1. Customization
@@ -65,5 +65,5 @@ export function prepareNewFc4Xml(fc: CatalogFile.Root): CatalogFile.Root {
         };
     }
 
-    return { ...rv, ...rest };
+    return rv;
 }
