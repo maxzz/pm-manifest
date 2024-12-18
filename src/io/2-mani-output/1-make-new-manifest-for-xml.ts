@@ -1,5 +1,4 @@
-import { type CatalogFile, type CatalogItem, type FieldCatalog, type Mani } from "../../all-types";
-import { fcItemInFileFromFieldValue } from "../4-meta-from-file";
+import { type CatalogFile, type Mani } from "../../all-types";
 
 const ATTRS: string = "_attributes";
 
@@ -46,42 +45,18 @@ export function prepareNewMani4Xml(mani: Mani.Manifest): Mani.Manifest {
     return { ...rv, ...rest, };
 }
 
-function prepareNewFc4Xml_nun(fc: FieldCatalog): CatalogFile.Root {
-    const { descriptor, items, ...rest } = fc;
-    const rv: any = {};
-
-    // 1. Descriptor
-    if (hasKeys(descriptor)) {
-        rv.descriptor = { [ATTRS]: descriptor };
-    }
-
-    // 2. Names
-    if (items?.length) {
-        rv.names = {
-            name: items.map(
-                (item: CatalogItem) => {
-                    const name = fcItemInFileFromFieldValue(item);
-                    return { [ATTRS]: name };
-                }
-            )
-        };
-    }
-
-    return { ...rv, ...rest, };
-}
-
 export function prepareNewFc4Xml(fc: CatalogFile.Root): CatalogFile.Root {
     const { descriptor, names, ...rest } = fc;
-    const rv: any = { names: [] };
+    const rv: any = { storagecatalog: {} }; // empty to preserve fields order
 
     // 1. Customization
     if (hasKeys(descriptor)) {
-        rv.descriptor = { [ATTRS]: descriptor };
+        rv.storagecatalog.descriptor = { [ATTRS]: descriptor };
     }
 
     // 2. Names
     if (names?.length) {
-        rv.names = {
+        rv.storagecatalog.names = {
             name: names.map(
                 (name: CatalogFile.ItemInFile) => {
                     return { [ATTRS]: name };
@@ -90,5 +65,5 @@ export function prepareNewFc4Xml(fc: CatalogFile.Root): CatalogFile.Root {
         };
     }
 
-    return { ...rv, ...rest, };
+    return { ...rv, ...rest };
 }
