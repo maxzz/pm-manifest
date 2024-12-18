@@ -46,7 +46,7 @@ export function prepareNewMani4Xml(mani: Mani.Manifest): Mani.Manifest {
     return { ...rv, ...rest, };
 }
 
-export function prepareNewFc4Xml(fc: FieldCatalog): CatalogFile.Root {
+function prepareNewFc4Xml_nun(fc: FieldCatalog): CatalogFile.Root {
     const { descriptor, items, ...rest } = fc;
     const rv: any = {};
 
@@ -61,6 +61,29 @@ export function prepareNewFc4Xml(fc: FieldCatalog): CatalogFile.Root {
             name: items.map(
                 (item: CatalogItem) => {
                     const name = fcItemInFileFromFieldValue(item);
+                    return { [ATTRS]: name };
+                }
+            )
+        };
+    }
+
+    return { ...rv, ...rest, };
+}
+
+export function prepareNewFc4Xml(fc: CatalogFile.Root): CatalogFile.Root {
+    const { descriptor, names, ...rest } = fc;
+    const rv: any = { names: [] };
+
+    // 1. Customization
+    if (hasKeys(descriptor)) {
+        rv.descriptor = { [ATTRS]: descriptor };
+    }
+
+    // 2. Names
+    if (names?.length) {
+        rv.names = {
+            name: names.map(
+                (name: CatalogFile.ItemInFile) => {
                     return { [ATTRS]: name };
                 }
             )
