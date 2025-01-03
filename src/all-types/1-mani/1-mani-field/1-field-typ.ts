@@ -50,11 +50,9 @@ export function fieldTyp2Obj(typ: FieldTyp): { password?: boolean | undefined; t
 export function fieldTyp2FcObj(typ: FieldTyp): { password?: boolean | undefined; type: Mani.FieldTypeStr; } {
     const isPsw = typ === FieldTyp.psw;
     const type = (
-        isPsw
-            ? FieldTyp[FieldTyp.edit]
-            : typ === FieldTyp.edit
-                ? undefined
-                : FieldTyp[typ]
+        isPsw || typ === FieldTyp.edit
+            ? undefined
+            : FieldTyp[typ]
     ) as Mani.FieldTypeStr;
     return {
         type,
