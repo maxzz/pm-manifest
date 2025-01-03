@@ -43,6 +43,7 @@ export type FieldLinks = {          // rfieldindex and rfield come together and 
     rfield?: 'in' | 'out';          // 'in'(old psw) - from login form field value, 'out'(new psw) - to login form field value
     rfieldindex?: number;           // Index to password field in login from cpass, like '2'
     rfieldform?: number;            // '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
+    brokenFcLink?: boolean;         // (not saved to file, set by client): true when loaded from file rfieldform was -2 but field was not found in the current field catalog, so we set rfieldform as none (for editor) but save rfieldform as -2.
 };
 
 // All together
