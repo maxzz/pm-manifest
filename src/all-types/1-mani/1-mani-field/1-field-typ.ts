@@ -44,6 +44,23 @@ export function fieldTyp2Obj(typ: FieldTyp): { password?: boolean | undefined; t
         ...(isPsw && { 'password': true }),
     };
 }
+/**
+ * Field Catalog does not store type if it is 'edit'. wierd but reality.
+ */
+export function fieldTyp2FcObj(typ: FieldTyp): { password?: boolean | undefined; type: Mani.FieldTypeStr; } {
+    const isPsw = typ === FieldTyp.psw;
+    const type = (
+        isPsw
+            ? FieldTyp[FieldTyp.edit]
+            : typ === FieldTyp.edit
+                ? undefined
+                : FieldTyp[typ]
+    ) as Mani.FieldTypeStr;
+    return {
+        type,
+        ...(isPsw && { 'password': true }),
+    };
+}
 
 /*
     const enum FieldType {       // This is internal type used by Bkg and Cs, but these definitions are close to DPAgent definitions.

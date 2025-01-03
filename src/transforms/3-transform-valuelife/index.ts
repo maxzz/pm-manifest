@@ -1,4 +1,4 @@
-import { CatalogItem, FieldTyp, Mani, ValueAs, ValueLife, fieldTyp4Str } from "../../all-types";
+import { FieldTyp, Mani, ValueAs, ValueLife, fieldTyp4Str } from "../../all-types";
 
 export namespace TransformValue {
 
@@ -63,8 +63,8 @@ export namespace TransformValue {
     }
 
     export type valueLife2ManiLogicReturn = { // as part of Mani.Field | CatalogItem
-        onetvalue?: boolean;
         askalways?: boolean;
+        onetvalue?: boolean;
         value?: string;
     };
 
