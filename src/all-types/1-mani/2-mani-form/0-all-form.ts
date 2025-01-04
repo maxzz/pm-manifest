@@ -7,6 +7,7 @@ export enum FORMNAME {              // predefined form names
     signon = 0,
     pchange = 1,
     fieldcatalog = -2,
+    brokenFcLink = -3,              // (not saved to file, set by client): true when loaded from file rfieldform was -2 but field was not found in the current field catalog, so we set rfieldform as none (for editor) but save rfieldform as -2.
 }
 
 export type FContext = {
