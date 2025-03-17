@@ -42,7 +42,7 @@ export type FieldPolicyOptions = {  // Names are case-sensitive here as it comes
 export type FieldLinks = {          // rfieldindex and rfield come together and defined only on cpass form
     rfield?: 'in' | 'out';          // 'in'(old psw) - from login form field value, 'out'(new psw) - to login form field value
     rfieldindex?: number;           // Index to password field in login from cpass, like '2'
-    rfieldform?: number;            // '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
+    rfieldform?: number;            // (see enum FORMNAME) '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
 };
 
 // All together

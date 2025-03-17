@@ -44,6 +44,7 @@ export function fieldTyp2Obj(typ: FieldTyp): { password?: boolean | undefined; t
         ...(isPsw && { 'password': true }),
     };
 }
+
 /**
  * Field Catalog does not store type if it is 'edit'. wierd but reality.
  */

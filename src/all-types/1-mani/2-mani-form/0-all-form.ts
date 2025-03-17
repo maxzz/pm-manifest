@@ -44,7 +44,7 @@ export type Detection = {
 };
 
 export type Options = {
-    choosename?: string;
+    choosename?: string;            // manifest user exposed name. This was mandatory name.
     sidekick?: string;              // "manual mode hint"
     ownernote?: string;
     quicklink?: string;             // QL menu name
