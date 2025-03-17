@@ -1,21 +1,8 @@
 import { Mani, Meta } from "../../../all-types";
 import { createMetaForm } from "./1-create-meta-form";
 
-export function buildManiMetaFormsOld(mani: Mani.Manifest | undefined): Meta.Form[] { //TODO: we should not input as mani, but just forms
-
-    const metaForms: Meta.Form[] =
-        !mani?.forms?.length
-            ? []
-            : mani.forms.map(createMetaForm);
-
-    updateROtherArray(metaForms);
-
-    return metaForms;
-}
-
 /**
- * Params are mani, but just forms. buildManiMetaForms() should be removed 
- * after dropzone, pmac, electron-window-monitor, and pmat24-lite are updated.
+ * This is used by dropzone, pmac, electron-window-monitor, and pmat24-lite are updated.
  */
 export function buildManiMetaForms(maniForms: Mani.Form[] | undefined): Meta.Form[] {
 
