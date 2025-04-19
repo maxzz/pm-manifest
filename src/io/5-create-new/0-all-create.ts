@@ -22,13 +22,12 @@ export function createNewManualForm({ detection, options, fields }: CreateNewMan
  * @returns New duplicated form
  */
 export function createNewManualFormFrom(form: Mani.Form): Mani.Form {
-
     const rv: Mani.Form = {
-        detection: { ...form.detection },
-        options: form.options,
+        detection: { ...form.detection }, // spread since we modify names_ext
+        options: { ...form.options }, // this optional and not relly needed
         fields: [],
     };
-    
+
     rv.detection.names_ext = "";
 
     return rv;

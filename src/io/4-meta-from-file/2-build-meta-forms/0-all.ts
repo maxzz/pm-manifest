@@ -1,4 +1,4 @@
-import { Mani, Meta } from "../../../all-types";
+import { type Mani, type Meta, FormIdx } from "../../../all-types";
 import { createMetaForm } from "./1-create-meta-form";
 
 /**
@@ -10,6 +10,19 @@ export function buildManiMetaForms(maniForms: Mani.Form[] | undefined): Meta.For
         !maniForms?.length
             ? []
             : maniForms.map(createMetaForm);
+
+    updateROtherArray(metaForms);
+
+    return metaForms;
+}
+
+/**
+ * We create new password change meta form for existing login.
+ * Login form is not modified except for cross-referencing.
+ */
+export function rebuildMetaFormsWithCpassForm(metaForms: Meta.Form[], maniForms: Mani.Form[], cpassForm: Mani.Form): Meta.Form[] {
+    maniForms[FormIdx.cpass] = cpassForm;
+    metaForms[FormIdx.cpass] = createMetaForm(cpassForm, FormIdx.cpass);
 
     updateROtherArray(metaForms);
 
