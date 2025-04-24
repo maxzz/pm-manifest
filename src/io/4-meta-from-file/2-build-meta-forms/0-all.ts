@@ -11,7 +11,7 @@ export function buildManiMetaForms(maniForms: Mani.Form[] | undefined): Meta.For
             ? []
             : maniForms.map(createMetaForm);
 
-    updateROtherArray(metaForms);
+    update_rotherRefs(metaForms);
 
     return metaForms;
 }
@@ -20,21 +20,38 @@ export function buildManiMetaForms(maniForms: Mani.Form[] | undefined): Meta.For
  * We create new password change meta form for existing login.
  * Login form is not modified except for cross-referencing.
  */
-export function rebuildMetaFormsWithCpassForm(metaForms: Meta.Form[], maniForms: Mani.Form[], cpassForm: Mani.Form): Meta.Form[] {
-    maniForms[FormIdx.cpass] = cpassForm;
-    metaForms[FormIdx.cpass] = createMetaForm(cpassForm, FormIdx.cpass);
+export function rebuildMetaFormsWithCpassForm(metaForms: Meta.Form[], maniForms: Mani.Form[], cpassManiForm: Mani.Form): Meta.Form[] {
+    maniForms[FormIdx.cpass] = cpassManiForm;
+    metaForms[FormIdx.cpass] = createMetaForm(cpassManiForm, FormIdx.cpass);
 
-    updateROtherArray(metaForms);
+    update_rotherRefs(metaForms);
 
     return metaForms;
 }
 
-function updateROtherArray(metaForms: Meta.Form[]): void {
+/**
+ * We create new password change meta form for existing login.
+ * Login form is not modified except for cross-referencing.
+ */
+export function rebuildMetaFormsWithoutCpassForm(metaForms: Meta.Form[], maniForms: Mani.Form[]) {
+    if (metaForms.length !== 2 || maniForms.length !== 2) {
+        throw new Error("Invalid #of forms");
+    }
+
+    maniForms.pop();
+    metaForms.pop();
+
+    update_rotherRefs(metaForms);
+}
+
+function update_rotherRefs(metaForms: Meta.Form[]): void {
     [0, 1].forEach(
-        (formIdx: number) => {
-            if (metaForms[formIdx]) {
-                const otherIdx = formIdx === 0 ? 1 : 0;
-                metaForms[formIdx].rother = metaForms[otherIdx]?.fields.map((field) => field.ridx) || [];
+        (idx: number) => {
+            if (metaForms[idx]) {
+                const otherIdx = idx === 0 ? 1 : 0;
+                metaForms[idx].rother = metaForms[otherIdx]?.fields.map(
+                    (field: Meta.Field) => field.ridx
+                ) || [];
             }
         }
     );
