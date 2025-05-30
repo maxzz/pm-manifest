@@ -3,15 +3,6 @@ import { rectsBoundaries } from "./2-rects-boundaries";
 
 export * from './2-rects-boundaries';
 
-function str2loc(v: string): MPath.loc {
-    let [x, y, x2, y2] = v.split(' ').map(str => +str);
-    return { x, y, w: x2 - x, h: y2 - y };
-}
-
-function loc2str(loc: MPath.loc): string {
-    return `${loc.x} ${loc.y} ${loc.x + loc.w} ${loc.y + loc.h}`;
-}
-
 export function buildPreviewData(fields: Meta.Field[]): Meta.View {
     const uniqueLocs = new Set<string>();
 
@@ -42,4 +33,13 @@ export function buildPreviewData(fields: Meta.Field[]): Meta.View {
     };
 
     return rv;
+}
+
+function str2loc(v: string): MPath.loc {
+    let [x, y, x2, y2] = v.split(' ').map(str => +str);
+    return { x, y, w: x2 - x, h: y2 - y };
+}
+
+function loc2str(loc: MPath.loc): string {
+    return `${loc.x} ${loc.y} ${loc.x + loc.w} ${loc.y + loc.h}`;
 }
