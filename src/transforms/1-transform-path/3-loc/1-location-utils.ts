@@ -10,7 +10,7 @@ export function buildPreviewData(fields: Meta.Field[]): Meta.View {
         (field) => {
             const fieldLocs = (field.path.loc || '').split('|');
             fieldLocs.forEach((loc) => uniqueLocs.add(loc));
-            field.ridx = fieldLocs[fieldLocs.length - 1] as any; // temp store string as number
+            field.previewIdx = fieldLocs[fieldLocs.length - 1] as any; // temp store string as number
         }
     );
 
@@ -21,9 +21,9 @@ export function buildPreviewData(fields: Meta.Field[]): Meta.View {
 
     fields.forEach(
         (field) => {
-            field.ridx = rectStrs.findIndex((locStr) => locStr === field.ridx as any); // restore str to number
+            field.previewIdx = rectStrs.findIndex((locStr) => locStr === field.previewIdx as any); // restore str to number
             
-            nonEmptyRects[field.ridx] && (nonEmptyRects[field.ridx].f = 1);
+            nonEmptyRects[field.previewIdx] && (nonEmptyRects[field.previewIdx].f = 1);
         }
     );
 

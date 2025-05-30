@@ -20,7 +20,7 @@ export type Field = {
     life: ValueLife;
     path: Path;
     pidx: number;           // index in the form
-    ridx: number;           // for preview index in form.view.rects (or -1 if no found, but it should never happens if view exist)
+    previewIdx: number;     // for preview index in form.view.rects (or -1 if no found, but it should never happens if view exist)
     uuid: number;           // short relative uuid number in the current session
 };
 
@@ -51,6 +51,6 @@ export type Form = {
     pool: string[];
     view?: View;            // view exists only for IE and win32
     fields: Field[];        // each item corresponds to each field
-    rother: number[];       // array of ridx from another form, i.e for form.type 0 its rects indices of form.type 1, and vice versa
+    previewOther: number[]; // array of ridx from another form, i.e for form.type 0 its rects indices of form.type 1, and vice versa
     uuid: number;           // short relative uuid number in the current session
 };

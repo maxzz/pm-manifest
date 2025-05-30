@@ -49,8 +49,8 @@ function update_rotherRefs(metaForms: Meta.Form[]): void {
         (idx: number) => {
             if (metaForms[idx]) {
                 const otherIdx = idx === 0 ? 1 : 0;
-                metaForms[idx].rother = metaForms[otherIdx]?.fields.map(
-                    (field: Meta.Field) => field.ridx
+                metaForms[idx].previewOther = metaForms[otherIdx]?.fields.map(
+                    (field: Meta.Field) => field.previewIdx
                 ) || [];
             }
         }

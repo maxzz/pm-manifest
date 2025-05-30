@@ -14,7 +14,7 @@ export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
                 life: TransformValue.valueLife4Mani(field),
                 path: FieldPath.fieldPathItems(pool, field.path_ext || ''),
                 pidx: idx,
-                ridx: 0,
+                previewIdx: 0,
                 uuid: uuid.asRelativeNumber(),
             };
             return newField;
@@ -35,7 +35,7 @@ export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
         pool,
         view: FieldPath.loc.utils.buildPreviewData(fields),
         fields,
-        rother: [],
+        previewOther: [],
         uuid: uuid.asRelativeNumber(),
     };
 
