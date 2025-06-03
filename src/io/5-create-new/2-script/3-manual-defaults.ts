@@ -7,7 +7,7 @@ export function defaultManualFormFields(): Mani.Field[] {
             displayname: "Username",
             type: "edit",
             dbname: createGuid(),
-            path_ext: "[sn]2.0.field;",
+            path_ext: "[sn]2.0.pos,x=10,y=10,units=abs;keys,key=tab;field;",
             useit: true,
         },
         {
@@ -15,7 +15,7 @@ export function defaultManualFormFields(): Mani.Field[] {
             type: "edit",
             password: true,
             dbname: createGuid(),
-            path_ext: "[sn]2.1.field;",
+            path_ext: "[sn]2.1.delay,ms=100;keys,key=tab;field;",
             useit: true,
         },
     ];
