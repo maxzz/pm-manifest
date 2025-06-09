@@ -12,10 +12,14 @@ export namespace EditorField {
         dbname: string;                 // Field guid from manifest or field catalog
         policies: FieldPolicy;          // Policy, policy2, options
 
-        rfield: string;                 // 'in' | 'out': in(old psw) - from login form field value, out(new psw) - to login form field value
+        rfield: string;                 // 'in' | 'out': 'in'(old psw) - from login form field value; 'out'(new psw) - to login form field value; or undefined if not set
         rfieldIndex: number;            // Index to password field in login from cpass, like '2'
         rfieldForm: number;             // '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
     };
+
+    // R-fields initialized in the editor as:
+    // rfieldIndex: maniField.rfieldindex || -1,   // -1 means not set to distinguish from '0' which zero field; -1 should be stored as '' in manifest
+    // rfieldForm: maniField.rfieldform || -1,     // -1 means not set to distinguish from '0' which is login form; -1 should be stored as '' in manifest; -2 is field catalog
 
     /**
      * Members ot the Field type that are used in the normal/manual field editors.

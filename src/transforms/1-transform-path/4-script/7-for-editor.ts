@@ -24,8 +24,8 @@ export function convFieldForEditor(maniField: Field): EditorField.ForAtoms {
         policies,
         
         rfield: maniField.rfield || '',
-        rfieldIndex: maniField.rfieldindex || 0,
-        rfieldForm: maniField.rfieldform || 0,
+        rfieldIndex: maniField.rfieldindex || -1,   // -1 means not set to distinguish from '0' which zero field; -1 should be stored as '' in manifest
+        rfieldForm: maniField.rfieldform || -1,     // -1 means not set to distinguish from '0' which is login form; -1 should be stored as '' in manifest; -2 is field catalog
     };
     return rv;
 }
