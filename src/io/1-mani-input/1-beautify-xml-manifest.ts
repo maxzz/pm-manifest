@@ -1,4 +1,4 @@
-import { type Mani } from "../../all-types";
+import { FormIdx, type Mani } from "../../all-types";
 
 /**
  * Convert XML object from .dpm file to our manifest format.
@@ -57,5 +57,32 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
         manifest.options.processes = manifest.options.processes.map((process) => (process as any)._attributes);
     }
 
-    return manifest as Mani.Manifest;
+    // 2. additional compatibility steps
+    restoreCpassLinkToLogin(manifest);
+
+    return manifest;
+}
+
+function restoreCpassLinkToLogin(manifest: Mani.Manifest): void {
+    const loginForm = manifest.forms[FormIdx.login];
+    const cpassForm = manifest.forms[FormIdx.cpass];
+
+    if (!loginForm || !cpassForm) {
+        return;
+    }
+
+    let direction: 'in' | 'out' = 'in';
+
+    cpassForm.fields.forEach(
+        (cpassField: Mani.Field) => {
+            if (cpassField.type === "edit" && cpassField.password && !cpassField.rfieldindex) {
+                const loginField = loginForm.fields.find((loginField: Mani.Field) => loginField.dbname === cpassField.dbname);
+                if (loginField) {
+                    cpassField.rfieldindex = 0; // special case of optimization when file was saved
+                    cpassField.rfield = direction;
+                    direction = 'out'; // all other fields will be 'new' and 'confirm'
+                }
+            }
+        }
+    );
 }
