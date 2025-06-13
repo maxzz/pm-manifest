@@ -13,8 +13,7 @@ export namespace EditorField {
         policies: FieldPolicy;          // Policy, policy2, options
 
         rfield: string;                 // 'in' | 'out': 'in'(old psw) - from login form field value; 'out'(new psw) - to login form field value; or undefined if not set
-        rfieldIndex: number;            // Index to password field in login from cpass, like '2'
-        rfieldUuid: number;             // uuid of login form field (or 0) in cpass; only cpass form stores rfield... values like rfield="out" and rfieldindex="1"; not saved in manifest
+        rfieldUuid: number;             // Index to password field in login from cpass, like '2' when in file, but uuid.asRelativeNumber() when loaded in memory for editing
         rfieldForm: number;             // '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
     };
 
