@@ -11,7 +11,7 @@ export function buildManiMetaForms(maniForms: Mani.Form[] | undefined): Meta.For
             ? []
             : maniForms.map(createMetaForm);
 
-    update_rotherRefs(metaForms);
+    update_Links(metaForms);
 
     return metaForms;
 }
@@ -24,7 +24,7 @@ export function rebuildMetaFormsWithCpassForm(metaForms: Meta.Form[], maniForms:
     maniForms[FormIdx.cpass] = cpassManiForm;
     metaForms[FormIdx.cpass] = createMetaForm(cpassManiForm, FormIdx.cpass);
 
-    update_rotherRefs(metaForms);
+    update_Links(metaForms);
 
     return metaForms;
 }
@@ -42,6 +42,11 @@ export function rebuildMetaFormsWithoutCpassForm(metaForms: Meta.Form[], maniFor
     metaForms.pop();
 
     update_rotherRefs(metaForms);
+}
+
+function update_Links(metaForms: Meta.Form[]): void {
+    update_rotherRefs(metaForms);
+    update_rfieldUuid(metaForms);
 }
 
 function update_rotherRefs(metaForms: Meta.Form[]): void {
