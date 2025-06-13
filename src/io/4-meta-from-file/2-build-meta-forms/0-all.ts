@@ -55,4 +55,23 @@ function update_rotherRefs(metaForms: Meta.Form[]): void {
             }
         }
     );
+
+    update_rfieldUuid(metaForms);
+}
+
+function update_rfieldUuid(metaForms: Meta.Form[]): void {
+    const loginForm = metaForms[FormIdx.login];
+    const cpassForm = metaForms[FormIdx.cpass];
+
+    if (!loginForm || !cpassForm) {
+        return;
+    }
+
+    cpassForm.fields.forEach(
+        (cpassField: Meta.Field) => {
+            if (cpassField.mani.rfieldindex !== undefined) {
+                cpassField.mani.rfieldindex = loginForm.fields[cpassField.mani.rfieldindex]?.uuid;
+            }
+        }
+    );
 }
