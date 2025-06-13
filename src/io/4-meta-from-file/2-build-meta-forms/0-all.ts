@@ -68,7 +68,7 @@ function update_rfieldUuid(metaForms: Meta.Form[]): void {
     const loginForm = metaForms[FormIdx.login];
     const cpassForm = metaForms[FormIdx.cpass];
 
-    if (!loginForm || !cpassForm) {
+    if (!loginForm?.fields || !cpassForm?.fields) { //TODO: fields can be undefined, see test-no-fields.dpm, but it should be empty array in this case
         return;
     }
 

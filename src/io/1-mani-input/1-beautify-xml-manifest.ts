@@ -57,7 +57,7 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
         manifest.options.processes = manifest.options.processes.map((process) => (process as any)._attributes);
     }
 
-    // 2. additional compatibility steps
+    // 2. Additional compatibility steps
     restoreCpassLinkToLogin(manifest);
 
     return manifest;
@@ -67,7 +67,7 @@ function restoreCpassLinkToLogin(manifest: Mani.Manifest): void {
     const loginForm = manifest.forms[FormIdx.login];
     const cpassForm = manifest.forms[FormIdx.cpass];
 
-    if (!loginForm || !cpassForm) {
+    if (!loginForm?.fields || !cpassForm?.fields) { //TODO: fields can be undefined, see test-no-fields.dpm, but it should be empty array in this case
         return;
     }
 
