@@ -56,3 +56,44 @@ function update_rotherRefs(metaForms: Meta.Form[]): void {
         }
     );
 }
+
+/*
+function linkCpassFormToLogin(metaForms: Meta.Form[]) {
+    const loginForm = metaForms[FormIdx.login];
+    const cpassForm = metaForms[FormIdx.cpass];
+
+    if (!loginForm || !cpassForm) {
+        return;
+    }
+
+    cpassForm.fields.forEach(
+        (cpassField: Meta.Field) => {
+            if (cpassField.mani.rfieldindex !== -1 && cpassField.mani.rfieldindex) {
+                const loginField = loginForm.fields[cpassField.mani.rfieldindex];
+                cpassField. = loginForm.uuid;
+            }
+        }
+    );
+}
+
+function findFieldByIdx(loginForm: Meta.Form, idx: number): Meta.Field | undefined {
+    return loginForm.fields.find(
+        (field: Meta.Field) => field.previewIdx === idx
+    );
+}
+*/
+
+// function linkCpassFormToLogin(manifest: Mani.Manifest): void {
+//     const loginForm = manifest.forms[FormIdx.login];
+//     const cpassForm = manifest.forms[FormIdx.cpass];
+
+//     if (!loginForm || !cpassForm) {
+//         return;
+//     }
+
+//     cpassForm.fields.forEach(
+//         (field: Mani.Field) => {
+//             field.rfieldform = loginForm.uuid;
+//         }
+//     );
+// }
