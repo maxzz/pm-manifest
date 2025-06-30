@@ -1,7 +1,12 @@
 import { type Mani } from "../../../all-types";
 import { createGuid } from "../../../utils";
 
-export function defaultManualFormFields(): Mani.Field[] {
+export function defaultManualFormFields(createCpass: boolean): Mani.Field[] {
+    const rv: Mani.Field[] = createCpass ? cpassFields() : loginFields();
+    return rv;
+}
+
+function loginFields(): Mani.Field[] {
     return [
         {
             displayname: "Username",
@@ -16,6 +21,35 @@ export function defaultManualFormFields(): Mani.Field[] {
             password: true,
             dbname: createGuid(),
             path_ext: "[sn]2.1.delay,ms=100;keys,key=tab;field;",
+            useit: true,
+        },
+    ];
+}
+
+function cpassFields(): Mani.Field[] {
+    return [
+        {
+            displayname: "current password",
+            type: "edit",
+            password: true,
+            dbname: createGuid(),
+            path_ext: "[sn]3.0.pos,x=10,y=10,units=abs;keys,key=tab;field;",
+            useit: true,
+        },
+        {
+            displayname: "New password",
+            type: "edit",
+            password: true,
+            dbname: createGuid(),
+            path_ext: "[sn]3.1.delay,ms=100;keys,key=tab;field;",
+            useit: true,
+        },
+        {
+            displayname: "Confirm new password",
+            type: "edit",
+            password: true,
+            dbname: createGuid(),
+            path_ext: "[sn]3.2.delay,ms=100;keys,key=tab;field;keys,key=enter;",
             useit: true,
         },
     ];
