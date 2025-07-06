@@ -3,9 +3,9 @@ import { uuid } from "../../../utils";
 import { createEmptyValueLife } from "../1-general";
 import { createForManualManiField } from "./1-create-for-manual-mani-field";
 
-export function createForManualMetaField(password: boolean): Meta.Field {
+export function createForManualMetaField(password: boolean, name: string): Meta.Field {
     const rv: Meta.Field = {
-        mani: createForManualManiField(password),
+        mani: createForManualManiField(password, name),
         ftyp: FieldTyp.edit,
         life: createEmptyValueLife({ fType: FieldTyp.edit }),
         path: {},

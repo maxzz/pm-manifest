@@ -1,10 +1,10 @@
 import { type ChunkKey, type EditorDataForDly, type EditorDataForFld, type EditorDataForKbd, type EditorDataForPos, type EditorDataForOne, convFieldForEditor } from "../../../transforms";
 import { createForManualMetaField } from "./2-create-for-manual-meta-field";
 
-export function createScriptItemByType({ type, password }: { type: ChunkKey; password: boolean; }): EditorDataForOne {
+export function createScriptItemByType({ type, password, name }: { type: ChunkKey; password: boolean; name: string }): EditorDataForOne {
     switch (type) {
         case "fld": {
-            const field = createForManualMetaField(password);
+            const field = createForManualMetaField(password, name);
             const editField = convFieldForEditor(field.mani);
             const newItem: EditorDataForFld = {
                 type: 'fld',
