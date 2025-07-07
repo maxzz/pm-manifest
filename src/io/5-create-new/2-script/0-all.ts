@@ -1,7 +1,9 @@
+import { type Mani, type Meta, FieldTyp } from "../../../all-types";
+import { createGuidWrapped, uuid } from "../../../utils";
 import { type ChunkKey, type EditorDataForDly, type EditorDataForFld, type EditorDataForKbd, type EditorDataForPos, type EditorDataForOne, convFieldForEditor } from "../../../transforms";
-import { createForManualMetaField } from "./2-create-for-manual-meta-field";
+import { createEmptyValueLife } from "../1-general";
 
-export function createScriptItemByType({ type, password, name }: { type: ChunkKey; password: boolean; name: string }): EditorDataForOne {
+export function createScriptItemByType({ type, password, name }: { type: ChunkKey; password: boolean; name: string; }): EditorDataForOne {
     switch (type) {
         case "fld": {
             const field = createForManualMetaField(password, name);
@@ -46,4 +48,28 @@ export function createScriptItemByType({ type, password, name }: { type: ChunkKe
             throw new Error(really);
         }
     }
+}
+
+export function createForManualMetaField(password: boolean, name: string): Meta.Field {
+    const rv: Meta.Field = {
+        mani: createForManualManiField(password, name),
+        ftyp: FieldTyp.edit,
+        life: createEmptyValueLife({ fType: FieldTyp.edit }),
+        path: {},
+        pidx: 0,        // profile index is irrelevant for manual fields for now
+        previewIdx: 0,  // preview index is irrelevant for manual fields for now
+        uuid: uuid.asRelativeNumber(),
+    };
+    return rv;
+}
+
+export function createForManualManiField(password: boolean, name: string): Mani.Field {
+    const rv: Mani.Field = {
+        type: "edit",
+        password,
+        useit: true,
+        displayname: name,
+        dbname: createGuidWrapped(),
+    };
+    return rv;
 }
