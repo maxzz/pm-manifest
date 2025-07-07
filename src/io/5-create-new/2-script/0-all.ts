@@ -12,10 +12,10 @@ export function createScriptItemByType({ type, password, name }: { type: ChunkKe
             return createScriptItem_kbd();
         }
         case "pos": {
-            return createScriptItem_pos({});
+            return createScriptItem_pos();
         }
         case "dly": {
-            return createScriptItem_dly({});
+            return createScriptItem_dly();
         }
         default: {
             const really: never = type;
@@ -31,12 +31,12 @@ export function createScriptItem_kbd({ char = 'tab', repeat = 1, shift = 0, ctrl
     return newItem;
 }
 
-export function createScriptItem_pos({ x = 10, y = 20, units = false, res = 0 }: Partial<Omit<EditorDataForPos, 'type'>>): EditorDataForPos {
+export function createScriptItem_pos({ x = 10, y = 20, units = false, res = 0 }: Partial<Omit<EditorDataForPos, 'type'>> = {}): EditorDataForPos {
     const newItem: EditorDataForPos = { type: 'pos', x, y, units, res, };
     return newItem;
 }
 
-export function createScriptItem_dly({ n = 1000 }: Partial<Omit<EditorDataForDly, 'type'>>): EditorDataForDly {
+export function createScriptItem_dly({ n = 1000 }: Partial<Omit<EditorDataForDly, 'type'>> = {}): EditorDataForDly {
     const newItem: EditorDataForDly = { type: 'dly', n, };
     return newItem;
 }
