@@ -9,13 +9,13 @@ export function createScriptItemByType({ type, password, name }: { type: ChunkKe
             return createScriptItem_fld({ password, name });
         }
         case "kbd": {
-            return createScriptItem_kbd({ char: 'tab', repeat: 1, shift: 0, ctrl: 0, alt: 0, });
+            return createScriptItem_kbd();
         }
         case "pos": {
-            return createScriptItem_pos({ x: 10, y: 20, units: false, res: 0, });
+            return createScriptItem_pos({});
         }
         case "dly": {
-            return createScriptItem_dly({ n: 1000, });
+            return createScriptItem_dly({});
         }
         default: {
             const really: never = type;
@@ -26,17 +26,17 @@ export function createScriptItemByType({ type, password, name }: { type: ChunkKe
 
 // Key, Position, Delay
 
-export function createScriptItem_kbd({ char = 'tab', repeat = 1, shift = 0, ctrl = 0, alt = 0 }: Omit<EditorDataForKbd, 'type'>): EditorDataForKbd {
+export function createScriptItem_kbd({ char = 'tab', repeat = 1, shift = 0, ctrl = 0, alt = 0 }: Partial<Omit<EditorDataForKbd, 'type'>> = {}): EditorDataForKbd {
     const newItem: EditorDataForKbd = { type: 'kbd', char, repeat, shift, ctrl, alt, };
     return newItem;
 }
 
-export function createScriptItem_pos({ x = 10, y = 20, units = false, res = 0 }: Omit<EditorDataForPos, 'type'>): EditorDataForPos {
+export function createScriptItem_pos({ x = 10, y = 20, units = false, res = 0 }: Partial<Omit<EditorDataForPos, 'type'>>): EditorDataForPos {
     const newItem: EditorDataForPos = { type: 'pos', x, y, units, res, };
     return newItem;
 }
 
-export function createScriptItem_dly({ n = 1000 }: Omit<EditorDataForDly, 'type'>): EditorDataForDly {
+export function createScriptItem_dly({ n = 1000 }: Partial<Omit<EditorDataForDly, 'type'>>): EditorDataForDly {
     const newItem: EditorDataForDly = { type: 'dly', n, };
     return newItem;
 }
