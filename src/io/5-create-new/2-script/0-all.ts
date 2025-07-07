@@ -6,42 +6,16 @@ import { createEmptyValueLife } from "../1-general";
 export function createScriptItemByType({ type, password, name }: { type: ChunkKey; password: boolean; name: string; }): EditorDataForOne {
     switch (type) {
         case "fld": {
-            const field = createForManualMetaField(password, name);
-            const editField = convFieldForEditor(field.mani);
-            const newItem: EditorDataForFld = {
-                type: 'fld',
-                field,
-                editField,
-            };
-            return newItem;
+            return createScriptItem_fld({ password, name });
         }
         case "kbd": {
-            const newItem: EditorDataForKbd = {
-                type: 'kbd',
-                char: 'tab',
-                repeat: 1,
-                shift: 0,
-                ctrl: 0,
-                alt: 0,
-            };
-            return newItem;
+            return createScriptItem_kbd({ char: 'tab', repeat: 1, shift: 0, ctrl: 0, alt: 0, });
         }
         case "pos": {
-            const newItem: EditorDataForPos = {
-                type: 'pos',
-                x: 10,
-                y: 20,
-                units: false,
-                res: 0,
-            };
-            return newItem;
+            return createScriptItem_pos({ x: 10, y: 20, units: false, res: 0, });
         }
         case "dly": {
-            const newItem: EditorDataForDly = {
-                type: 'dly',
-                n: 1000,
-            };
-            return newItem;
+            return createScriptItem_dly({ n: 1000, });
         }
         default: {
             const really: never = type;
@@ -69,7 +43,7 @@ export function createScriptItem_dly({ n = 1000 }: Omit<EditorDataForDly, 'type'
 
 // Field
 
-export function createScriptItem_fld({ password, name }: { type: ChunkKey; password: boolean; name: string; }): EditorDataForFld {
+export function createScriptItem_fld({ password, name }: { password: boolean; name: string; }): EditorDataForFld {
     const field = createForManualMetaField(password, name);
     const editField = convFieldForEditor(field.mani);
     const newItem: EditorDataForFld = {
