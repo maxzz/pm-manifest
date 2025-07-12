@@ -27,6 +27,7 @@ export function convFieldForEditor(maniField: Field): EditorField.ForAtoms {
         rfieldUuid: maniField.rfieldindex || 0,     // 0 should be stored as '' in manifest, but non-zero should be converted to index before saving
         rfieldForm: maniField.rfieldform || -1,     // -1 means not set to distinguish from '0' which is login form; -1 should be stored as '' in manifest; -2 is field catalog
 
+        memOnly: maniField.memOnly,
     };
     return rv;
 }
