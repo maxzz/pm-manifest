@@ -68,12 +68,14 @@ export function createForManualMetaField(password: boolean, name: string): Meta.
 }
 
 export function createForManualManiField(password: boolean, name: string): Mani.Field {
+    const dbname = createGuidWrapped();
     const rv: Mani.Field = {
         type: "edit",
         password,
         useit: true,
         displayname: name,
-        dbname: createGuidWrapped(),
+        dbname,
+        memOnly: { uuidloginFld: 0, dbnameInitial: dbname },
     };
     return rv;
 }

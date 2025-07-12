@@ -45,6 +45,13 @@ export type FieldLinks = {          // rfieldindex and rfield come together and 
     rfieldform?: number;            // (see enum FORMNAME) '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
 };
 
+export type MemOnly = {
+    memOnly: {
+        uuidloginFld: number;       // Index to password field in login from cpass; used to link forms before saving and not saved in manifest
+        dbnameInitial: string;      // Initial value of the dbid if field was not linked to login form otherwise empty; not saved in manifest
+    };
+};
+
 // All together
 
 export type Field = Prettify<
@@ -63,4 +70,5 @@ export type Field = Prettify<
     }
     & FieldPolicySome
     & FieldLinks
+    & MemOnly
 >;
