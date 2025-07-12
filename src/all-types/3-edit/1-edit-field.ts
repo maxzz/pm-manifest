@@ -42,20 +42,26 @@ export namespace EditorField {
      *  |
      *  | ownernote                      // string
      */
-    export type Members = Pick<Field,
-        | 'useit'
-        | 'displayname'
-        | 'type'
-        | 'dbname'
-        | 'value'                       // | 'choosevalue' - so far cannot be changed
-        | 'password'
-        | 'askalways'
-        | 'onetvalue'
-        | 'policy'
-        | 'policy2'
-        | 'rfield'
-        | 'rfieldindex'
-        | 'rfieldform'
-        | 'options'
+    export type Members = Prettify<
+        & Pick<Field,
+            | 'useit'
+            | 'displayname'
+            | 'type'
+            | 'dbname'
+            | 'value'                    // | 'choosevalue' - so far cannot be changed
+            | 'password'
+            | 'askalways'
+            | 'onetvalue'
+            | 'policy'
+            | 'policy2'
+            | 'rfield'
+            | 'rfieldindex'
+            | 'rfieldform'
+            | 'options'
+        >
+        & {
+            loginFldUuid: number;           // Index to password field in login from cpass; used to link forms before saving and not saved in manifest
+            initialGuid: string;            // Initial value of the dbid if field was not linked to login form otherwise empty; not saved in manifest
+        }
     >;
 }
