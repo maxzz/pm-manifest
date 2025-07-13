@@ -13,7 +13,7 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
     }
 
     manifest.forms.forEach(
-        (form: Mani.Form) => {
+        (form: Mani.Form, idx: number) => {
             // Remove _attributes
             form.fcontext && (form.fcontext = (form.fcontext as any)._attributes);
             form.detection && (form.detection = (form.detection as any)._attributes);
@@ -43,7 +43,7 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
                         field.useit && (field.useit = !!field.useit);
                         field.rfieldindex && (field.rfieldindex = +field.rfieldindex);
                         field.rfieldform && (field.rfieldform = +field.rfieldform);
-                        field.memOnly = { uuidThis: 0, uuidLoginFld: 0, dbnameInitial: field.dbname };
+                        field.memOnly = { formIdx: idx, uuidThis: 0, uuidLoginFld: 0, dbnameInitial: field.dbname };
                     }
                 );
             }

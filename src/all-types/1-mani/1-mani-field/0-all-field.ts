@@ -47,6 +47,7 @@ export type FieldLinks = {          // rfieldindex and rfield come together and 
 
 export type MemOnly = {             // This section is not saved in manifest, but exists on Field and EditorField atoms
     memOnly: {
+        formIdx: number;            // This form index for this field; initialized when meta form is created
         uuidThis: number;           // This field uuid; initialized when meta field is created
         uuidLoginFld: number;       // Index to password field in login from cpass; used to link forms before saving
         dbnameInitial: string;      // Initial value of the dbid if field was not linked to login form otherwise empty

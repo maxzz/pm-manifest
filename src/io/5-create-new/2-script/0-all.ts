@@ -3,10 +3,10 @@ import { createGuidWrapped, uuid } from "../../../utils";
 import { type ChunkKey, type EditorDataForDly, type EditorDataForFld, type EditorDataForKbd, type EditorDataForPos, type EditorDataForOne, convFieldForEditor } from "../../../transforms";
 import { createEmptyValueLife } from "../1-general";
 
-export function createScriptItemByType({ type, password, name }: { type: ChunkKey; password: boolean; name: string; }): EditorDataForOne {
+export function createScriptItemByType({ formIdx, type, password, name }: { formIdx: number; type: ChunkKey; password: boolean; name: string; }): EditorDataForOne {
     switch (type) {
         case "fld": {
-            return createScriptItem_fld({ password, name });
+            return createScriptItem_fld({ formIdx, password, name });
         }
         case "kbd": {
             return createScriptItem_kbd();
@@ -43,8 +43,8 @@ export function createScriptItem_dly({ n = 1000 }: Partial<Omit<EditorDataForDly
 
 // Field
 
-export function createScriptItem_fld({ password, name }: { password: boolean; name: string; }): EditorDataForFld {
-    const field = createForManualMetaField(password, name);
+export function createScriptItem_fld({ formIdx, password, name }: { formIdx: number; password: boolean; name: string; }): EditorDataForFld {
+    const field = createForManualMetaField( formIdx, password, name);
     const editField = convFieldForEditor(field.mani);
     const newItem: EditorDataForFld = {
         type: 'fld',
@@ -54,20 +54,21 @@ export function createScriptItem_fld({ password, name }: { password: boolean; na
     return newItem;
 }
 
-export function createForManualMetaField(password: boolean, name: string): Meta.Field {
+export function createForManualMetaField(formIdx: number,password: boolean, name: string): Meta.Field {
+    const uuidThis = uuid.asRelativeNumber();
     const rv: Meta.Field = {
-        mani: createForManualManiField(password, name),
+        mani: createForManualManiField(formIdx, uuidThis, password, name),
         ftyp: FieldTyp.edit,
         life: createEmptyValueLife({ fType: FieldTyp.edit }),
         path: {},
         pidx: 0,        // profile index is irrelevant for manual fields for now
         previewIdx: 0,  // preview index is irrelevant for manual fields for now
-        uuid: uuid.asRelativeNumber(),
+        uuid: uuidThis,
     };
     return rv;
 }
 
-export function createForManualManiField(password: boolean, name: string): Mani.Field {
+export function createForManualManiField(formIdx: number, uuidThis: number, password: boolean, name: string): Mani.Field {
     const dbname = createGuidWrapped();
     const rv: Mani.Field = {
         type: "edit",
@@ -75,7 +76,7 @@ export function createForManualManiField(password: boolean, name: string): Mani.
         useit: true,
         displayname: name,
         dbname,
-        memOnly: { uuidThis: 0, uuidLoginFld: 0, dbnameInitial: dbname },
+        memOnly: { formIdx, uuidThis, uuidLoginFld: 0, dbnameInitial: dbname },
     };
     return rv;
 }

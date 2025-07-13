@@ -17,6 +17,7 @@ export function createMetaForm(form: Mani.Form, formIdx: number): Meta.Form {
                 previewIdx: 0,
                 uuid: uuid.asRelativeNumber(),
             };
+            field.memOnly.formIdx = formIdx;
             field.memOnly.uuidThis = newField.uuid;
             return newField;
         }
