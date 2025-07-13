@@ -3,7 +3,7 @@ import { getPool, TransformValue, FieldPath, urlDomain, removeQuery } from "../.
 import { isAnyFieldManual, isIeProcess, isIeServer, uuid } from "../../../utils";
 import { getBailouts } from "../1-bailouts";
 
-export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
+export function createMetaForm(form: Mani.Form, formIdx: number): Meta.Form {
     const pool: string[] = getPool(form) || [];
 
     const fields: Meta.Field[] = (form.fields || []).map(
@@ -17,6 +17,7 @@ export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
                 previewIdx: 0,
                 uuid: uuid.asRelativeNumber(),
             };
+            field.memOnly.uuidThis = newField.uuid;
             return newField;
         }
     );
@@ -30,7 +31,7 @@ export function createMetaForm(form: Mani.Form, idx: number): Meta.Form {
 
     const rv: Meta.Form = {
         mani: form,
-        type: idx,
+        type: formIdx,
         disp: newDisp,
         pool,
         view: FieldPath.loc.utils.buildPreviewData(fields),

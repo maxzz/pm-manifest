@@ -23,13 +23,30 @@ export function prepareNewMani4Xml(mani: Mani.Manifest): Mani.Manifest {
         rv.manifest.descriptor = { [ATTRS]: descriptor };
     }
 
+    // 2.1 Remve memOnly from fields before saving
+    // forms?.forEach(
+    //     (form: Mani.Form) => {
+    //         form.fields?.forEach(
+    //             (field: Partial<Mani.Field>) => {
+    //                 delete field.memOnly;
+    //             }
+    //         );
+    //     }
+    // );
+    //No good to modify input params
+
     // 3. Manifest forms
     if (forms?.length) {
         rv.manifest.forms = {
             form: forms.map(
                 (form: Mani.Form) => {
                     const { fcontext, detection, options, fields, ...rest } = form;
-                    const xmlFields = fields?.map((field) => ({ [ATTRS]: field }));
+                    const xmlFields =
+                        fields?.map(
+                            (field: Partial<Mani.Field>) => { const { memOnly, ...rest } = field; return { ...rest }; }
+                        ).map(
+                            (field) => ({ [ATTRS]: field })
+                        );
                     return {
                         ...(hasKeys(fcontext) && { fcontext: { [ATTRS]: form.fcontext } }),
                         ...(hasKeys(detection) && { detection: { [ATTRS]: form.detection } }),

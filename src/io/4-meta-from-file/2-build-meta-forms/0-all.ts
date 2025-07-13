@@ -75,7 +75,7 @@ function update_rfieldUuid(metaForms: Meta.Form[]): void {
     cpassForm.fields.forEach(
         (cpassField: Meta.Field) => {
             if (cpassField.mani.rfieldindex !== undefined) {
-                cpassField.mani.rfieldindex = loginForm.fields[cpassField.mani.rfieldindex]?.uuid;
+                cpassField.mani.memOnly.uuidLoginFld = loginForm.fields[cpassField.mani.rfieldindex]?.uuid;
             }
         }
     );

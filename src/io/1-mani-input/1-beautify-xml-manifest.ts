@@ -43,6 +43,7 @@ export function beautifyXMLManifest(manifest: Mani.Manifest): Mani.Manifest {
                         field.useit && (field.useit = !!field.useit);
                         field.rfieldindex && (field.rfieldindex = +field.rfieldindex);
                         field.rfieldform && (field.rfieldform = +field.rfieldform);
+                        field.memOnly = { uuidThis: 0, uuidLoginFld: 0, dbnameInitial: field.dbname };
                     }
                 );
             }
