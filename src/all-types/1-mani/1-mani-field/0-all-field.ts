@@ -45,10 +45,11 @@ export type FieldLinks = {          // rfieldindex and rfield come together and 
     rfieldform?: number;            // (see enum FORMNAME) '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
 };
 
-export type MemOnly = {
+export type MemOnly = {             // This section is not saved in manifest, but exists on Field and EditorField atoms
     memOnly: {
-        uuidloginFld: number;       // Index to password field in login from cpass; used to link forms before saving and not saved in manifest
-        dbnameInitial: string;      // Initial value of the dbid if field was not linked to login form otherwise empty; not saved in manifest
+        uuidThis: number;           // This field uuid; initialized when meta field is created
+        uuidLoginFld: number;       // Index to password field in login from cpass; used to link forms before saving
+        dbnameInitial: string;      // Initial value of the dbid if field was not linked to login form otherwise empty
     };
 };
 

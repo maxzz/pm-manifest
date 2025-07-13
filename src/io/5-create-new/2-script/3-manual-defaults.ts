@@ -17,7 +17,7 @@ function loginFields(): Mani.Field[] {
             dbname: guids[0],
             path_ext: "[sn]2.0.pos,x=10,y=10,units=abs;keys,key=tab;field;",
             useit: true,
-            memOnly: { uuidloginFld: 0, dbnameInitial: guids[0], },
+            memOnly: { uuidThis: 0, uuidLoginFld: 0, dbnameInitial: guids[0], },
         },
         {
             displayname: "Password",
@@ -26,7 +26,7 @@ function loginFields(): Mani.Field[] {
             dbname: guids[1],
             path_ext: "[sn]2.1.delay,ms=100;keys,key=tab;field;",
             useit: true,
-            memOnly: { uuidloginFld: 0, dbnameInitial: guids[1], },
+            memOnly: { uuidThis: 0, uuidLoginFld: 0, dbnameInitial: guids[1], },
         },
     ];
 }
@@ -41,7 +41,7 @@ function cpassFields(): Mani.Field[] {
             dbname: guids[0],
             path_ext: "[sn]3.0.pos,x=10,y=10,units=abs;keys,key=tab;field;",
             useit: true,
-            memOnly: { uuidloginFld: 0, dbnameInitial: guids[0], },
+            memOnly: { uuidThis: 0, uuidLoginFld: 0, dbnameInitial: guids[0], },
         },
         {
             displayname: "New password",
@@ -50,7 +50,7 @@ function cpassFields(): Mani.Field[] {
             dbname: guids[1],
             path_ext: "[sn]3.1.delay,ms=100;keys,key=tab;field;",
             useit: true,
-            memOnly: { uuidloginFld: 0, dbnameInitial: guids[1], },
+            memOnly: { uuidThis: 0, uuidLoginFld: 0, dbnameInitial: guids[1], },
         },
         {
             displayname: "Confirm new password",
@@ -59,7 +59,7 @@ function cpassFields(): Mani.Field[] {
             dbname: guids[2],
             path_ext: "[sn]3.2.delay,ms=100;keys,key=tab;field;keys,key=enter;",
             useit: true,
-            memOnly: { uuidloginFld: 0, dbnameInitial: guids[2], },
+            memOnly: { uuidThis: 0, uuidLoginFld: 0, dbnameInitial: guids[2], },
         },
     ];
 }

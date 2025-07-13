@@ -75,7 +75,7 @@ export function createForManualManiField(password: boolean, name: string): Mani.
         useit: true,
         displayname: name,
         dbname,
-        memOnly: { uuidloginFld: 0, dbnameInitial: dbname },
+        memOnly: { uuidThis: 0, uuidLoginFld: 0, dbnameInitial: dbname },
     };
     return rv;
 }
