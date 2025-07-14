@@ -4,14 +4,13 @@ import { type ScriptInFile } from "./9-types-in-file";
 import { modifiers } from "./4-mpath-script-keys";
 import { convFieldForEditor } from "./7-for-editor";
 
-function convertOptions(options: string[]): Record<string, string> {
-    const rv: Record<string, string> = {};
-    options.forEach(
-        (option: string) => {
-            const [key, value] = option.split('=');
-            rv[key] = value;
+export function parseForEditor(fields: Meta.Field[]): EditorDataForOne[] {
+    const rv = fields.map(
+        (field: Meta.Field) => {
+            const chunks = field.path?.sn?.parts.map((part: string) => parseChunk(part, field)).filter(Boolean) || [];
+            return chunks;
         }
-    );
+    ).flat();
     return rv;
 }
 
@@ -72,14 +71,13 @@ function parseChunk(chunkValue: string, metaField: Meta.Field): EditorDataForOne
     }
 }
 
-export function parseForEditor(fields: Meta.Field[]): EditorDataForOne[] {
-    const rv = fields.map(
-        (field: Meta.Field) => {
-            const chunks = field.path?.sn?.parts
-                .map((part: string) => parseChunk(part, field))
-                .filter(Boolean) || [];
-            return chunks;
+function convertOptions(options: string[]): Record<string, string> {
+    const rv: Record<string, string> = {};
+    options.forEach(
+        (option: string) => {
+            const [key, value] = option.split('=');
+            rv[key] = value;
         }
-    ).flat();
+    );
     return rv;
 }
