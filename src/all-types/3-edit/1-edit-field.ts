@@ -17,7 +17,9 @@ export namespace EditorField {
             rfieldUuid: number;             // Index to password field in login from cpass, like '2' when in file, but uuid.asRelativeNumber() when loaded in memory for editing
             rfieldForm: number;             // '-2' if field is comming from catalog; Defined mostly on login form (or on cpass if it's a new password field not from login form).
         }
-        & MemOnly
+        & {
+            memOnly: MemOnly;
+        }
     >;
 
     // R-fields initialized in the editor as:

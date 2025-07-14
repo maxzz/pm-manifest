@@ -65,7 +65,7 @@ function cpassFields(formIdx: number): Mani.Field[] {
     ];
 }
 
-function newMemOnly(formIdx: number, dbname: string): Mani.MemOnly['memOnly'] {
+function newMemOnly(formIdx: number, dbname: string): Mani.MemOnly {
     return { formIdx, uuidThis: 0, uuidLoginFld: 0, dbnameInitial: dbname, };
 }
 
