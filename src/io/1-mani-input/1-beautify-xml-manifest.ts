@@ -1,4 +1,5 @@
-import { FormIdx, type Mani } from "../../all-types";
+import { type Mani, FormIdx } from "../../all-types";
+import { isFieldPsw } from "../4-meta-from-file";
 
 /**
  * Convert XML object from .dpm file to our manifest format.
@@ -74,6 +75,10 @@ function restoreCpassLinkToLogin(manifest: Mani.Manifest): void {
 
     cpassForm.fields.forEach(
         (cpassField: Mani.Field) => {
+            if (!isFieldPsw(cpassField)) { // Links are only for password fields
+                return;
+            }
+
             if (cpassField.rfield && !cpassField.rfieldindex) {
                 cpassField.rfieldindex = 0; // special case of optimization not written 0 when file was saved
             }

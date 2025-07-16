@@ -77,8 +77,18 @@ function update_rfieldUuid(metaForms: Meta.Form[]): void {
             const cpassToLoginIdx = cpassField.mani.rfieldindex;
             const refField = cpassToLoginIdx !== undefined ? loginForm.fields[cpassToLoginIdx] : undefined;
 
+            if (!isFieldPsw(refField?.mani) || !isFieldPsw(cpassField.mani)) { // Links are only for password fields
+                cpassField.mani.rfieldindex = undefined;
+                cpassField.mani.memOnly.uuidLoginFld = 0;
+                return;
+            }
+
             cpassField.mani.rfieldindex = refField ? cpassToLoginIdx : undefined;
             cpassField.mani.memOnly.uuidLoginFld = refField?.uuid || 0;
         }
     );
+}
+
+export function isFieldPsw(field: Mani.Field | undefined): boolean {
+    return field?.type === "edit" && !!field?.password;
 }
