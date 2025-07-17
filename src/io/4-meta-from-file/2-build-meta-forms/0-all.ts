@@ -79,12 +79,21 @@ function update_rfieldUuid(metaForms: Meta.Form[]): void {
 
             if (!isFieldPsw(refField?.mani) || !isFieldPsw(cpassField.mani)) { // Links are only for password fields
                 cpassField.mani.rfieldindex = undefined;
+                cpassField.mani.rfield = undefined;
                 cpassField.mani.memOnly.uuidLoginFld = 0;
                 return;
             }
 
+            const uuid = refField?.uuid || 0;
+
             cpassField.mani.rfieldindex = refField ? cpassToLoginIdx : undefined;
-            cpassField.mani.memOnly.uuidLoginFld = refField?.uuid || 0;
+            cpassField.mani.memOnly.uuidLoginFld = uuid;
+            cpassField.mani.rfield = // If we have link to login, then we use 'in' as rfield if it's not set
+                uuid
+                    ? cpassField.mani.rfield
+                        ? cpassField.mani.rfield
+                        : 'in'
+                    : undefined;
         }
     );
 }
