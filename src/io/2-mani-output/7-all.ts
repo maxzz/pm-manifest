@@ -3,6 +3,19 @@ import { showError } from "../8-mani-show-error";
 import { TransformEncoding } from "../../transforms";
 import { J2xParser } from "../../utils/2-json2xml";
 
+export function convertJsToXml(obj: object | undefined): string | undefined {
+    //const rv = mani && makeNewManifest4Xml(mani);
+    if (obj) {
+        try {
+            const j2xParser = new J2xParser(parseOptionsWrite);
+            const xml = j2xParser.parse(obj);
+            return `<?xml version="1.0" encoding="UTF-8"?>\n${xml}`;
+        } catch (error) {
+            showError(error);
+        }
+    }
+}
+
 export const parseOptionsWrite = {
     ...parseOptionsRead,
     format: true,
@@ -18,18 +31,5 @@ export const parseOptionsWrite = {
         return val;
     }
 };
-
-export function convertJsToXml(obj: object | undefined): string | undefined {
-    //const rv = mani && makeNewManifest4Xml(mani);
-    if (obj) {
-        try {
-            const j2xParser = new J2xParser(parseOptionsWrite);
-            const xml = j2xParser.parse(obj);
-            return `<?xml version="1.0" encoding="UTF-8"?>\n${xml}`;
-        } catch (error) {
-            showError(error);
-        }
-    }
-}
 
 //TODO: parseOptionsWrite.attrValueProcessor(): convert value life and skip '=== undefined'
