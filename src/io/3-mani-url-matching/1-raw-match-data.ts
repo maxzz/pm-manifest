@@ -1,18 +1,18 @@
 import { Options, RawMatchData, How } from "./9-types-utl";
 import { TransformEncoding } from "../../transforms";
 
-export function stringifyRawMatchData({ how: style, opt, url }: RawMatchData, ourl: string): string {
-    url = (style !== How.undef ? url || '' : ourl).trim();
+export function stringifyRawMatchData({ how, opt, url }: RawMatchData, ourl: string): string {
+    url = (how !== How.undef ? url || '' : ourl).trim();
 
     const rv =
-        style !== How.undef || opt !== Options.undef
-            ? `[m0]:${style}:${opt}:${TransformEncoding.colonEscape(url)}`
+        how !== How.undef || opt !== Options.undef
+            ? `[m0]:${how}:${opt}:${TransformEncoding.colonEscape(url)}`
             : url;
 
     return rv;
 }
 
-export function parseRawMatchData(murl: string): RawMatchData {
+export function parseRawMatchData(murl: string | undefined): RawMatchData {
     const rv: RawMatchData = {
         how: How.undef,
         opt: Options.undef,
