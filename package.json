@@ -15,14 +15,16 @@
         "./src"
     ],
     "pnpm": {
-        "onlyBuiltDependencies": ["esbuild"]
+        "onlyBuiltDependencies": [
+            "esbuild"
+        ]
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "28.0.1",
         "@rollup/plugin-node-resolve": "15.3.0",
         "@rollup/plugin-terser": "^0.4.3",
         "@rollup/plugin-typescript": "12.1.1",
-        "esbuild": "0.24.0",
+        "esbuild": "0.25.10",
         "rollup": "4.28.1",
         "tslib": "2.8.1",
         "typescript": "5.7.2"
