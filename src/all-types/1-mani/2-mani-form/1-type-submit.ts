@@ -1,6 +1,6 @@
 export const enum SUBMIT {
-    dosumbit = 'dosumbit',
-    nosumbit = 'nosumbit',
+    dosubmit = 'dosubmit',
+    nosubmit = 'nosubmit',
 }
 
 /*
