@@ -1,24 +1,24 @@
 export namespace Poli {
 
     export enum ConstrainSet {      // former CharsetType
-        alphanumeric,               // alphabetic and numeric
-        alpha,                      // alphabetic
-        numeric,                    // numeric
-        withspecial,                // alphabetic, numeric and special characters
-        atleastonenumber,           // alphabetic, numeric and special characters with at least one number
+        alphanumeric,               // 0. alphabetic and numeric
+        alpha,                      // 1. alphabetic
+        numeric,                    // 2. numeric
+        withspecial,                // 3. alphabetic, numeric and special characters
+        atleastonenumber,           // 4. alphabetic, numeric and special characters with at least one number
     }
 
     export enum ConstrainPsw {      // former RESTRICTTYPE
-        none,                       // former none.         Nothing specified. former 'no_restrictions' // none,      // Nothing specified
-        diffWp,                     // former different_wp. Different from window password.             // notWinPsw, // Different from Windows password
-        diffAp,                     // former different_ap. Different from any password.                // notPmPsw,  // Unique within Password Manager logons // or from previous passwords // or Different from existing logins in the Password Manager.
-        diffPp,                     // former different_pp. Different from previous password.           // notCurPsw, // Different than the current password
+        none,                       // 0. former none.         Nothing specified. former 'no_restrictions' // none,      // Nothing specified
+        diffWp,                     // 1. former different_wp. Different from window password.             // notWinPsw, // Different from Windows password
+        diffAp,                     // 2. former different_ap. Different from any password.                // notPmPsw,  // Unique within Password Manager logons // or from previous passwords // or Different from existing logins in the Password Manager.
+        diffPp,                     // 3. former different_pp. Different from previous password.           // notCurPsw, // Different than the current password
     }
 
     export enum UseAs {             // former PolicyType
-        none,
-        verify,                     // TODO: describe; maybe as by user
-        generate,                   // TODO: describe; maybe as by system
+        none,                       // 0. none
+        verify,                     // 1. TODO: describe; maybe as by user
+        generate,                   // 2. TODO: describe; maybe as by system
     }
 
     export type Policy = {
@@ -32,9 +32,33 @@ export namespace Poli {
 
 } // namespace Poli
 
+// For select options
+
+export const nameValuesConstrainSet = [
+    ["Letters and numbers", "0"],
+    ["Letters only", "1"],
+    ["Numbers only", "2"],
+    ["Letters or numbers with special characters", "3"],
+    ["Letters or numbers with at least one number", "4"],
+];
+
+export const nameValuesConstrainPsw = [
+    ["None", "0"],
+    ["Different from Windows password", "1"],
+    ["Unique within Password Manager logons", "2"],
+    ["Different than the current password", "3"],
+];
+
+export const nameValuesUseAs = [
+    ["Verify", "1"],
+    ["Generate", "2"],
+];
+
+// Old just for compatibility select options names
+
 export const namesConstrainSet = [
     "Letters and numbers",
-    "Numbers only",
+    "Numbers only", // why this is swithed with the next?
     "Letters only",
     "Letters or numbers with special characters",
     "Letters or numbers with at least one number",
