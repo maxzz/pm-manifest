@@ -40,19 +40,19 @@ export const nameValuesConstrainSet = [
     ["Numbers only", "2"],
     ["Letters or numbers with special characters", "3"],
     ["Letters or numbers with at least one number", "4"],
-];
+] as const;
 
 export const nameValuesConstrainPsw = [
     ["None", "0"],
     ["Different from Windows password", "1"],
     ["Unique within Password Manager logons", "2"],
     ["Different than the current password", "3"],
-];
+] as const;
 
 export const nameValuesUseAs = [
     ["Verify", "1"],
     ["Generate", "2"],
-];
+] as const;
 
 // Old just for compatibility select options names
 
@@ -62,19 +62,19 @@ export const namesConstrainSet = [
     "Letters only",
     "Letters or numbers with special characters",
     "Letters or numbers with at least one number",
-];
+] as const;
 
 export const namesConstrainPsw = [
     "None",
     "Different from Windows password",
     "Unique within Password Manager logons",
     "Different than the current password",
-];
+] as const;
 
 export const namesUseAs = [
     "Verify",
     "Generate",
-];
+] as const;
 
 // default policy
 
