@@ -54,28 +54,6 @@ export const nameValuesUseAs = [
     ["Generate", "2"],
 ] as const;
 
-// Old just for compatibility select options names
-
-export const namesConstrainSet = [
-    "Letters and numbers",
-    "Numbers only", // why this is swithed with the next?
-    "Letters only",
-    "Letters or numbers with special characters",
-    "Letters or numbers with at least one number",
-] as const;
-
-export const namesConstrainPsw = [
-    "None",
-    "Different from Windows password",
-    "Unique within Password Manager logons",
-    "Different than the current password",
-] as const;
-
-export const namesUseAs = [
-    "Verify",
-    "Generate",
-] as const;
-
 // default policy
 
 const defaultPolicy: Poli.Policy = {

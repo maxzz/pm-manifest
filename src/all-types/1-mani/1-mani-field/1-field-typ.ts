@@ -4,7 +4,7 @@ import * as Mani from "./0-all-field";
  * Our internal enum mapped from
  * Mani.FieldTypeStr = 'edit' | 'button' | 'list' | 'combo' | 'check' | 'radio' | 'text' | 'listbx';
  */
-export enum FieldTyp {
+export enum FieldTyp { // This not const intentionally. We want to have dual enums.
     und, // undefined
     edit,
     button,
