@@ -7,19 +7,19 @@ export function createMetaForm(form: Mani.Form, formIdx: number): Meta.Form {
     const pool: string[] = getPool(form) || [];
 
     const fields: Meta.Field[] = (form.fields || []).map(
-        (field: Mani.Field, idx: number) => {
-            const newField: Meta.Field = {
-                mani: field,
-                ftyp: fieldTyp4Str(field),
-                life: TransformValue.valueLife4Mani(field),
-                path: FieldPath.fieldPathItems(pool, field.path_ext || ''),
+        (maniField: Mani.Field, idx: number) => {
+            const newMetaField: Meta.Field = {
+                mani: maniField,
+                ftyp: fieldTyp4Str(maniField),
+                life: TransformValue.valueLife4Mani(maniField),
+                path: FieldPath.fieldPathItems(pool, maniField.path_ext || ''),
                 pidx: idx,
                 previewIdx: 0,
-                uuid: uuid.asRelativeNumber(),
+                uuid: maniField.memOnly.uuidThis || uuid.asRelativeNumber(),
             };
-            field.memOnly.formIdx = formIdx;
-            field.memOnly.uuidThis = newField.uuid;
-            return newField;
+            maniField.memOnly.formIdx = formIdx;
+            maniField.memOnly.uuidThis = newMetaField.uuid; // it will preserve uuidThis if it was set before or assign new one
+            return newMetaField;
         }
     );
 
