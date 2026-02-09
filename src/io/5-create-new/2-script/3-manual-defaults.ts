@@ -16,7 +16,7 @@ function loginFields(formIdx: number): Mani.Field[] {
             displayname: "Username",
             type: "edit",
             dbname: guids[0],
-            path_ext: "[sn]2.0.pos,x=10,y=10,units=abs;keys,key=tab;field;",
+            path_ext: "[sn]2.0.pos,x=60,y=10,units=abs;keys,key=tab;field;", // 60 is to move away from the PM icon default location
             useit: true,
             memOnly: newMemOnly(formIdx, guids[0]),
         },
@@ -40,7 +40,7 @@ function cpassFields(formIdx: number): Mani.Field[] {
             type: "edit",
             password: true,
             dbname: guids[0],
-            path_ext: "[sn]3.0.pos,x=10,y=10,units=abs;keys,key=tab;field;",
+            path_ext: "[sn]3.0.pos,x=60,y=10,units=abs;keys,key=tab;field;", // 60 is to move away from the PM icon default location
             useit: true,
             memOnly: newMemOnly(formIdx, guids[0]),
         },

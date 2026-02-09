@@ -31,7 +31,7 @@ export function createScriptItem_kbd({ char = 'tab', repeat = 1, shift = 0, ctrl
     return newItem;
 }
 
-export function createScriptItem_pos({ x = 10, y = 20, units = false, res = 0 }: Partial<Omit<EditorDataForPos, 'type'>> = {}): EditorDataForPos {
+export function createScriptItem_pos({ x = 60, y = 10, units = false, res = 0 }: Partial<Omit<EditorDataForPos, 'type'>> = {}): EditorDataForPos {
     const newItem: EditorDataForPos = { type: 'pos', x, y, units, res, };
     return newItem;
 }
