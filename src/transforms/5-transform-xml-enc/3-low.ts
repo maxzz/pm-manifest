@@ -3,7 +3,7 @@
 
 const HEX = '0123456789abcdef';
 
-export function removeIllegal(v: string): string {
+export function lowRemoveIllegal(v: string): string {
     return v.replace(/[\x01-\x1f%]/g,
         (ch) => {
             const c = ch.charCodeAt(0);
@@ -37,7 +37,7 @@ namespace low			//low characters from 1..31, and %, for choosevalue, names, valu
 } //namespace low
 */
 
-export function restoreIllegal(v: string): string {
+export function lowRestoreIllegal(v: string): string {
     return v.replace(/%([0-9a-fA-F]{2})/g,
         (match, hex) => {
             const b = parseInt(hex, 16);
