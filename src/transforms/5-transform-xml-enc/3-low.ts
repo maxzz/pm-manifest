@@ -1,20 +1,15 @@
 
 // low characters from 1..31, and %, for choosevalue, names, value
 
+const HEX = '0123456789abcdef';
+
 export function removeIllegal(v: string): string {
-    let rv = '';
-
-    for (let i = 0; i < v.length; i++) {
-        const charCode = v.charCodeAt(i);
-        // if ((unsigned(*it) <= 31 && *it != 0) || *it == '%')
-        if ((charCode <= 31 && charCode !== 0) || charCode === 37) { // 37 is '%'
-            rv += '%' + charCode.toString(16).padStart(2, '0').toLowerCase();
-        } else {
-            rv += v[i];
+    return v.replace(/[\x01-\x1f%]/g,
+        (ch) => {
+            const c = ch.charCodeAt(0);
+            return '%' + HEX[(c >> 4) & 0xf] + HEX[c & 0xf];
         }
-    }
-
-    return rv;
+    );
 }
 
 /*
@@ -42,44 +37,13 @@ namespace low			//low characters from 1..31, and %, for choosevalue, names, valu
 } //namespace low
 */
 
-function xdigit2hex(v: number): number {
-    if (v >= 48 && v <= 57) { // 0-9
-        return v - 48;
-    }
-    // a-f (97-102) or A-F (65-70)
-    // tolower: v | 32
-    return (10 + (v | 32) - 97) & 0x0f;
-}
-
 export function restoreIllegal(v: string): string {
-    let rv = '';
-    let i = 0;
-    while (i < v.length) {
-        if (v[i] === '%') {
-            i++;
-            if (i >= v.length) break;
-
-            const hb = xdigit2hex(v.charCodeAt(i));
-
-            i++;
-            if (i >= v.length) break;
-
-            const lb = xdigit2hex(v.charCodeAt(i));
-
-            const b = (hb << 4) | lb;
-
-            // if (b <= 31 || b == '%')
-            if (b <= 31 || b === 37) { // 37 is '%'
-                rv += String.fromCharCode(b);
-            } else {
-                rv += '%' + b.toString(16).padStart(2, '0').toLowerCase();
-            }
-        } else {
-            rv += v[i];
+    return v.replace(/%([0-9a-fA-F]{2})/g,
+        (match, hex) => {
+            const b = parseInt(hex, 16);
+            return (b <= 31 || b === 0x25) ? String.fromCharCode(b) : match; // 0x25 is '%'
         }
-        i++;
-    }
-    return rv;
+    );
 }
 
 /*
