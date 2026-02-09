@@ -1,7 +1,4 @@
-
-// low characters from 1..31, and %, for choosevalue, names, value
-
-const HEX = '0123456789abcdef';
+// Low characters from 1..31, and %, for choosevalue, names, value
 
 export function lowRemoveIllegal(v: string): string {
     return v.replace(/[\x01-\x1f%]/g,
@@ -12,29 +9,26 @@ export function lowRemoveIllegal(v: string): string {
     );
 }
 
+const HEX = '0123456789abcdef';
+
 /*
-namespace low			//low characters from 1..31, and %, for choosevalue, names, value
+namespace low
 {
-    inline string_t remove_illegal(__in const string_t& v_)
-    {
+    inline string_t remove_illegal(__in const string_t& v_) {
         string_t rv; rv.reserve(v_.size());
 
         for (string_t::const_iterator it=v_.begin(); it!=v_.end(); ++it)
         {
-            if ((unsigned(*it) <= 31 && *it != 0) || *it == '%')
-            {
+            if ((unsigned(*it) <= 31 && *it != 0) || *it == '%') {
                 rv += sformat("%%%02x", unsigned(*it));
-            }
-            else
-            {
+            } else {
                 rv += *it;
             }
-        }//for
+        }
 
         return rv;
-    } //remove_illegal()
-
-} //namespace low
+    }
+}
 */
 
 export function lowRestoreIllegal(v: string): string {
@@ -47,16 +41,13 @@ export function lowRestoreIllegal(v: string): string {
 }
 
 /*
-namespace low			//low characters from 1..31, and %, for choosevalue, names, value
+namespace low
 {
-    inline int xdigit2hex(__in char v_)
-    {
+    inline int xdigit2hex(__in char v_) {
         return (isdigit(v_) ? v_ - '0' : 10 + tolower(v_) - 'a') & 0x0f;
+    }
 
-    } //xdigit2hex()
-
-    inline string_t restore_illegal(__in const string_t& v_)
-    {
+    inline string_t restore_illegal(__in const string_t& v_) {
         string_t rv; rv.reserve(v_.size());
 
         string_t::const_iterator it = v_.begin();
@@ -83,12 +74,9 @@ namespace low			//low characters from 1..31, and %, for choosevalue, names, valu
                 // otherwise it will couse the problem (for example we'll
                 // change %3a to ':' and then do for uppack::cpp(':'))
                 //
-                if (b <= 31 || b == '%')
-                {
+                if (b <= 31 || b == '%') {
                     rv += char(b);
-                }
-                else
-                {
+                } else {
                     rv += sformat("%%%02x", unsigned(b));
                 }
             }
@@ -97,8 +85,6 @@ namespace low			//low characters from 1..31, and %, for choosevalue, names, valu
             ++it;
         }//while
         return rv;
-    } //restore_illegal()
-
-} //namespace low
-
+    }
+}
 */
