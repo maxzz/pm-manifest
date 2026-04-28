@@ -15,6 +15,12 @@ export type FContext = {
     name: number;                   // "1"
 };
 
+export enum AutoPromptType {        // autoprompt element in Manifest fie causes automatic popup of authentication dialog right after corresponding window or webpage is loaded.
+    none = 0,                       // 0 or (missing autoprompt element) means that automatic authentication is not used for this app
+    once = 1,                       // 1 means the autoprompt is used the first time the application is loaded. This is to prevent automatic popup of the authentication dialog if logon dialog/page is shown after logout. In this case, if SSO is configured, authentication is automatic, and we will log the user on immediately after logout, which definitely is not what the user expects.
+    always = 2,                     // 2 means the autoprompt is used every time when the dialog/web page is loaded, not just the first time.
+};
+
 export type Detection = {
     //windowtitle_t
     //matchtype?: string;           // is taken from caption as '[m0]:2:2:' | [m0]:2:1: | '[m0]:2:3:': "full" | "left" | "right" | "both"
@@ -50,7 +56,7 @@ export type Options = {
     quicklink?: string;             // QL menu name
     auth_pl?: string;               // extended policy (see AuthTokenValues); only one bit as hex string (auth_pl="100"); used only for login form
     balooncount?: string;           // number of times to show baloon; -1: never, 0: always. Name with typo got into file format, so keep it as is.
-    autoprompt?: string;            // boolean
+    autoprompt?: string;            // "0" | "1" | "2" as AutoPromptType
     lockfields?: string;            // "0" | "1"
     submittype?: string;            // "dosubmit" | "nosubmit" We have this information only if it was said in clear, i.e. no defaults, or guesses. // export type SubmitType = 'dosubmit' | 'nosubmit' | undefined;
     iconkey?: string;               // Any name not necessarily unique
