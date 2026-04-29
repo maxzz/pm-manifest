@@ -59,7 +59,7 @@ export namespace FileMani {             // This is a file structure wo/ boolean 
         quicklink?: string;             // QL menu name
         auth_pl?: string;               // extended policy (see AuthTokenValues); only one bit as hex string (auth_pl="100"); used only for login form
         balooncount?: string;           // number as string
-        autoprompt?: '1';               // boolean
+        autoprompt?: string;            // "0" | "1" | "2" as AutoPromptType
         lockfields?: '1';               // "0" | "1"
         submittype?: 'dosubmit' | `nosubmit`;
         iconkey?: string;               // Any name not necessarily unique

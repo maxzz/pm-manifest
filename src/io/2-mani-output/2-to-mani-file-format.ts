@@ -36,7 +36,6 @@ function convertFormOptions(options: Mani.Options): FileMani.Options {
     const rv: FileMani.Options = {
         ...options as FileMani.Options,
         ...(options.submittype && { submittype: options.submittype as 'dosubmit' | `nosubmit` }),
-        ...(options.autoprompt && { autoprompt: '1' }),
     };
     if (rv.balooncount === '3') {
         delete rv.balooncount;
